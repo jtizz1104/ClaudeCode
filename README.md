@@ -22,6 +22,7 @@ pipelines/
   markets/                fetch -> informe diario -> guiones de shorts
 render/                  Texto a voz + armado del video vertical (1080x1920)
 publish/                 Subida a YouTube / Instagram / TikTok
+dashboard/               Panel web para revisar/aprobar el contenido del día
 storage/                 Outputs del día: digest/informe, guiones, videos
 scripts/build_shorts.py  Renderiza en video los guiones de un pipeline
 ```
@@ -53,12 +54,18 @@ python scripts/build_shorts.py ai_news
 python scripts/build_shorts.py markets
 
 # Los mp4 quedan en storage/<pipeline>/<fecha>/videos/
+
+# 4. Levantar el panel para revisar/aprobar el contenido del día
+uvicorn dashboard.app:app --reload
+# abrir http://localhost:8000
 ```
 
-Por ahora la subida a redes es manual: revisás los videos generados y los
-subís vos desde la app de cada plataforma. Los módulos de `publish/` ya están
-escritos y listos para activar en cuanto tengas las cuentas de developer de
-cada plataforma (ver el docstring de cada archivo para los pasos exactos).
+Por ahora la subida a redes es manual: en el panel revisás cada short (guion,
+texto en pantalla, video, hashtags), lo marcás como aprobado y, una vez que
+lo subís a mano desde la app de cada plataforma, lo marcás como publicado.
+Los módulos de `publish/` ya están escritos y listos para activar en cuanto
+tengas las cuentas de developer de cada plataforma (ver el docstring de cada
+archivo para los pasos exactos).
 
 ## Roadmap
 
@@ -78,8 +85,9 @@ cada plataforma (ver el docstring de cada archivo para los pasos exactos).
 - [ ] Conectar `publish/*.py` a un storage con URL pública (S3/Cloud Storage) para Instagram
 - [ ] Automatizar la corrida diaria completa (cron / GitHub Actions) con revisión humana antes de publicar
 
-**Fase 3 — Dashboard**
-- [ ] Sitio web simple para revisar el resumen/informe del día, escuchar/ver los shorts generados, aprobar o editar antes de publicar
+**Fase 3 — Dashboard (listo el MVP)**
+- [x] Panel web (`dashboard/`) para ver el resumen/informe del día, mirar los shorts generados y marcarlos como aprobado/publicado
+- [ ] Edición del guion/texto en pantalla desde el propio panel (hoy se edita el JSON a mano)
 - [ ] Historial de contenido publicado y métricas básicas por plataforma
 
 ## Notas importantes
