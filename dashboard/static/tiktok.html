@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Publicación privada de prueba</title>
+  <link rel="stylesheet" href="/dashboard/style.css" />
+  <style>
+    .demo { max-width: 760px; margin: 48px auto; padding: 28px; background: #11182d; border: 1px solid #27304a; border-radius: 16px; }
+    .demo label { display:block; margin:18px 0 7px; }
+    .demo input[type=file], .demo textarea, .demo select { width:100%; box-sizing:border-box; padding:12px; background:#090f20; color:#fff; border:1px solid #38415e; border-radius:8px; }
+    .demo textarea { min-height:120px; }
+    .demo button { margin-top:22px; padding:12px 18px; border:0; border-radius:8px; background:#7c4dff; color:white; font-weight:700; cursor:pointer; }
+    .notice { color:#b8c1df; line-height:1.5; }
+    #result { margin-top:18px; white-space:pre-wrap; }
+  </style>
+</head>
+<body>
+  <main class="demo">
+    <p><a href="/dashboard/">← Volver al dashboard</a></p>
+    <h1>Publicación privada de prueba</h1>
+    <p class="notice">Revisá el archivo, el texto y la privacidad antes de confirmar. Durante el Sandbox el video se publica únicamente como <strong>SELF_ONLY</strong>.</p>
+    <form id="publish-form">
+      <label for="video">Video MP4</label>
+      <input id="video" name="video" type="file" accept="video/mp4,.mp4" required />
+      <label for="caption">Descripción</label>
+      <textarea id="caption" name="caption" maxlength="2200" required></textarea>
+      <label for="privacy">Privacidad</label>
+      <select id="privacy" name="privacy_level"><option value="SELF_ONLY">Solo yo (SELF_ONLY)</option></select>
+      <label><input name="allow_comments" type="checkbox" value="true" /> Permitir comentarios</label>
+      <p class="notice">Duet y Stitch permanecen desactivados en esta prueba.</p>
+      <label><input id="confirm" type="checkbox" required /> Revisé la cuenta, el video, el texto y la privacidad.</label>
+      <button type="submit">Publicar prueba privada</button>
+    </form>
+    <div id="result" role="status"></div>
+  </main>
+  <script>
+    const form = document.querySelector('#publish-form');
+    const result = document.querySelector('#result');
+    fetch('/api/tiktok/creator-info').then(async r => {
+      if (!r.ok) throw new Error((await r.json()).detail || 'No se pudo consultar TikTok');
+      return r.json();
+    }).then(data => {
+      const name = data?.data?.creator_nickname || data?.data?.creator_username || 'cuenta autorizada';
+      result.textContent = `Cuenta conectada: ${name}. Opciones de TikTok consultadas correctamente.`;
+    }).catch(err => { result.textContent = err.message + '. Volvé al dashboard y conectá TikTok nuevamente.'; });
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (!confirm('¿Confirmás la publicación privada SELF_ONLY en la cuenta autorizada?')) return;
+      result.textContent = 'Subiendo el video a TikTok…';
+      const response = await fetch('/api/tiktok/publish', { method:'POST', body:new FormData(form) });
+      const data = await response.json();
+      if (!response.ok) { result.textContent = data.detail || 'TikTok rechazó la publicación.'; return; }
+      result.textContent = `Video enviado correctamente. Privacidad: ${data.privacy_level}. Publish ID: ${data.publish_id}`;
+    });
+  </script>
+</body>
+</html>
