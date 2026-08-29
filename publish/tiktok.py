@@ -26,10 +26,19 @@ import requests
 API_BASE = "https://open.tiktokapis.com/v2"
 
 
-def upload_video(video_path: str, caption: str) -> str:
+def upload_video(
+    video_path: str,
+    caption: str,
+    *,
+    access_token: str | None = None,
+    privacy_level: str = "SELF_ONLY",
+    disable_duet: bool = True,
+    disable_comment: bool = False,
+    disable_stitch: bool = True,
+) -> str:
     """Sube un video a TikTok como borrador/publicación directa según los
     permisos de la app. Devuelve el publish_id."""
-    token = os.environ["TIKTOK_ACCESS_TOKEN"]
+    token = access_token or os.environ["TIKTOK_ACCESS_TOKEN"]
     video_path = Path(video_path)
     video_size = video_path.stat().st_size
 
@@ -39,10 +48,10 @@ def upload_video(video_path: str, caption: str) -> str:
         json={
             "post_info": {
                 "title": caption,
-                "privacy_level": "SELF_ONLY",  # cambiar a PUBLIC_TO_EVERYONE cuando esté validado
-                "disable_duet": False,
-                "disable_comment": False,
-                "disable_stitch": False,
+                "privacy_level": privacy_level,
+                "disable_duet": disable_duet,
+                "disable_comment": disable_comment,
+                "disable_stitch": disable_stitch,
             },
             "source_info": {
                 "source": "FILE_UPLOAD",
