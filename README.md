@@ -60,6 +60,17 @@ uvicorn dashboard.app:app --reload
 # abrir http://localhost:8000
 ```
 
+La portada pública queda en `/`, las páginas legales en `/privacy` y `/terms`,
+y el panel protegido en `/dashboard`. Para abrir el panel se requieren las
+variables `DASHBOARD_USERNAME` y `DASHBOARD_PASSWORD`.
+
+## Despliegue en Render
+
+El archivo `render.yaml` configura un Web Service de Python con health check en
+`/health`. Al crear el Blueprint desde Render, la contraseña del dashboard se
+genera automáticamente y puede consultarse en las variables de entorno del
+servicio.
+
 Por ahora la subida a redes es manual: en el panel revisás cada short (guion,
 texto en pantalla, video, hashtags), lo marcás como aprobado y, una vez que
 lo subís a mano desde la app de cada plataforma, lo marcás como publicado.

@@ -7,9 +7,13 @@ Abrir http://localhost:8000
 
 from __future__ import annotations
 
+import base64
+import os
+import secrets
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
@@ -18,8 +22,41 @@ from pipelines.common import storage
 app = FastAPI(title="Panel de contenido - @codigonegocioia")
 
 STATIC_DIR = Path(__file__).parent / "static"
+PUBLIC_DIR = Path(__file__).parent / "public"
 STATUS_FILENAME = "status.json"
 VALID_STATUSES = {"pending", "approved", "posted"}
+
+
+@app.middleware("http")
+async def protect_dashboard(request: Request, call_next):
+    """Protect private dashboard, API and generated media with HTTP Basic auth."""
+    protected = ("/dashboard", "/api", "/media")
+    if not request.url.path.startswith(protected):
+        return await call_next(request)
+
+    expected_user = os.getenv("DASHBOARD_USERNAME", "admin")
+    expected_password = os.getenv("DASHBOARD_PASSWORD")
+    if not expected_password:
+        return JSONResponse(
+            {"detail": "Dashboard access is not configured"}, status_code=503
+        )
+
+    authorization = request.headers.get("Authorization", "")
+    if authorization.startswith("Basic "):
+        try:
+            raw = base64.b64decode(authorization[6:]).decode("utf-8")
+            username, password = raw.split(":", 1)
+        except (ValueError, UnicodeDecodeError):
+            username, password = "", ""
+        if secrets.compare_digest(username, expected_user) and secrets.compare_digest(
+            password, expected_password
+        ):
+            return await call_next(request)
+
+    return Response(
+        status_code=401,
+        headers={"WWW-Authenticate": 'Basic realm="Codigo Negocio IA"'},
+    )
 
 
 def _load_status(pipeline: str, date: str) -> dict:
@@ -116,5 +153,21 @@ def set_status(pipeline: str, date: str, index: int, body: StatusUpdate) -> dict
     return {"index": index, "status": body.status}
 
 
+@app.get("/health")
+def health() -> dict:
+    return {"status": "ok"}
+
+
+@app.get("/privacy", include_in_schema=False)
+def privacy_policy() -> FileResponse:
+    return FileResponse(PUBLIC_DIR / "privacy.html")
+
+
+@app.get("/terms", include_in_schema=False)
+def terms_of_service() -> FileResponse:
+    return FileResponse(PUBLIC_DIR / "terms.html")
+
+
 app.mount("/media", StaticFiles(directory=str(storage.ROOT)), name="media")
-app.mount("/", StaticFiles(directory=str(STATIC_DIR), html=True), name="static")
+app.mount("/dashboard", StaticFiles(directory=str(STATIC_DIR), html=True), name="dashboard")
+app.mount("/", StaticFiles(directory=str(PUBLIC_DIR), html=True), name="public")
