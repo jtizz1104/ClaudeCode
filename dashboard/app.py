@@ -10,16 +10,18 @@ from __future__ import annotations
 import base64
 import os
 import secrets
+import tempfile
 from pathlib import Path
 from urllib.parse import urlencode
 
 import requests
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, RedirectResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from pipelines.common import storage
+from publish.tiktok import upload_video
 
 app = FastAPI(title="Panel de contenido - @codigonegocioia")
 
@@ -141,6 +143,61 @@ def tiktok_callback(request: Request, code: str | None = None, state: str | None
 def tiktok_status() -> dict:
     connected = storage.has_json("tiktok", "oauth.json")
     return {"connected": connected}
+
+
+def _tiktok_token() -> str:
+    if not storage.has_json("tiktok", "oauth.json"):
+        raise HTTPException(401, "TikTok account is not connected")
+    token_data = storage.load_json("tiktok", "oauth.json")
+    token = token_data.get("access_token")
+    if not token:
+        raise HTTPException(401, "TikTok access token is unavailable")
+    return token
+
+
+@app.get("/api/tiktok/creator-info")
+def tiktok_creator_info() -> dict:
+    response = requests.post(
+        "https://open.tiktokapis.com/v2/post/publish/creator_info/query/",
+        headers={"Authorization": f"Bearer {_tiktok_token()}", "Content-Type": "application/json"},
+        json={},
+        timeout=30,
+    )
+    if not response.ok:
+        raise HTTPException(502, "TikTok did not return creator information")
+    return response.json()
+
+
+@app.post("/api/tiktok/publish")
+def tiktok_publish(
+    video: UploadFile = File(...),
+    caption: str = Form(""),
+    privacy_level: str = Form("SELF_ONLY"),
+    allow_comments: bool = Form(False),
+) -> dict:
+    if video.content_type not in {"video/mp4", "application/octet-stream"}:
+        raise HTTPException(400, "Only MP4 videos are accepted")
+    if privacy_level != "SELF_ONLY":
+        raise HTTPException(400, "Sandbox publications must remain private")
+
+    suffix = Path(video.filename or "video.mp4").suffix.lower()
+    if suffix != ".mp4":
+        raise HTTPException(400, "The video filename must end in .mp4")
+
+    with tempfile.NamedTemporaryFile(suffix=".mp4") as tmp:
+        while chunk := video.file.read(1024 * 1024):
+            tmp.write(chunk)
+        tmp.flush()
+        publish_id = upload_video(
+            tmp.name,
+            caption[:2200],
+            access_token=_tiktok_token(),
+            privacy_level="SELF_ONLY",
+            disable_comment=not allow_comments,
+            disable_duet=True,
+            disable_stitch=True,
+        )
+    return {"publish_id": publish_id, "privacy_level": "SELF_ONLY"}
 
 
 def _load_status(pipeline: str, date: str) -> dict:
