@@ -11,9 +11,11 @@ import base64
 import os
 import secrets
 from pathlib import Path
+from urllib.parse import urlencode
 
+import requests
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import FileResponse, JSONResponse, Response
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, RedirectResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
@@ -30,7 +32,7 @@ VALID_STATUSES = {"pending", "approved", "posted"}
 @app.middleware("http")
 async def protect_dashboard(request: Request, call_next):
     """Protect private dashboard, API and generated media with HTTP Basic auth."""
-    protected = ("/dashboard", "/api", "/media")
+    protected = ("/dashboard", "/api", "/media", "/auth/tiktok/login", "/auth/tiktok/status")
     if not request.url.path.startswith(protected):
         return await call_next(request)
 
@@ -57,6 +59,88 @@ async def protect_dashboard(request: Request, call_next):
         status_code=401,
         headers={"WWW-Authenticate": 'Basic realm="Codigo Negocio IA"'},
     )
+
+
+@app.get("/auth/tiktok/login", include_in_schema=False)
+def tiktok_login() -> RedirectResponse:
+    """Start TikTok OAuth without exposing the client secret to the browser."""
+    client_key = os.getenv("TIKTOK_CLIENT_KEY")
+    redirect_uri = os.getenv(
+        "TIKTOK_REDIRECT_URI",
+        "https://codigo-negocio-ia.onrender.com/auth/tiktok/callback",
+    )
+    if not client_key:
+        raise HTTPException(503, "TikTok OAuth is not configured")
+
+    state = secrets.token_urlsafe(32)
+    query = urlencode(
+        {
+            "client_key": client_key,
+            "response_type": "code",
+            "scope": "user.info.basic,video.upload,video.publish",
+            "redirect_uri": redirect_uri,
+            "state": state,
+        }
+    )
+    response = RedirectResponse(f"https://www.tiktok.com/v2/auth/authorize/?{query}")
+    response.set_cookie(
+        "tiktok_oauth_state",
+        state,
+        max_age=600,
+        httponly=True,
+        secure=True,
+        samesite="lax",
+    )
+    return response
+
+
+@app.get("/auth/tiktok/callback", include_in_schema=False)
+def tiktok_callback(request: Request, code: str | None = None, state: str | None = None) -> HTMLResponse:
+    """Exchange TikTok's authorization code and retain the token for the demo session."""
+    expected_state = request.cookies.get("tiktok_oauth_state")
+    if not code or not state or not expected_state or not secrets.compare_digest(state, expected_state):
+        raise HTTPException(400, "Invalid TikTok OAuth response")
+
+    client_key = os.getenv("TIKTOK_CLIENT_KEY")
+    client_secret = os.getenv("TIKTOK_CLIENT_SECRET")
+    redirect_uri = os.getenv(
+        "TIKTOK_REDIRECT_URI",
+        "https://codigo-negocio-ia.onrender.com/auth/tiktok/callback",
+    )
+    if not client_key or not client_secret:
+        raise HTTPException(503, "TikTok OAuth is not configured")
+
+    token_response = requests.post(
+        "https://open.tiktokapis.com/v2/oauth/token/",
+        headers={"Content-Type": "application/x-www-form-urlencoded"},
+        data={
+            "client_key": client_key,
+            "client_secret": client_secret,
+            "code": code,
+            "grant_type": "authorization_code",
+            "redirect_uri": redirect_uri,
+        },
+        timeout=30,
+    )
+    if not token_response.ok:
+        raise HTTPException(502, "TikTok did not complete the token exchange")
+
+    token_data = token_response.json()
+    storage.save_json("tiktok", "oauth.json", token_data)
+    response = HTMLResponse(
+        """<!doctype html><html lang=\"es\"><meta charset=\"utf-8\"><title>TikTok conectado</title>
+        <body style=\"font-family:system-ui;background:#070d27;color:#fff;padding:4rem\">
+        <h1>TikTok conectado correctamente</h1><p>La cuenta autorizada ya puede usarse en la demostración privada.</p>
+        <p><a style=\"color:#a987ff\" href=\"/dashboard/\">Volver al dashboard</a></p></body></html>"""
+    )
+    response.delete_cookie("tiktok_oauth_state")
+    return response
+
+
+@app.get("/auth/tiktok/status", include_in_schema=False)
+def tiktok_status() -> dict:
+    connected = storage.has_json("tiktok", "oauth.json")
+    return {"connected": connected}
 
 
 def _load_status(pipeline: str, date: str) -> dict:
