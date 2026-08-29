@@ -64,8 +64,8 @@ Por ahora la subida a redes es manual: en el panel revisás cada short (guion,
 texto en pantalla, video, hashtags), lo marcás como aprobado y, una vez que
 lo subís a mano desde la app de cada plataforma, lo marcás como publicado.
 Los módulos de `publish/` ya están escritos y listos para activar en cuanto
-tengas las cuentas de developer de cada plataforma (ver el docstring de cada
-archivo para los pasos exactos).
+tengas las cuentas de developer de cada plataforma — la guía paso a paso
+para darlas de alta está en [`docs/PLATFORM_SETUP.md`](docs/PLATFORM_SETUP.md).
 
 ## Roadmap
 
