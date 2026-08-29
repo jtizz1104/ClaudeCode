@@ -1,7 +1,9 @@
 # AI & Markets Content Studio
 
-Pipeline de contenido automatizado para un canal de negocios + IA en YouTube,
-Instagram y TikTok. Todos los días genera:
+Pipeline de contenido automatizado para **@codigonegocioia** (YouTube,
+Instagram y TikTok), un canal de negocios + IA. El handle se usa como marca
+en el watermark de los videos y en el cierre/hashtags de los guiones — se
+puede cambiar seteando `CHANNEL_HANDLE` en `.env`. Todos los días genera:
 
 1. **Resumen de IA**: rastrea qué pasó en las últimas 24hs (lanzamientos,
    papers, movidas de las grandes empresas) y arma un short por cada noticia

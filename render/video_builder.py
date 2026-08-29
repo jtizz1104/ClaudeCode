@@ -11,6 +11,7 @@ build_short().
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from textwrap import wrap
 
@@ -23,6 +24,7 @@ WIDTH, HEIGHT = 1080, 1920
 BG_COLOR = (12, 14, 22)
 ACCENT_COLOR = (94, 234, 212)
 TEXT_COLOR = (245, 245, 245)
+HANDLE_COLOR = (150, 155, 168)
 
 
 def _font(size: int) -> ImageFont.ImageFont:
@@ -55,6 +57,11 @@ def _render_text_frame(headline: str, body: str) -> Image.Image:
         w = draw.textlength(line, font=headline_font)
         draw.text(((WIDTH - w) / 2, y), line, font=headline_font, fill=ACCENT_COLOR)
         y += headline_font.size + 10
+
+    handle = os.environ.get("CHANNEL_HANDLE", "@codigonegocioia")
+    handle_font = _font(36)
+    w = draw.textlength(handle, font=handle_font)
+    draw.text(((WIDTH - w) / 2, HEIGHT - 120), handle, font=handle_font, fill=HANDLE_COLOR)
 
     return img
 

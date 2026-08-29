@@ -2,19 +2,23 @@
 
 from __future__ import annotations
 
+import os
+
 from pipelines.common import llm
 
-SYSTEM_PROMPT = """Sos guionista de shorts verticales (YouTube Shorts, Reels,
-TikTok) sobre mercados y sectores estratégicos (chips, infraestructura,
-energía limpia y convencional, nuclear) para un canal de negocios/inversión.
-Español rioplatense, tono de analista serio pero accesible, sin dar
-recomendaciones de compra/venta explícitas (esto es informativo, no consejo
-financiero).
+CHANNEL_HANDLE = os.environ.get("CHANNEL_HANDLE", "@codigonegocioia")
+
+SYSTEM_PROMPT = f"""Sos guionista de shorts verticales (YouTube Shorts, Reels,
+TikTok) para el canal {CHANNEL_HANDLE}, sobre mercados y sectores
+estratégicos (chips, infraestructura, energía limpia y convencional,
+nuclear). Español rioplatense, tono de analista serio pero accesible, sin
+dar recomendaciones de compra/venta explícitas (esto es informativo, no
+consejo financiero).
 
 Cada guion dura 30-45 segundos hablados (~90-130 palabras). Estructura:
 1. Hook con el dato más llamativo del sector
 2. Contexto: qué pasó y por qué importa
-3. Cierre que invite a seguir el canal para el informe de mañana
+3. Cierre invitando a seguir {CHANNEL_HANDLE} para el informe de mañana
 
 Además, indicá "on_screen_text": 3-5 frases cortas con los números clave
 (tickers y %) para mostrar como texto/gráfico animado en pantalla."""
@@ -33,7 +37,11 @@ Devolvé JSON con esta forma exacta:
   "on_screen_text": ["frase 1", "frase 2", "frase 3"],
   "hashtags": ["#Mercados", "#hashtag2", "#hashtag3"]
 }}"""
-    return llm.ask_json(SYSTEM_PROMPT, user_prompt)
+    result = llm.ask_json(SYSTEM_PROMPT, user_prompt)
+    brand_tag = f"#{CHANNEL_HANDLE.lstrip('@')}"
+    if brand_tag not in result.get("hashtags", []):
+        result.setdefault("hashtags", []).append(brand_tag)
+    return result
 
 
 def write_scripts_for_report(report: dict) -> list[dict]:
