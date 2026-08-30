@@ -26,6 +26,46 @@ import requests
 API_BASE = "https://open.tiktokapis.com/v2"
 
 
+class TikTokAPIError(RuntimeError):
+    """Error seguro de la API de TikTok, sin tokens ni credenciales."""
+
+    def __init__(
+        self,
+        operation: str,
+        status_code: int,
+        *,
+        code: str = "unknown_error",
+        message: str = "TikTok rechazó la solicitud",
+        log_id: str = "",
+    ) -> None:
+        self.operation = operation
+        self.status_code = status_code
+        self.code = code
+        self.message = message
+        self.log_id = log_id
+        detail = f"TikTok {operation}: {code} — {message}"
+        if log_id:
+            detail += f" (log_id: {log_id})"
+        super().__init__(detail)
+
+
+def _raise_tiktok_error(response: requests.Response, operation: str) -> None:
+    """Extrae solamente los campos de error documentados por TikTok."""
+    if response.ok:
+        return
+    try:
+        error = response.json().get("error", {})
+    except (requests.JSONDecodeError, ValueError):
+        error = {}
+    raise TikTokAPIError(
+        operation,
+        response.status_code,
+        code=str(error.get("code") or "http_error"),
+        message=str(error.get("message") or response.reason or "Solicitud rechazada"),
+        log_id=str(error.get("log_id") or ""),
+    )
+
+
 def upload_video(
     video_path: str,
     caption: str,
@@ -62,7 +102,7 @@ def upload_video(
         },
         timeout=30,
     )
-    init_resp.raise_for_status()
+    _raise_tiktok_error(init_resp, "video/init")
     data = init_resp.json()["data"]
     publish_id = data["publish_id"]
     upload_url = data["upload_url"]
@@ -77,6 +117,6 @@ def upload_video(
             data=f,
             timeout=120,
         )
-    put_resp.raise_for_status()
+    _raise_tiktok_error(put_resp, "video/upload")
 
     return publish_id
