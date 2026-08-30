@@ -21,7 +21,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from pipelines.common import storage
-from publish.tiktok import upload_video
+from publish.tiktok import TikTokAPIError, upload_video
 
 app = FastAPI(title="Panel de contenido - @codigonegocioia")
 
@@ -188,15 +188,20 @@ def tiktok_publish(
         while chunk := video.file.read(1024 * 1024):
             tmp.write(chunk)
         tmp.flush()
-        publish_id = upload_video(
-            tmp.name,
-            caption[:2200],
-            access_token=_tiktok_token(),
-            privacy_level="SELF_ONLY",
-            disable_comment=not allow_comments,
-            disable_duet=True,
-            disable_stitch=True,
-        )
+        try:
+            publish_id = upload_video(
+                tmp.name,
+                caption[:2200],
+                access_token=_tiktok_token(),
+                privacy_level="SELF_ONLY",
+                disable_comment=not allow_comments,
+                disable_duet=True,
+                disable_stitch=True,
+            )
+        except TikTokAPIError as exc:
+            # El detalle contiene únicamente code/message/log_id; nunca el token.
+            print(f"TikTok API error: {exc}", flush=True)
+            raise HTTPException(status_code=502, detail=str(exc)) from exc
     return {"publish_id": publish_id, "privacy_level": "SELF_ONLY"}
 
 
