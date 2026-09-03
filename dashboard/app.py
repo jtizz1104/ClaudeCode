@@ -11,6 +11,7 @@ import base64
 import os
 import secrets
 import tempfile
+import threading
 from pathlib import Path
 from urllib.parse import urlencode
 
@@ -21,6 +22,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from pipelines.common import storage
+from publish.instagram import InstagramAPIError, account_info, upload_reel
 from publish.tiktok import TikTokAPIError, upload_video
 
 app = FastAPI(title="Panel de contenido - @codigonegocioia")
@@ -29,6 +31,8 @@ STATIC_DIR = Path(__file__).parent / "static"
 PUBLIC_DIR = Path(__file__).parent / "public"
 STATUS_FILENAME = "status.json"
 VALID_STATUSES = {"pending", "approved", "posted"}
+INSTAGRAM_MEDIA: dict[str, Path] = {}
+INSTAGRAM_MEDIA_LOCK = threading.Lock()
 
 
 @app.middleware("http")
@@ -203,6 +207,59 @@ def tiktok_publish(
             print(f"TikTok API error: {exc}", flush=True)
             raise HTTPException(status_code=502, detail=str(exc)) from exc
     return {"publish_id": publish_id, "privacy_level": "SELF_ONLY"}
+
+
+@app.get("/instagram-media/{media_token}.mp4", include_in_schema=False)
+def instagram_media(media_token: str) -> FileResponse:
+    """Entrega a Meta un MP4 temporal mediante una URL difícil de adivinar."""
+    with INSTAGRAM_MEDIA_LOCK:
+        video_path = INSTAGRAM_MEDIA.get(media_token)
+    if not video_path or not video_path.is_file():
+        raise HTTPException(404, "Media unavailable")
+    return FileResponse(video_path, media_type="video/mp4")
+
+
+@app.get("/api/instagram/status")
+def instagram_status() -> dict:
+    try:
+        info = account_info()
+    except InstagramAPIError as exc:
+        raise HTTPException(502, str(exc)) from exc
+    return {"connected": True, "id": info.get("id"), "username": info.get("username")}
+
+
+@app.post("/api/instagram/publish")
+def instagram_publish(
+    request: Request,
+    video: UploadFile = File(...),
+    caption: str = Form(""),
+) -> dict:
+    if video.content_type not in {"video/mp4", "application/octet-stream"}:
+        raise HTTPException(400, "Only MP4 videos are accepted")
+    if Path(video.filename or "video.mp4").suffix.lower() != ".mp4":
+        raise HTTPException(400, "The video filename must end in .mp4")
+
+    media_token = secrets.token_urlsafe(32)
+    temp_path: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(suffix=".mp4", delete=False) as tmp:
+            temp_path = Path(tmp.name)
+            while chunk := video.file.read(1024 * 1024):
+                tmp.write(chunk)
+        with INSTAGRAM_MEDIA_LOCK:
+            INSTAGRAM_MEDIA[media_token] = temp_path
+
+        public_url = str(request.base_url).rstrip("/") + f"/instagram-media/{media_token}.mp4"
+        media_id = upload_reel(public_url, caption[:2200])
+        return {"media_id": media_id, "username": "codigonegocioia"}
+    except InstagramAPIError as exc:
+        print(f"Instagram API error: {exc}", flush=True)
+        raise HTTPException(502, str(exc)) from exc
+    finally:
+        with INSTAGRAM_MEDIA_LOCK:
+            INSTAGRAM_MEDIA.pop(media_token, None)
+        if temp_path:
+            temp_path.unlink(missing_ok=True)
 
 
 def _load_status(pipeline: str, date: str) -> dict:
