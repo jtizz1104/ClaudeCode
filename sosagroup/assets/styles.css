@@ -560,3 +560,12 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
   .re-pop__img { height: 110px; }
   .re-popup .leaflet-popup-content { width: 250px !important; }
 }
+.team__photo { position: relative; }
+.team__photo figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 28px 20px 16px; background: linear-gradient(transparent, rgba(28, 11, 20, .7)); color: #fff; font-size: .9375rem; font-weight: 600; text-align: center; }
+.team__photo:not(:has(img)) figcaption { display: none; }
+.team__list a { font-size: inherit; }
+.agent-card { display: flex; align-items: center; gap: 16px; margin-top: 28px; padding: 18px 20px; border-radius: var(--radius); background: #f9eef3; border-left: 4px solid var(--brand); }
+.agent-card__avatar { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--brand); color: #fff; font: 600 1.125rem var(--font-head); flex: none; }
+.agent-card strong { display: block; color: var(--ink); font-size: 1.125rem; }
+.agent-card span { color: var(--muted); }
+.agent-card + .info-card { margin-top: 16px; }
