@@ -180,4 +180,24 @@ document.querySelectorAll("form[data-validate]").forEach((form) => {
   });
 });
 
+// Ventana de bienvenida: aparece a los 3 segundos, una vez por visitante cada 7 días
+const welcome = document.getElementById("welcome");
+if (welcome && typeof welcome.showModal === "function") {
+  const KEY = "sosa-welcome", WEEK = 7 * 24 * 3600 * 1000;
+  let seen = 0;
+  try { seen = Number(localStorage.getItem(KEY)) || 0; } catch {}
+  const close = () => welcome.open && welcome.close();
+  welcome.addEventListener("click", (e) => {
+    if (e.target === welcome || e.target.closest("[data-close]")) close();
+  });
+  if (Date.now() - seen > WEEK) {
+    setTimeout(() => {
+      const busy = document.activeElement?.matches("input, select, textarea") || document.querySelector("dialog[open]");
+      if (busy) return;
+      welcome.showModal();
+      try { localStorage.setItem(KEY, String(Date.now())); } catch {}
+    }, 3000);
+  }
+}
+
 document.querySelectorAll("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });

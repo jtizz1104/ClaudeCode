@@ -1,0 +1,7 @@
+Brochures de los proyectos (PDF).
+
+1. Guarde aquí el PDF, con un nombre sin espacios ni tildes, por ejemplo: torre-residencial.pdf
+2. En assets/data/inmuebles.js, en la ficha del proyecto, complete:  brochure: "assets/brochures/torre-residencial.pdf"
+3. La ficha del proyecto mostrará los botones "Ver brochure" y "Descargar brochure (PDF)".
+
+Recomendación: PDF de menos de 10 MB para que abra rápido en el celular.

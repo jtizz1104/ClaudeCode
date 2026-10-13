@@ -42,4 +42,25 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://sosagroup.com.py/pt/real-estate.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://sosagroup.com.py/real-estate.html"/>
   </url>
+  <url>
+    <loc>https://sosagroup.com.py/guia-de-tramites.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sosagroup.com.py/guia-de-tramites.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sosagroup.com.py/en/guia-de-tramites.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://sosagroup.com.py/pt/guia-de-tramites.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sosagroup.com.py/guia-de-tramites.html"/>
+  </url>
+  <url>
+    <loc>https://sosagroup.com.py/en/guia-de-tramites.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sosagroup.com.py/guia-de-tramites.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sosagroup.com.py/en/guia-de-tramites.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://sosagroup.com.py/pt/guia-de-tramites.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sosagroup.com.py/guia-de-tramites.html"/>
+  </url>
+  <url>
+    <loc>https://sosagroup.com.py/pt/guia-de-tramites.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sosagroup.com.py/guia-de-tramites.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sosagroup.com.py/en/guia-de-tramites.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://sosagroup.com.py/pt/guia-de-tramites.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sosagroup.com.py/guia-de-tramites.html"/>
+  </url>
 </urlset>
