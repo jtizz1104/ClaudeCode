@@ -173,9 +173,13 @@ document.querySelectorAll("form[data-validate]").forEach((form) => {
       form.reset();
       status.className = "form-status form-status--ok";
       status.textContent = t("¡Gracias! Recibimos su solicitud y le escribiremos para coordinar la entrevista.");
-    } catch {
+    } catch (err) {
+      console.warn("Formulario:", err);
       status.className = "form-status form-status--warn";
-      status.textContent = t("No pudimos enviar el formulario. Intente de nuevo o escríbanos por WhatsApp.");
+      // FormSubmit pide confirmar la casilla de destino antes del primer envío
+      status.textContent = /activat/i.test(err?.message || "")
+        ? t("El formulario está pendiente de activación: en la casilla que recibe las consultas hay un correo de FormSubmit con el enlace \"Activate Form\".")
+        : t("No pudimos enviar el formulario. Intente de nuevo o escríbanos por WhatsApp.");
     } finally {
       btn.disabled = false;
       btn.removeAttribute("aria-busy");
