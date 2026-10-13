@@ -70,8 +70,8 @@ window.SOSA_INMUEBLES = [
   {
     id: "home-stay", slug: "home-stay-san-martin", tipo: "desarrollo", operacion: "venta", categoria: "departamento",
     titulo: "Home Stay San Martín", zona: "Av. San Martín y San Juan XXIII, Asunción", zonaId: "asuncion",
-    // Ubicación aproximada: verificar en Google Maps y ajustar lat/lng
-    lat: -25.2822, lng: -57.5752, googleMaps: "https://maps.app.goo.gl/GWcUstapXRNfRVgh7", precio: null, entrega: "Julio 2027",
+    // Ubicación confirmada por el equipo en Google Maps
+    lat: -25.280271, lng: -57.570997, googleMaps: "https://maps.app.goo.gl/GWcUstapXRNfRVgh7", precio: null, entrega: "Julio 2027",
     unidades: "Suites, 1 y 2 dormitorios", desarrollador: "P&H Urban Development",
     foto: "assets/img/inmuebles/homestay-torre.jpg",
     galeria: [
@@ -102,8 +102,8 @@ window.SOSA_INMUEBLES = [
   {
     id: "matrisa-lillo", slug: "matrisa-lillo", tipo: "desarrollo", operacion: "venta", categoria: "departamento",
     titulo: "Matrisa Lillo", zona: "Eusebio Lillo Robles y Bélgica, Asunción", zonaId: "asuncion",
-    // Ubicación aproximada: verificar en Google Maps y ajustar lat/lng
-    lat: -25.2895, lng: -57.5695, googleMaps: "https://maps.app.goo.gl/EcZFsWFZ2z23yaK77", precio: null,
+    // Ubicación confirmada por el equipo en Google Maps
+    lat: -25.291259, lng: -57.567106, googleMaps: "https://maps.app.goo.gl/EcZFsWFZ2z23yaK77", precio: null,
     unidades: "Monoambientes, 1, 2 y 3 dormitorios", desarrollador: "MATRISA",
     foto: "assets/img/inmuebles/lillo-torre.jpg",
     galeria: [
