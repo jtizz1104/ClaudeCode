@@ -906,3 +906,14 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 /* Casilla "Actualizar la lista al mover el mapa" */
 .re-sync { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: #fff; box-shadow: 0 4px 14px -4px rgba(28, 11, 20, .35); font: 600 .8125rem var(--font-body); color: var(--ink); cursor: pointer; }
 .re-sync input { width: 16px; height: 16px; accent-color: var(--brand); margin: 0; }
+
+/* Botón fijo de WhatsApp */
+.wa-float { position: fixed; right: 18px; bottom: 18px; z-index: 900; display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px 12px 14px; border-radius: 999px; background: #1fa855; color: #fff; font: 700 .9375rem var(--font-body); text-decoration: none; box-shadow: 0 10px 24px -8px rgba(0, 0, 0, .45); transition: transform .2s var(--ease), background-color .2s; }
+.wa-float svg { width: 22px; height: 22px; }
+.wa-float:hover { background: #178a45; transform: translateY(-2px); }
+.wa-float:focus-visible { outline: 3px solid var(--ring); outline-offset: 3px; }
+.info-list small { display: block; color: var(--muted); font-size: .8125rem; }
+@media (max-width: 560px) { .wa-float span { display: none; } .wa-float { padding: 14px; } }
+.info-list div { min-width: 0; }
+.info-list a { overflow-wrap: anywhere; }
+.info-card .info-list small { color: rgba(255, 255, 255, .75); }
