@@ -456,3 +456,14 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
   .featured-review { grid-template-columns: 1fr; text-align: center; justify-items: center; }
   .featured-review blockquote { text-align: left; }
 }
+
+/* Equipo */
+.team { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+.team__photo { margin: 0; aspect-ratio: 1; border-radius: var(--radius); overflow: hidden; background: linear-gradient(160deg, #f6ebf0, #ece2e7); box-shadow: var(--shadow); }
+.team__photo img { width: 100%; height: 100%; object-fit: cover; }
+.team h2 { margin-top: 14px; }
+.team__lead { margin-top: 16px; color: var(--muted); font-size: 1.125rem; }
+.team__list { list-style: none; display: grid; gap: 10px; margin: 24px 0 32px; }
+.team__list li { padding: 14px 18px; border-left: 3px solid var(--brand); background: #f9eef3; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; color: var(--ink); }
+.team__list span { display: block; color: var(--muted); font-size: .9375rem; }
+@media (max-width: 1020px) { .team { grid-template-columns: 1fr; } .team__photo { max-width: 520px; } }
