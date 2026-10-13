@@ -86,8 +86,8 @@ El script traduce con `assets/i18n-dict.js` (la clave es la frase exacta en cast
 
 El mapa de Real Estate usa las capas de `assets/map-base.js`:
 
-- **Calles:** CARTO Voyager, con nombres de calles hasta el máximo acercamiento. Gratis para tráfico moderado.
-- **Satélite:** imágenes de Esri, con los nombres de calles encima.
+- **Calles:** OpenStreetMap, con nombres de calles hasta el máximo acercamiento. Gratis y sin clave (su política de uso pide no superar un tráfico moderado).
+- **Satélite:** imágenes de Esri, con las calles y sus nombres encima (también de Esri). Gratis y sin clave.
 - Al abrir un proyecto, el mapa se acerca a nivel de calle. La ficha tiene los botones "Ver la calle (Street View)" y "Ver ubicación en Google Maps".
 
 La página de cada proyecto muestra el mapa de Google en vista satelital (inserción gratuita, sin clave ni cuenta) y los mismos dos botones. Street View se abre en Google Maps; para mostrarlo dentro de la página haría falta una clave de la API Maps Embed.
