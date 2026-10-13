@@ -8,7 +8,10 @@ Sitio estático en HTML, CSS y JavaScript. No necesita instalación ni compilaci
 |---|---|
 | `index.html` | Página del grupo: portada, quiénes somos, propósito, visión, misión y valores, historia, equipo, servicios, proceso, oficinas, testimonios, contacto. |
 | `real-estate.html` | SosaGroup Real Estate: buscador, mapa de propiedades y desarrollos, servicios, zonas, proceso, preguntas frecuentes, contacto. |
-| `en/`, `pt/` | Las mismas dos páginas en inglés y portugués. **Se generan automáticamente; no editarlas a mano** (ver "Idiomas"). |
+| `guia-de-tramites.html` | Guía de Trámites: las cinco áreas. |
+| `real-estate/<proyecto>.html` | Una página por proyecto. **Se generan con `tools/build_pages.py`; no editarlas a mano.** |
+| `guia-de-tramites/<area>.html` | Una página por área de la guía. **Se generan con `tools/build_pages.py`; no editarlas a mano.** |
+| `en/`, `pt/` | Todas las páginas en inglés y portugués. **Se generan automáticamente; no editarlas a mano** (ver "Idiomas"). |
 | `robots.txt`, `sitemap.xml`, `llms.txt` | Archivos para buscadores y asistentes de IA (ver "Buscadores e IA"). |
 
 ## Archivos principales
@@ -38,6 +41,22 @@ Para encontrar estos puntos en el código, busque `TODO` y `[completar`.
 5. **Inmuebles reales.** En `assets/data/inmuebles.js`, reemplazar los 8 ejemplos (`ejemplo: true` muestra la etiqueta "Ejemplo"). El archivo explica cada campo. Las coordenadas se copian de Google Maps con clic derecho sobre el punto. Las fotos de los inmuebles van en `assets/img/inmuebles/`.
 6. **Enlace "Acceso equipo"** del pie de página: hoy apunta a `/panel`; ajustarlo o quitarlo.
 
+## Vista de prueba en internet
+
+`.github/workflows/sosagroup-pages.yml` publica esta carpeta en https://jtizz1104.github.io/ClaudeCode/ cada vez que se une un cambio a `main`. Sirve para probar el sitio desde el celular; los buscadores igual toman como dirección oficial `sosagroup.com.py` (canonical). Requiere, una sola vez: GitHub → Settings → Pages → Source: **GitHub Actions**.
+
+## Generar las páginas
+
+Después de cambiar cualquier HTML en castellano, los datos de proyectos (`assets/data/inmuebles.js`) o de la guía (`assets/data/guia.json`), ejecutar en este orden desde la carpeta `sosagroup/`:
+
+```
+python3 tools/build_pages.py    # páginas de proyectos y de áreas de la guía (requiere Node.js)
+python3 tools/build_i18n.py     # versiones en inglés y portugués, SEO y sitemap
+```
+
+- **Proyecto con página propia:** en `inmuebles.js`, agregar `slug` (por ejemplo `"torre-mirador"`) y genera `real-estate/torre-mirador.html` con galería, tipologías, amenities, mapa, brochure y formulario.
+- **Guía de Trámites:** en `guia.json`, cada área tiene su lista `tramites`. Cada trámite puede ser solo el título o un objeto con `titulo`, `descripcion`, `requisitos` (lista) y `plazo`. Si un área no tiene trámites, la página muestra una invitación a consultar.
+
 ## Idiomas
 
 El castellano es la fuente: se edita `index.html` y `real-estate.html`. Las versiones en inglés (`en/`) y portugués (`pt/`) son páginas propias, para que los buscadores indexen cada idioma, y se generan con:
@@ -65,4 +84,12 @@ El script traduce con `assets/i18n-dict.js` (la clave es la frase exacta en cast
 
 ## Mapa
 
-El mapa usa las calles de CARTO (gratis para tráfico moderado). Si el sitio crece mucho, conviene una cuenta propia, por ejemplo en MapTiler; se cambia en la línea `L.tileLayer(...)` de `assets/re-map.js`. Debajo de las calles hay un contorno de Paraguay (`assets/data/paraguay-geo.js`) que se ve si las calles no cargan.
+El mapa de Real Estate usa las capas de `assets/map-base.js`:
+
+- **Calles:** CARTO Voyager, con nombres de calles hasta el máximo acercamiento. Gratis para tráfico moderado.
+- **Satélite:** imágenes de Esri, con los nombres de calles encima.
+- Al abrir un proyecto, el mapa se acerca a nivel de calle. La ficha tiene los botones "Ver la calle (Street View)" y "Ver ubicación en Google Maps".
+
+La página de cada proyecto muestra el mapa de Google en vista satelital (inserción gratuita, sin clave ni cuenta) y los mismos dos botones. Street View se abre en Google Maps; para mostrarlo dentro de la página haría falta una clave de la API Maps Embed.
+
+Si el sitio crece mucho, conviene una cuenta propia (por ejemplo en MapTiler); se cambian las URLs en `map-base.js`. Debajo de las capas hay un contorno de Paraguay (`assets/data/paraguay-geo.js`) que se ve si no cargan.

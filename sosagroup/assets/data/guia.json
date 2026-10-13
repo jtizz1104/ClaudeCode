@@ -1,0 +1,60 @@
+{
+  "_ayuda": "Áreas de la Guía de Trámites. Cada área genera guia-de-tramites/<slug>.html con  python3 tools/build_pages.py . En 'tramites' cada elemento puede ser un texto (solo el título) o un objeto con: titulo, descripcion, requisitos (lista), plazo. Los textos nuevos deben agregarse a assets/i18n-dict.js para que aparezcan traducidos.",
+  "areas": [
+    {
+      "slug": "residencia",
+      "titulo": "Residencia en Paraguay",
+      "icono": "i-globe",
+      "intro": "Residencia temporal y permanente, tipos de residencia y pasos para radicarse en el país.",
+      "motivo": "residencia",
+      "tramites": [
+        "Tipos de residencias en Paraguay",
+        "Radicación temporaria en Paraguay para ciudadanos del Mercosur",
+        "Radicación para inversionistas extranjeros en Paraguay",
+        "Nueva exigencia para radicarse en Paraguay"
+      ]
+    },
+    {
+      "slug": "cedula",
+      "titulo": "Cédula Paraguaya",
+      "icono": "i-user",
+      "intro": "Cédula para extranjeros radicados, renovación y trámites vinculados a la nacionalidad.",
+      "motivo": "residencia",
+      "tramites": [
+        "Cédula paraguaya para extranjeros con radicación permanente",
+        "Cédula paraguaya como hijo o cónyuge de paraguayo",
+        "Cédula paraguaya para extranjeros hijos de paraguayos",
+        "Renovación de cédula paraguaya para extranjeros",
+        "Nacionalidad paraguaya"
+      ]
+    },
+    {
+      "slug": "titulos-extranjeros",
+      "titulo": "Títulos Extranjeros",
+      "icono": "i-file",
+      "intro": "Gestiones para que los títulos obtenidos en el exterior tengan validez en Paraguay.",
+      "motivo": "otra",
+      "tramites": []
+    },
+    {
+      "slug": "poder-judicial",
+      "titulo": "Poder Judicial",
+      "icono": "i-shield",
+      "intro": "Certificados y gestiones ante el Poder Judicial de Paraguay.",
+      "motivo": "otra",
+      "tramites": []
+    },
+    {
+      "slug": "invertir",
+      "titulo": "Invertir en Paraguay",
+      "icono": "i-trend",
+      "intro": "Radicación para inversionistas y primeros pasos para invertir o abrir un negocio.",
+      "motivo": "inversion",
+      "tramites": [
+        "Radicación para inversionistas extranjeros en Paraguay",
+        "Compra de inmuebles en Paraguay siendo extranjero",
+        "Alianzas estratégicas para sus gestiones en Paraguay"
+      ]
+    }
+  ]
+}

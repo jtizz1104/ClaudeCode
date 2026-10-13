@@ -840,3 +840,56 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .rd-near { list-style: none; display: grid; gap: 8px; }
 .rd-near li { display: grid; grid-template-columns: 18px 1fr; gap: 8px; align-items: center; color: var(--text); }
 .rd-near svg { width: 16px; height: 16px; color: var(--brand); }
+
+/* Selector de capas del mapa (Calles / Satélite) */
+.leaflet-control-layers { border: 0 !important; border-radius: 10px !important; box-shadow: var(--shadow) !important; font: 600 .875rem var(--font-body); }
+.leaflet-control-layers-expanded { padding: 6px 10px !important; }
+.leaflet-control-layers-base label { display: flex; align-items: center; min-height: 32px; cursor: pointer; }
+.leaflet-control-layers-base label span { display: inline-flex; align-items: center; gap: 6px; }
+.leaflet-control-layers-selector { accent-color: var(--brand); }
+
+/* Página de proyecto */
+.proj-hero { padding: clamp(28px, 4vw, 48px) 0 clamp(40px, 6vw, 72px); background: linear-gradient(180deg, #f9eef3, var(--bg)); }
+.proj-hero .crumbs { color: var(--muted); }
+.proj-hero .crumbs a { color: var(--brand); }
+.proj-hero .crumbs [aria-current] { color: var(--ink); }
+.proj-hero__grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+.proj-hero__text { display: grid; gap: 10px; justify-items: start; }
+.proj-hero h1 { font-size: clamp(2.2rem, 4.4vw, 3.4rem); }
+.proj-hero__lead { color: var(--muted); font-size: 1.125rem; max-width: 560px; }
+.proj-hero__img { width: 100%; max-height: 560px; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow-lg); }
+.proj-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+.proj-body { display: grid; grid-template-columns: 1.3fr .9fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+.proj-body > div { min-width: 0; }
+.proj-h2 { margin: 32px 0 14px; font: 700 .875rem var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--brand); }
+.proj-body > div > .proj-h2:first-child, .proj-side > .proj-h2:first-child { margin-top: 0; }
+.proj-h3 { margin: 24px 0 10px; font: 700 .8125rem var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.proj-desc { font-size: 1.0625rem; margin-bottom: 20px; }
+.proj-side { position: sticky; top: 120px; display: grid; gap: 12px; }
+.proj-map { display: block; width: 100%; height: 380px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: #dfe7ec; z-index: 0; }
+.proj-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.proj-gallery figure { margin: 0; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: #f6ebf0; }
+.proj-gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s var(--ease); }
+.proj-gallery figure:hover img { transform: scale(1.04); }
+@media (max-width: 1020px) {
+  .proj-hero__grid, .proj-body { grid-template-columns: 1fr; }
+  .proj-hero__img { max-height: 420px; }
+  .proj-side { position: static; }
+}
+
+/* Áreas de la Guía de Trámites */
+.tramites { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.tramite { display: flex; flex-direction: column; gap: 10px; padding: 26px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--brand); }
+.tramite h3 { font-size: 1.25rem; }
+.tramite p { color: var(--muted); }
+.tramite .area__cta { margin-top: auto; }
+.tramite__plazo { font-weight: 600; color: var(--ink) !important; }
+.tramite--empty { grid-column: 1 / -1; align-items: flex-start; background: var(--bg-warm); border-color: #ece4dc; border-left-color: var(--brand); }
+.area-nav { margin-top: 48px; }
+.area-nav__links { display: flex; flex-wrap: wrap; gap: 10px; }
+.area-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1.5px solid var(--border); background: var(--card); color: var(--ink); text-decoration: none; font-weight: 600; transition: border-color .2s, color .2s; }
+.area-link svg { width: 18px; height: 18px; color: var(--brand); }
+.area-link:hover { border-color: var(--brand); color: var(--brand); }
+@media (max-width: 760px) { .tramites { grid-template-columns: 1fr; } }
+
+.proj-map-actions { display: grid; gap: .6rem; margin-top: .8rem; }
