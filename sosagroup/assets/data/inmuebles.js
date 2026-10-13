@@ -7,6 +7,8 @@
 //
 // Campos:
 //   id          identificador único (texto)
+//   googleMaps  opcional: enlace de Google Maps al lugar exacto (el de "Compartir"). Lo usa el botón
+//               "Ver ubicación en Google Maps"; si falta, se arma con lat/lng.
 //   slug        opcional: nombre de la página propia (real-estate/<slug>.html), sin espacios ni tildes.
 //               La página se genera con  python3 tools/build_pages.py
 //   tipo        "propiedad" | "desarrollo"
@@ -69,7 +71,7 @@ window.SOSA_INMUEBLES = [
     id: "home-stay", slug: "home-stay-san-martin", tipo: "desarrollo", operacion: "venta", categoria: "departamento",
     titulo: "Home Stay San Martín", zona: "Av. San Martín y San Juan XXIII, Asunción", zonaId: "asuncion",
     // Ubicación aproximada: verificar en Google Maps y ajustar lat/lng
-    lat: -25.2822, lng: -57.5752, precio: null, entrega: "Julio 2027",
+    lat: -25.2822, lng: -57.5752, googleMaps: "https://maps.app.goo.gl/GWcUstapXRNfRVgh7", precio: null, entrega: "Julio 2027",
     unidades: "Suites, 1 y 2 dormitorios", desarrollador: "P&H Urban Development",
     foto: "assets/img/inmuebles/homestay-torre.jpg",
     galeria: [
@@ -101,7 +103,7 @@ window.SOSA_INMUEBLES = [
     id: "matrisa-lillo", slug: "matrisa-lillo", tipo: "desarrollo", operacion: "venta", categoria: "departamento",
     titulo: "Matrisa Lillo", zona: "Eusebio Lillo Robles y Bélgica, Asunción", zonaId: "asuncion",
     // Ubicación aproximada: verificar en Google Maps y ajustar lat/lng
-    lat: -25.2895, lng: -57.5695, precio: null,
+    lat: -25.2895, lng: -57.5695, googleMaps: "https://maps.app.goo.gl/EcZFsWFZ2z23yaK77", precio: null,
     unidades: "Monoambientes, 1, 2 y 3 dormitorios", desarrollador: "MATRISA",
     foto: "assets/img/inmuebles/lillo-torre.jpg",
     galeria: [
