@@ -30,6 +30,15 @@ if (toggle && nav) {
   });
 }
 
+// Desplegables del menú (Recursos)
+document.querySelectorAll(".nav__trigger").forEach((btn) => {
+  const close = () => btn.setAttribute("aria-expanded", "false");
+  btn.addEventListener("click", () => btn.setAttribute("aria-expanded", String(btn.getAttribute("aria-expanded") !== "true")));
+  document.addEventListener("click", (e) => { if (!btn.parentElement.contains(e.target)) close(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && btn.getAttribute("aria-expanded") === "true") { close(); btn.focus(); } });
+  btn.parentElement.addEventListener("click", (e) => { const a = e.target.closest(".nav__menu a"); if (a) { close(); a.blur(); } });
+});
+
 // Pestañas "¿Cuál es su proyecto?"
 document.querySelectorAll("[data-tabs]").forEach((root) => {
   const tabs = [...root.querySelectorAll('[role="tab"]')];

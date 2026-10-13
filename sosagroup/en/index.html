@@ -155,6 +155,8 @@
       <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
       <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></symbol>
       <symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></symbol>
       <symbol id="i-facebook" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
       <symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></symbol>
       <symbol id="i-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></symbol>
@@ -186,14 +188,24 @@
         <span class="brand__name">Sosa<b>Group</b><small>Your arrival in Paraguay in expert hands</small></span>
       </a>
       <nav id="site-nav" class="nav" aria-label="Main">
-        <a href="#inicio" aria-current="page">Home</a>
         <a href="#nosotros">About us</a>
         <a href="#servicios">Services</a>
+        <div class="nav__group">
+          <button type="button" class="nav__trigger" aria-expanded="false" aria-controls="menu-recursos">Resources <svg aria-hidden="true"><use href="#i-chevron"/></svg></button>
+          <div class="nav__menu" id="menu-recursos">
+            <a href="https://sosagroup.com.py/guia-de-tramites-en-paraguay/"><strong>Paperwork Guide</strong><span>Requirements and steps for the most requested procedures.</span></a>
+            <a href="https://sosagroup.com.py/gloria-te-responde/"><strong>Gloria answers</strong><span>Gloria's answers to our readers' questions.</span></a>
+            <a href="https://sosagroup.com.py/blog/"><strong>Blog</strong><span>News on residency, investment and life in Paraguay.</span></a>
+            <a href="#reporte"><strong>Free report</strong><span>The 5 most common residency application mistakes.</span></a>
+          </div>
+        </div>
         <a href="#testimonios">Testimonials</a>
         <a href="real-estate.html">Real Estate <span class="badge">New</span></a>
         <a href="#contacto">Contact</a>
+        <a href="#consultas" class="btn btn--primary nav__cta">Book a consultation</a>
       </nav>
       <div class="header-cta">
+        <a href="#consultas" class="btn btn--primary header-cta__btn"><svg aria-hidden="true" style="transform:none"><use href="#i-calendar"/></svg>Book a consultation</a>
         <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">
           <svg aria-hidden="true"><use href="#i-menu"/></svg>
         </button>
@@ -696,6 +708,52 @@
       </div>
     </section>
 
+    <!-- Consultas -->
+    <section id="consultas" class="section" aria-labelledby="consultas-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Consultations</span>
+          <h2 id="consultas-title">Have you thought about your Plan B?</h2>
+          <p>If you worry about your family's future or your safety, or want to live with more freedom, book a call with our team. We listen, understand your case and help you take the first step.</p>
+        </div>
+        <div class="plans reveal">
+          <article class="plan">
+            <span class="plan__badge">Free</span>
+            <h3>15-minute consultation</h3>
+            <p class="plan__meta">Google Meet · with one of our advisors</p>
+            <p>For quick, specific questions.</p>
+            <!-- TODO: enlace de reserva (Calendly, Google Calendar, etc.) -->
+            <a class="btn btn--outline plan__cta" href="#contacto" data-motivo="residencia">Book 15 minutes</a>
+          </article>
+          <article class="plan">
+            <span class="plan__badge">Free</span>
+            <h3>30-minute consultation</h3>
+            <p class="plan__meta">Google Meet · with one of our advisors</p>
+            <p>For those who want more detailed information.</p>
+            <!-- TODO: enlace de reserva -->
+            <a class="btn btn--outline plan__cta" href="#contacto" data-motivo="residencia">Book 30 minutes</a>
+          </article>
+          <article class="plan plan--featured">
+            <span class="plan__badge">USD 55</span>
+            <h3>45-minute mentoring session</h3>
+            <p class="plan__meta">Google Meet · with Gloria Sosa</p>
+            <p>One-to-one mentoring with our Director. The fee is deducted if you then hire us for a procedure.</p>
+            <!-- TODO: enlace de reserva -->
+            <a class="btn btn--primary plan__cta" href="#contacto" data-motivo="residencia">Book the mentoring session</a>
+          </article>
+        </div>
+        <div id="reporte" class="report reveal">
+          <span class="icon-box" aria-hidden="true"><svg><use href="#i-file"/></svg></span>
+          <div>
+            <span class="eyebrow">Free report</span>
+            <h3>The 5 most common mistakes when applying for residency in Paraguay</h3>
+            <p>The report on the most common mistakes business owners and professionals make when relocating to or starting a business in Paraguay. It will save you money, time and frustration.</p>
+          </div>
+          <a class="btn btn--primary" href="#contacto" data-motivo="reporte">Get the report</a>
+        </div>
+      </div>
+    </section>
+
     <!-- Contacto -->
     <section id="contacto" class="section" aria-labelledby="contacto-title">
       <div class="container contact-grid">
@@ -747,6 +805,7 @@
                   <option value="fiscal">Tax residency</option>
                   <option value="empresa">Company formation</option>
                   <option value="inmueble">Real Estate: buy or rent</option>
+                  <option value="reporte">Get the free report</option>
                   <option value="otra">Other inquiry</option>
                 </select>
                 <span class="error" id="motivo-error" aria-live="polite"></span>
@@ -795,6 +854,7 @@
             <li><a href="#servicios">Services</a></li>
             <li><a href="#proceso">Process</a></li>
             <li><a href="#testimonios">Testimonials</a></li>
+            <li><a href="#consultas">Consultations</a></li>
           </ul>
         </div>
         <div>
