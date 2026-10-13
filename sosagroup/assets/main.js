@@ -6,6 +6,8 @@ const FORM_ENDPOINT = "";
 
 document.documentElement.classList.remove("no-js");
 
+const t = (es) => window.sosaI18n?.t(es) ?? es;
+
 // Header: borde al hacer scroll
 const header = document.querySelector(".site-header");
 const onScroll = () => header?.classList.toggle("is-scrolled", window.scrollY > 8);
@@ -18,7 +20,7 @@ const nav = document.getElementById("site-nav");
 if (toggle && nav) {
   const setOpen = (open) => {
     toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    toggle.setAttribute("aria-label", t(open ? "Cerrar menú" : "Abrir menú"));
     nav.classList.toggle("is-open", open);
   };
   toggle.addEventListener("click", () => setOpen(toggle.getAttribute("aria-expanded") !== "true"));
@@ -72,13 +74,15 @@ document.querySelectorAll(".review").forEach((card) => {
   const btn = document.createElement("button");
   btn.type = "button";
   btn.className = "review__more";
-  btn.textContent = "Leer más";
+  const label = () => { btn.textContent = t(card.classList.contains("is-clamped") ? "Leer más" : "Leer menos"); };
+  label();
   btn.setAttribute("aria-expanded", "false");
   btn.addEventListener("click", () => {
     const open = card.classList.toggle("is-clamped") === false;
-    btn.textContent = open ? "Leer menos" : "Leer más";
+    label();
     btn.setAttribute("aria-expanded", String(open));
   });
+  document.addEventListener("sosa:lang", label);
   p.parentElement.after(btn);
 });
 
@@ -119,14 +123,14 @@ if (search) {
 // Formularios: validación accesible + envío
 document.querySelectorAll("form[data-validate]").forEach((form) => {
   const status = form.querySelector(".form-status");
-  const messages = {
-    valueMissing: "Este campo es obligatorio.",
-    typeMismatch: "Revise el formato (ej.: nombre@correo.com).",
-  };
+  const messages = () => ({
+    valueMissing: t("Este campo es obligatorio."),
+    typeMismatch: t("Revise el formato (ej.: nombre@correo.com)."),
+  });
   const check = (el) => {
     const err = document.getElementById(el.getAttribute("aria-describedby")?.split(" ").find((id) => id.endsWith("-error")));
     const v = el.validity;
-    const msg = v.valid ? "" : (v.valueMissing ? messages.valueMissing : v.typeMismatch ? messages.typeMismatch : el.validationMessage);
+    const msg = v.valid ? "" : (v.valueMissing ? messages().valueMissing : v.typeMismatch ? messages().typeMismatch : el.validationMessage);
     if (el.type !== "radio" && el.type !== "checkbox") el.setAttribute("aria-invalid", String(!v.valid));
     if (err) err.textContent = msg;
     return v.valid;
@@ -145,7 +149,7 @@ document.querySelectorAll("form[data-validate]").forEach((form) => {
     const btn = form.querySelector('[type="submit"]');
     if (!FORM_ENDPOINT) {
       status.className = "form-status form-status--warn";
-      status.textContent = "Vista previa: el envío del formulario todavía no está conectado.";
+      status.textContent = t("Vista previa: el envío del formulario todavía no está conectado.");
       return;
     }
     btn.disabled = true;
@@ -155,10 +159,10 @@ document.querySelectorAll("form[data-validate]").forEach((form) => {
       if (!res.ok) throw new Error(res.statusText);
       form.reset();
       status.className = "form-status form-status--ok";
-      status.textContent = "¡Gracias! Recibimos su solicitud y le escribiremos para coordinar la entrevista.";
+      status.textContent = t("¡Gracias! Recibimos su solicitud y le escribiremos para coordinar la entrevista.");
     } catch {
       status.className = "form-status form-status--warn";
-      status.textContent = "No pudimos enviar el formulario. Intente de nuevo o escríbanos por WhatsApp.";
+      status.textContent = t("No pudimos enviar el formulario. Intente de nuevo o escríbanos por WhatsApp.");
     } finally {
       btn.disabled = false;
       btn.removeAttribute("aria-busy");

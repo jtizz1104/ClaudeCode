@@ -10,17 +10,22 @@
   const filters = root.querySelector("[data-filters]");
   const canHover = matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-  const fmtUSD = new Intl.NumberFormat("es-PY", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+  // Textos traducibles (assets/i18n-dict.js); {x} se reemplaza por el valor
+  const t = (es) => window.sosaI18n?.t(es) ?? es;
+  const tr = (es, vars = {}) => t(es).replace(/\{(\w+)\}/g, (m, k) => vars[k] ?? m);
+  const locale = () => ({ en: "en-US", pt: "pt-BR" })[window.sosaI18n?.lang] || "es-PY";
+  const fmtUSD = (n) => new Intl.NumberFormat(locale(), { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n);
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
   const precio = (it) => {
-    if (it.precio == null) return "Consultar";
-    const base = (it.tipo === "desarrollo" ? "Desde " : "") + fmtUSD.format(it.precio);
-    return it.operacion === "alquiler" ? base + " / mes" : base;
+    if (it.precio == null) return t("Consultar");
+    const base = it.tipo === "desarrollo" ? tr("Desde {precio}", { precio: fmtUSD(it.precio) }) : fmtUSD(it.precio);
+    return it.operacion === "alquiler" ? tr("{precio} / mes", { precio: base }) : base;
   };
   const specs = (it) => it.tipo === "desarrollo"
-    ? [it.estado, it.entrega && "Entrega " + it.entrega, it.unidades].filter(Boolean)
-    : [it.dormitorios && it.dormitorios + " dorm.", it.banos && it.banos + " baños", it.m2 && it.m2 + " m²"].filter(Boolean);
-  const label = (it) => it.tipo === "desarrollo" ? "Desarrollo" : (it.operacion === "alquiler" ? "En alquiler" : "En venta");
+    ? [it.estado && t(it.estado), it.entrega && tr("Entrega {fecha}", { fecha: it.entrega }), it.unidades && t(it.unidades)].filter(Boolean)
+    : [it.dormitorios && tr("{n} dorm.", { n: it.dormitorios }), it.banos && tr("{n} baños", { n: it.banos }), it.m2 && it.m2 + " m²"].filter(Boolean);
+  const label = (it) => t(it.tipo === "desarrollo" ? "Desarrollo" : (it.operacion === "alquiler" ? "En alquiler" : "En venta"));
+  const tag = () => `<span class="re-tag re-tag--demo">${t("Ejemplo")}</span>`;
   const icon = (it) => it.tipo === "desarrollo" ? "#i-building" : "#i-home";
   const photo = (it) => it.foto
     ? `<img src="${esc(it.foto)}" alt="" loading="lazy">`
@@ -56,22 +61,22 @@
 
   const popupHTML = (it) => `
     <article class="re-pop">
-      <div class="re-pop__img">${photo(it)}${it.ejemplo ? '<span class="re-tag re-tag--demo">Ejemplo</span>' : ""}</div>
+      <div class="re-pop__img">${photo(it)}${it.ejemplo ? tag() : ""}</div>
       <div class="re-pop__body">
         <span class="re-tag re-tag--${it.tipo}">${label(it)}</span>
-        <h3>${esc(it.titulo)}</h3>
-        <p class="re-pop__zone">${esc(it.zona)}</p>
+        <h3>${esc(t(it.titulo))}</h3>
+        <p class="re-pop__zone">${esc(t(it.zona))}</p>
         <p class="re-pop__price">${esc(precio(it))}</p>
         <p class="re-pop__specs">${specs(it).map(esc).join(" · ")}</p>
-        ${it.descripcion ? `<p class="re-pop__desc">${esc(it.descripcion)}</p>` : ""}
-        <a class="btn btn--primary re-pop__cta" href="#contacto" data-consultar="${esc(it.id)}">Consultar</a>
+        ${it.descripcion ? `<p class="re-pop__desc">${esc(t(it.descripcion))}</p>` : ""}
+        <a class="btn btn--primary re-pop__cta" href="#contacto" data-consultar="${esc(it.id)}">${t("Consultar")}</a>
       </div>
     </article>`;
 
   const entries = data.map((it) => {
     const marker = L.marker([it.lat, it.lng], {
-      title: it.titulo,
-      alt: `${label(it)}: ${it.titulo}, ${it.zona}`,
+      title: t(it.titulo),
+      alt: `${label(it)}: ${t(it.titulo)}, ${t(it.zona)}`,
       riseOnHover: true,
       icon: L.divIcon({
         className: "re-pin-wrap",
@@ -79,7 +84,7 @@
         iconSize: [40, 48], iconAnchor: [20, 46], popupAnchor: [0, -44],
       }),
     });
-    marker.bindPopup(popupHTML(it), { maxWidth: 300, minWidth: 260, className: "re-popup", autoPanPadding: [24, 24], closeButton: true });
+    marker.bindPopup(() => popupHTML(it), { maxWidth: 300, minWidth: 260, className: "re-popup", autoPanPadding: [24, 24], closeButton: true });
     return { it, marker, card: null };
   });
 
@@ -131,9 +136,9 @@
         <button type="button" class="re-card">
           <span class="re-card__img">${photo(e.it)}</span>
           <span class="re-card__body">
-            <span class="re-card__top"><span class="re-tag re-tag--${e.it.tipo}">${label(e.it)}</span>${e.it.ejemplo ? '<span class="re-tag re-tag--demo">Ejemplo</span>' : ""}</span>
-            <strong>${esc(e.it.titulo)}</strong>
-            <span class="re-card__zone">${esc(e.it.zona)}</span>
+            <span class="re-card__top"><span class="re-tag re-tag--${e.it.tipo}">${label(e.it)}</span>${e.it.ejemplo ? tag() : ""}</span>
+            <strong>${esc(t(e.it.titulo))}</strong>
+            <span class="re-card__zone">${esc(t(e.it.zona))}</span>
             <span class="re-card__price">${esc(precio(e.it))}</span>
           </span>
         </button>`;
@@ -152,14 +157,14 @@
       }
       listEl.appendChild(li);
     });
-    countEl.textContent = shown.length === 1 ? "1 resultado" : `${shown.length} resultados`;
-    if (!shown.length) listEl.innerHTML = '<li class="re-empty">No hay resultados con estos filtros. Cuéntenos qué busca y le avisamos cuando tengamos opciones.</li>';
+    countEl.textContent = shown.length === 1 ? t("1 resultado") : tr("{n} resultados", { n: shown.length });
+    if (!shown.length) listEl.innerHTML = `<li class="re-empty">${t("No hay resultados con estos filtros. Cuéntenos qué busca y le avisamos cuando tengamos opciones.")}</li>`;
     if (fit && shown.length) map.fitBounds(layer.getBounds(), { padding: [48, 48], maxZoom: 14 });
   }
 
   filters.addEventListener("change", (ev) => {
-    const t = ev.target;
-    if (t.name in state) { state[t.name] = t.value; render(); }
+    const el = ev.target;
+    if (el.name in state) { state[el.name] = el.value; render(); }
   });
 
   // Botón "Consultar" dentro del popup → completa el formulario
@@ -169,7 +174,7 @@
     const it = data.find((d) => d.id === a.dataset.consultar);
     const form = document.getElementById("re-form");
     if (!it || !form) return;
-    form.elements.mensaje.value = `Me interesa: ${it.titulo} (${it.zona}).`;
+    form.elements.mensaje.value = tr("Me interesa: {titulo} ({zona}).", { titulo: t(it.titulo), zona: t(it.zona) });
     if (form.elements.operacion) form.elements.operacion.value = it.operacion === "alquiler" ? "alquilar" : "comprar";
     if (form.elements.zona) form.elements.zona.value = it.zonaId;
     setTimeout(() => form.elements.nombre.focus({ preventScroll: true }), 400);
@@ -189,5 +194,16 @@
 
   // Leaflet necesita recalcular el tamaño si el contenedor cambió
   new ResizeObserver(() => map.invalidateSize()).observe(root.querySelector("[data-map]"));
+
+  // Cambio de idioma: textos de pines, listado y fichas
+  document.addEventListener("sosa:lang", () => {
+    map.closePopup();
+    entries.forEach((e) => {
+      const el = e.marker.getElement();
+      e.marker.options.title = t(e.it.titulo);
+      if (el) { el.title = t(e.it.titulo); el.setAttribute("alt", `${label(e.it)}: ${t(e.it.titulo)}, ${t(e.it.zona)}`); }
+    });
+    render(false);
+  });
   render();
 })();

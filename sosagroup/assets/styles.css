@@ -574,3 +574,11 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .re-city span { position: relative; left: 6px; top: -8px; white-space: nowrap; font: 600 .75rem/1 var(--font-body); color: var(--muted); }
 .re-city span::before { content: ""; position: absolute; left: -9px; top: 2px; width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
 .leaflet-container .leaflet-pane > svg { max-width: none !important; }
+
+/* Selector de idioma */
+.topbar .lang { display: flex; align-items: center; gap: 2px; margin-right: auto; }
+.topbar .lang > svg { width: 18px; height: 18px; margin-right: 6px; opacity: .85; }
+.topbar .lang button { min-width: 40px; min-height: 36px; padding: 0 8px; border: 0; border-radius: 4px; background: transparent; color: rgba(255, 255, 255, .8); font: 600 .875rem/1 var(--font-body); letter-spacing: .04em; cursor: pointer; transition: background-color .2s, color .2s; }
+.topbar .lang button:hover { background: rgba(255, 255, 255, .15); color: #fff; }
+.topbar .lang button[aria-pressed="true"] { background: #fff; color: var(--brand); }
+.topbar .lang button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
