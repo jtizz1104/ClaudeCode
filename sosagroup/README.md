@@ -57,6 +57,11 @@ El script traduce con `assets/i18n-dict.js` (la clave es la frase exacta en cast
 - **`robots.txt`** permite el acceso a Google, Bing y a los rastreadores de ChatGPT, Claude, Perplexity y Apple.
 - **`llms.txt`** es un resumen de la empresa pensado para asistentes de IA. Mantenerlo al día si cambian servicios, equipo o dirección.
 - **Al publicar:** dar de alta el sitio y enviar `sitemap.xml` en Google Search Console y en Bing Webmaster Tools (Bing alimenta a ChatGPT y Copilot).
+- **No perder lo que ya está posicionado.** El sitio actual de `sosagroup.com.py` ya tiene páginas indexadas en Google (blog, Guía de Trámites, servicios, testimonios, contacto). Antes de reemplazarlo:
+  1. Listar todas sus direcciones (Google Search Console → Páginas, o el sitemap del sitio actual).
+  2. Mantener el blog y la Guía de Trámites publicados (son el contenido que más búsquedas atrae) y enlazarlos desde el menú y el pie del sitio nuevo.
+  3. Para cada página que desaparezca, configurar una redirección 301 en el hosting hacia la página nueva equivalente (por ejemplo `/quienes-somos/` → `/#nosotros`, `/contacto/` → `/#contacto`). Sin esas redirecciones, quien llegue desde Google a una dirección vieja verá un error y el sitio pierde posicionamiento.
+  4. Después de publicar, revisar en Search Console durante las primeras semanas que no aparezcan errores 404.
 
 ## Mapa
 
