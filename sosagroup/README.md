@@ -8,6 +8,8 @@ Sitio estático en HTML, CSS y JavaScript. No necesita instalación ni compilaci
 |---|---|
 | `index.html` | Página del grupo: portada, quiénes somos, propósito, visión, misión y valores, historia, equipo, servicios, proceso, oficinas, testimonios, contacto. |
 | `real-estate.html` | SosaGroup Real Estate: buscador, mapa de propiedades y desarrollos, servicios, zonas, proceso, preguntas frecuentes, contacto. |
+| `en/`, `pt/` | Las mismas dos páginas en inglés y portugués. **Se generan automáticamente; no editarlas a mano** (ver "Idiomas"). |
+| `robots.txt`, `sitemap.xml`, `llms.txt` | Archivos para buscadores y asistentes de IA (ver "Buscadores e IA"). |
 
 ## Archivos principales
 
@@ -32,19 +34,29 @@ Para encontrar estos puntos en el código, busque `TODO` y `[completar`.
 4. **Fotos.** Van en `assets/img/`. Si se usa el mismo nombre de archivo, no hay que tocar el HTML.
    - `hero-real-estate.jpg`: portada de Real Estate (falta).
    - `hero-paraguay.jpg`: portada del grupo. La actual sale de una captura; conviene reemplazarla por el original (unos 2400 px de ancho).
-   - `gloria-sosa.jpg`, `wtc-asuncion.jpg`, `wtc-cartel.jpg`, `gloria-con-clientes.jpg`: salen de capturas del sitio anterior; conviene reemplazarlas por los originales.
+   - `gloria-sosa.jpg`, `wtc-asuncion.jpg`, `gloria-con-clientes.jpg`: salen de capturas del sitio anterior; conviene reemplazarlas por los originales.
 5. **Inmuebles reales.** En `assets/data/inmuebles.js`, reemplazar los 8 ejemplos (`ejemplo: true` muestra la etiqueta "Ejemplo"). El archivo explica cada campo. Las coordenadas se copian de Google Maps con clic derecho sobre el punto. Las fotos de los inmuebles van en `assets/img/inmuebles/`.
 6. **Enlace "Acceso equipo"** del pie de página: hoy apunta a `/panel`; ajustarlo o quitarlo.
 
 ## Idiomas
 
-El texto se escribe en castellano en el HTML. Para que una frase nueva aparezca en inglés y portugués, se agrega en `assets/i18n-dict.js` con el texto en castellano exacto como clave. Si una frase no está en el diccionario, se muestra en castellano.
+El castellano es la fuente: se edita `index.html` y `real-estate.html`. Las versiones en inglés (`en/`) y portugués (`pt/`) son páginas propias, para que los buscadores indexen cada idioma, y se generan con:
 
-Para ver qué frases de una página faltan traducir, abrir la consola del navegador y ejecutar:
-
-```js
-sosaI18n.strings().filter((s) => !(s in SOSA_I18N.en))
 ```
+python3 tools/build_i18n.py
+```
+
+El script traduce con `assets/i18n-dict.js` (la clave es la frase exacta en castellano), actualiza en las seis páginas el bloque SEO (canonical, hreflang, Open Graph) y los enlaces del selector de idioma, y regenera `sitemap.xml`. Al terminar lista las frases que faltan traducir; esas quedan en castellano hasta que se agreguen al diccionario.
+
+**Cada vez que se cambie un texto en castellano, hay que agregar su traducción al diccionario y volver a ejecutar el script.**
+
+## Buscadores e IA
+
+- **Dominio.** Todo está preparado para `https://sosagroup.com.py/`, con el contenido de esta carpeta en la raíz del sitio. Si cambia, actualizar `BASE` en `tools/build_i18n.py`, las URLs de los bloques `application/ld+json` del HTML, `robots.txt` y `llms.txt`.
+- **Datos estructurados** (bloques `application/ld+json` en la cabecera): empresa, dirección, equipo, servicios, Real Estate y preguntas frecuentes. Cuando estén los datos de contacto y las redes, agregar `"telephone"`, `"email"` y `"sameAs"` (lista de enlaces a las redes) al bloque de la empresa. Se pueden validar en https://search.google.com/test/rich-results
+- **`robots.txt`** permite el acceso a Google, Bing y a los rastreadores de ChatGPT, Claude, Perplexity y Apple.
+- **`llms.txt`** es un resumen de la empresa pensado para asistentes de IA. Mantenerlo al día si cambian servicios, equipo o dirección.
+- **Al publicar:** dar de alta el sitio y enviar `sitemap.xml` en Google Search Console y en Bing Webmaster Tools (Bing alimenta a ChatGPT y Copilot).
 
 ## Mapa
 

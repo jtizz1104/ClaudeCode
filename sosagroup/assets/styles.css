@@ -433,7 +433,8 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 /* Oficinas WTC */
 .office { position: relative; padding: var(--section) 0; background: linear-gradient(120deg, var(--dark-950), var(--dark-800)); color: #e6d6de; overflow: hidden; }
 .office__grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
-.office__photo { width: 100%; max-width: 480px; aspect-ratio: 491 / 526; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow-lg); }
+.office__photo { justify-self: center; display: block; width: min(300px, 70vw); aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 6px solid var(--accent-light); box-shadow: var(--shadow-lg); }
+.office__photo img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); }
 .office h2 { color: #fff; margin-top: 14px; }
 .office p { margin-top: 16px; font-size: 1.125rem; max-width: 560px; }
 .office .eyebrow { color: var(--accent-light); }
@@ -449,7 +450,7 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 
 @media (max-width: 1020px) {
   .office__grid { grid-template-columns: 1fr; }
-  .office__photo { max-width: 420px; }
+  .office__photo { justify-self: start; }
 }
 @media (max-width: 640px) {
   .people { grid-template-columns: 1fr; gap: 110px; }
@@ -578,10 +579,10 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 /* Selector de idioma */
 .topbar .lang { display: flex; align-items: center; gap: 2px; margin-right: auto; }
 .topbar .lang > svg { width: 18px; height: 18px; margin-right: 6px; opacity: .85; }
-.topbar .lang button { min-width: 40px; min-height: 36px; padding: 0 8px; border: 0; border-radius: 4px; background: transparent; color: rgba(255, 255, 255, .8); font: 600 .875rem/1 var(--font-body); letter-spacing: .04em; cursor: pointer; transition: background-color .2s, color .2s; }
-.topbar .lang button:hover { background: rgba(255, 255, 255, .15); color: #fff; }
-.topbar .lang button[aria-pressed="true"] { background: #fff; color: var(--brand); }
-.topbar .lang button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.topbar .lang a { display: inline-grid; place-items: center; text-decoration: none; min-width: 40px; min-height: 36px; padding: 0 8px; border: 0; border-radius: 4px; background: transparent; color: rgba(255, 255, 255, .8); font: 600 .875rem/1 var(--font-body); letter-spacing: .04em; cursor: pointer; transition: background-color .2s, color .2s; }
+.topbar .lang a:hover { background: rgba(255, 255, 255, .15); color: #fff; }
+.topbar .lang a[aria-current="true"] { background: #fff; color: var(--brand); }
+.topbar .lang a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
 /* Quiénes somos */
 .about { display: grid; grid-template-columns: 280px 1fr; gap: clamp(32px, 6vw, 72px); align-items: start; }
@@ -651,3 +652,7 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
   .value__how { padding-left: 0; }
   .value__how ul { grid-template-columns: 1fr; }
 }
+
+/* Título principal de la portada: marca + bajada en un solo h1 */
+.hero--photo h1 .hero__brand { display: block; }
+.hero--photo h1 .hero__subtitle { display: block; letter-spacing: normal; }

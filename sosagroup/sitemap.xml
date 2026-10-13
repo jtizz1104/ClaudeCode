@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://sosagroup.com.py/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sosagroup.com.py/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sosagroup.com.py/en/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://sosagroup.com.py/pt/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sosagroup.com.py/"/>
+  </url>
+  <url>
+    <loc>https://sosagroup.com.py/en/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sosagroup.com.py/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sosagroup.com.py/en/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://sosagroup.com.py/pt/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sosagroup.com.py/"/>
+  </url>
+  <url>
+    <loc>https://sosagroup.com.py/pt/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sosagroup.com.py/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sosagroup.com.py/en/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://sosagroup.com.py/pt/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sosagroup.com.py/"/>
+  </url>
+  <url>
+    <loc>https://sosagroup.com.py/real-estate.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sosagroup.com.py/real-estate.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sosagroup.com.py/en/real-estate.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://sosagroup.com.py/pt/real-estate.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sosagroup.com.py/real-estate.html"/>
+  </url>
+  <url>
+    <loc>https://sosagroup.com.py/en/real-estate.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sosagroup.com.py/real-estate.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sosagroup.com.py/en/real-estate.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://sosagroup.com.py/pt/real-estate.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sosagroup.com.py/real-estate.html"/>
+  </url>
+  <url>
+    <loc>https://sosagroup.com.py/pt/real-estate.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sosagroup.com.py/real-estate.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sosagroup.com.py/en/real-estate.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://sosagroup.com.py/pt/real-estate.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sosagroup.com.py/real-estate.html"/>
+  </url>
+</urlset>
