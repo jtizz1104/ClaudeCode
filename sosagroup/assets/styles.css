@@ -780,3 +780,9 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 }
 @keyframes welcome-up { from { transform: translateY(100%); } }
 @media (prefers-reduced-motion: reduce) { .welcome[open] { animation: none; } }
+
+/* Banderas del selector de idioma */
+.topbar .lang a { display: inline-flex; gap: 6px; padding: 0 9px; }
+.topbar .lang .flag { width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0, 0, 0, .18); flex: none; }
+@media (max-width: 380px) { .topbar .lang a { padding: 0 6px; gap: 4px; } }
+.topbar .lang a { width: auto; height: 36px; border-radius: 4px; }
