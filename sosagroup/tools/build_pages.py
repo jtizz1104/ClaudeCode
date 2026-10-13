@@ -95,7 +95,7 @@ def project_page(p, top, contact, bottom):
     brochure = (f'''<a class="btn btn--primary" href="../{esc(p['brochure'])}" target="_blank" rel="noopener"><svg aria-hidden="true" style="transform:none"><use href="#i-file"/></svg>Ver brochure</a>
             <a class="btn btn--outline" href="../{esc(p['brochure'])}" download>Descargar brochure (PDF)</a>''' if p.get("brochure")
                 else '<a class="btn btn--primary" href="#contacto">Solicitar el brochure</a>')
-    gmaps = f"https://www.google.com/maps/search/?api=1&query={p['lat']},{p['lng']}"
+    gmaps = p.get("googleMaps") or f"https://www.google.com/maps/search/?api=1&query={p['lat']},{p['lng']}"
     # Mapa de Google sin clave (vista satelital) y Street View, que se abre en Google Maps
     gembed = f"https://maps.google.com/maps?q={p['lat']},{p['lng']}&t=k&z=18&output=embed"
     street = f"https://www.google.com/maps/@?api=1&map_action=pano&viewpoint={p['lat']},{p['lng']}"

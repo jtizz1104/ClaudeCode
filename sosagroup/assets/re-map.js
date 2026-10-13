@@ -270,7 +270,7 @@
         ${it.slug ? `<a class="btn btn--primary" href="${esc(projectUrl(it))}">${t(it.tipo === "desarrollo" ? "Ver la página del proyecto" : "Ver la página de la propiedad")}</a>` : ""}
         ${brochure}
         <a class="btn btn--outline" href="${window.sosaStreetView(it.lat, it.lng)}" target="_blank" rel="noopener"><svg aria-hidden="true" style="transform:none"><use href="#i-eye"/></svg>${t("Ver la calle (Street View)")}</a>
-        <a class="btn btn--outline" href="${window.sosaGoogleMaps(it.lat, it.lng)}" target="_blank" rel="noopener"><svg aria-hidden="true" style="transform:none"><use href="#i-pin"/></svg>${t("Ver ubicación en Google Maps")}</a>
+        <a class="btn btn--outline" href="${esc(it.googleMaps || window.sosaGoogleMaps(it.lat, it.lng))}" target="_blank" rel="noopener"><svg aria-hidden="true" style="transform:none"><use href="#i-pin"/></svg>${t("Ver ubicación en Google Maps")}</a>
         <a class="btn btn--primary" href="#contacto" data-consultar="${esc(it.id)}">${t(it.tipo === "desarrollo" ? "Consultar por este proyecto" : "Consultar por esta propiedad")}</a>
       </div>`;
   };
