@@ -110,7 +110,7 @@ ul, ol { margin: 0; padding: 0; }
 .brand__mark { display: grid; place-items: center; width: 50px; height: 50px; background: var(--brand); color: #fff; font: 600 1.5rem/1 var(--font-head); }
 .brand__name { font: 500 1.75rem/1 var(--font-head); letter-spacing: -.01em; color: var(--ink); }
 .brand__name b { font-weight: 500; color: var(--brand); }
-.brand__name small { display: block; margin-top: 4px; font: 700 .625rem/1 var(--font-body); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.brand__name small { display: block; margin-top: 6px; font: 600 .75rem/1 var(--font-body); letter-spacing: .02em; color: var(--brand); }
 
 .nav { display: flex; align-items: center; gap: 2px; }
 .nav a { position: relative; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; color: var(--ink); text-decoration: none; font-weight: 500; font-size: 1.0625rem; transition: color .2s; }
@@ -420,3 +420,39 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .process--light .process__num { color: var(--accent-ink); }
 .process--light .process__num::after { background: var(--border); }
 .process--light p { color: var(--muted); }
+
+/* Personas (Quiénes somos) */
+.people { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 90px; }
+.person { position: relative; padding: 120px 32px 36px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow-sm); text-align: center; }
+.person__photo { position: absolute; top: -90px; left: 50%; transform: translateX(-50%); width: 196px; height: 196px; border-radius: 50%; overflow: hidden; border: 5px solid var(--brand); background: #fff; box-shadow: var(--shadow); }
+.person__photo img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); }
+.person h3 { font-size: 1.375rem; text-transform: uppercase; letter-spacing: .02em; font-weight: 500; }
+.person p { margin-top: 14px; color: var(--muted); text-align: left; }
+.person strong { color: var(--ink); }
+
+/* Oficinas WTC */
+.office { position: relative; padding: var(--section) 0; background: linear-gradient(120deg, var(--dark-950), var(--dark-800)); color: #e6d6de; overflow: hidden; }
+.office__grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+.office__photo { width: 100%; max-width: 480px; aspect-ratio: 491 / 526; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow-lg); }
+.office h2 { color: #fff; margin-top: 14px; }
+.office p { margin-top: 16px; font-size: 1.125rem; max-width: 560px; }
+.office .eyebrow { color: var(--accent-light); }
+.office__address { display: flex; gap: 10px; align-items: center; color: #fff; font-weight: 600; margin-bottom: 28px; }
+.office__address svg { width: 20px; height: 20px; color: var(--accent-light); flex: none; }
+
+/* Testimonio destacado */
+.featured-review { display: grid; grid-template-columns: 160px 1fr; gap: 32px; align-items: center; margin: 0 0 24px; padding: clamp(24px, 4vw, 40px); border-radius: var(--radius); background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+.featured-review img { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid var(--brand); }
+.featured-review__title { font: 600 clamp(1.25rem, 2.2vw, 1.75rem)/1.25 var(--font-head); color: var(--ink); }
+.featured-review blockquote { margin: 12px 0 0; color: var(--muted); }
+.featured-review figcaption { margin-top: 14px; color: var(--ink); }
+
+@media (max-width: 1020px) {
+  .office__grid { grid-template-columns: 1fr; }
+  .office__photo { max-width: 420px; }
+}
+@media (max-width: 640px) {
+  .people { grid-template-columns: 1fr; gap: 110px; }
+  .featured-review { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+  .featured-review blockquote { text-align: left; }
+}
