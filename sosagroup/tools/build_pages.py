@@ -15,6 +15,7 @@ Requiere Node.js para leer assets/data/inmuebles.js.
 import html
 import json
 import re
+from urllib.parse import quote
 import subprocess
 import sys
 from pathlib import Path
@@ -168,6 +169,11 @@ def project_page(p, top, contact, bottom):
 
 {contact.replace('<input type="hidden" name="division" value="real-estate">', f'<input type="hidden" name="division" value="real-estate">\n            <input type="hidden" name="proyecto" value="{esc(p["titulo"])}">')}</main>'''
     page_bottom = scripts(bottom, ["i18n-dict.js", "i18n.js", "main.js"])
+    # WhatsApp con el nombre del proyecto en el mensaje
+    wa_old = quote("Hola Silvana, quiero hacer una consulta sobre SosaGroup Real Estate.")
+    wa_new = quote(f"Hola Silvana, quiero consultar por {p['titulo']}.")
+    page_bottom = page_bottom.replace(wa_old, wa_new)
+    main = main.replace(wa_old, wa_new)
     return page_top + main + page_bottom
 
 
