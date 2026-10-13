@@ -1,6 +1,10 @@
 // SosaGroup Real Estate — mapa de propiedades y desarrollos (Leaflet)
 
 (() => {
+  // Raíz del sitio (este archivo está en assets/), para que las rutas de fotos y
+  // brochures funcionen también desde /en/ y /pt/
+  const SITE = new URL("../", document.currentScript?.src || location.href);
+  const asset = (p) => (p && !/^(https?:|data:|\/)/.test(p) ? new URL(p, SITE).href : p);
   const root = document.getElementById("explorar");
   const data = window.SOSA_INMUEBLES || [];
   if (!root || !window.L) return;
@@ -17,18 +21,18 @@
   const fmtUSD = (n) => new Intl.NumberFormat(locale(), { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n);
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
   const precio = (it) => {
-    if (it.precio == null) return t("Consultar");
+    if (it.precio == null) return t("Precio a consultar");
     const base = it.tipo === "desarrollo" ? tr("Desde {precio}", { precio: fmtUSD(it.precio) }) : fmtUSD(it.precio);
     return it.operacion === "alquiler" ? tr("{precio} / mes", { precio: base }) : base;
   };
   const specs = (it) => it.tipo === "desarrollo"
-    ? [it.estado && t(it.estado), it.entrega && tr("Entrega {fecha}", { fecha: it.entrega }), it.unidades && t(it.unidades)].filter(Boolean)
+    ? [it.estado && t(it.estado), it.entrega && tr("Entrega {fecha}", { fecha: t(it.entrega) }), it.unidades && t(it.unidades)].filter(Boolean)
     : [it.dormitorios && tr("{n} dorm.", { n: it.dormitorios }), it.banos && tr("{n} baños", { n: it.banos }), it.m2 && it.m2 + " m²"].filter(Boolean);
   const label = (it) => t(it.tipo === "desarrollo" ? "Desarrollo" : (it.operacion === "alquiler" ? "En alquiler" : "En venta"));
   const tag = () => `<span class="re-tag re-tag--demo">${t("Ejemplo")}</span>`;
   const icon = (it) => it.tipo === "desarrollo" ? "#i-building" : "#i-home";
   const photo = (it) => it.foto
-    ? `<img src="${esc(it.foto)}" alt="" loading="lazy">`
+    ? `<img src="${esc(asset(it.foto))}" alt="" loading="lazy">`
     : `<span class="ph"><svg aria-hidden="true"><use href="${icon(it)}"/></svg></span>`;
 
   // Mapa
@@ -216,18 +220,19 @@
   const detailHTML = (it) => {
     const fotos = (it.galeria && it.galeria.length ? it.galeria : it.foto ? [it.foto] : []);
     const gallery = fotos.length
-      ? `<div class="rd-gallery">${fotos.map((f, i) => `<img src="${esc(f)}" alt="${esc(t(it.titulo))} · ${i + 1}" loading="lazy">`).join("")}</div>`
+      ? `<div class="rd-gallery">${fotos.map((f, i) => `<img src="${esc(asset(f))}" alt="${esc(t(it.titulo))} · ${i + 1}" loading="lazy">`).join("")}</div>`
       : `<div class="rd-gallery rd-gallery--empty">${photo(it)}<span>${t("Fotos del proyecto próximamente")}</span></div>`;
     const tipologias = (it.tipologias || []).length ? `
       <h3>${t("Tipologías")}</h3>
       <div class="rd-table"><table>
         <thead><tr><th>${t("Unidad")}</th><th>${t("Superficie")}</th><th>${t("Precio")}</th></tr></thead>
-        <tbody>${it.tipologias.map((u) => `<tr><td>${esc(t(u.nombre))}</td><td>${u.m2 ? esc(u.m2) + " m²" : "—"}</td><td>${u.precio ? esc(tr("Desde {precio}", { precio: fmtUSD(u.precio) })) : esc(t("Consultar"))}</td></tr>`).join("")}</tbody>
+        <tbody>${it.tipologias.map((u) => `<tr><td>${esc(t(u.nombre))}</td><td>${u.m2 ? esc(String(u.m2).replace(".", window.sosaI18n?.lang === "en" ? "." : ",")) + " m²" : "—"}</td><td>${u.precio ? esc(tr("Desde {precio}", { precio: fmtUSD(u.precio) })) : esc(t("Consultar"))}</td></tr>`).join("")}</tbody>
       </table></div>` : "";
+    const cerca = (it.cerca || []).length ? `<h3>${t("Cerca de")}</h3><ul class="rd-near">${it.cerca.map((c) => `<li><svg aria-hidden="true"><use href="#i-pin"/></svg>${esc(t(c))}</li>`).join("")}</ul>` : "";
     const amenities = (it.amenities || []).length ? `<h3>${t("Amenities")}</h3><ul class="rd-chips">${it.amenities.map((a) => `<li>${esc(t(a))}</li>`).join("")}</ul>` : "";
     const brochure = it.brochure
-      ? `<a class="btn btn--primary" href="${esc(it.brochure)}" target="_blank" rel="noopener"><svg aria-hidden="true" style="transform:none"><use href="#i-file"/></svg>${t("Ver brochure")}</a>
-         <a class="btn btn--outline" href="${esc(it.brochure)}" download>${t("Descargar brochure (PDF)")}</a>`
+      ? `<a class="btn btn--primary" href="${esc(asset(it.brochure))}" target="_blank" rel="noopener"><svg aria-hidden="true" style="transform:none"><use href="#i-file"/></svg>${t("Ver brochure")}</a>
+         <a class="btn btn--outline" href="${esc(asset(it.brochure))}" download>${t("Descargar brochure (PDF)")}</a>`
       : `<a class="btn btn--outline" href="#contacto" data-consultar="${esc(it.id)}" data-brochure>${t("Solicitar el brochure")}</a>`;
     return `
       ${gallery}
@@ -238,11 +243,12 @@
         <p class="rd-price">${esc(precio(it))}</p>
       </div>
       <dl class="rd-facts">
-        ${row("Estado", it.estado && t(it.estado))}${row("Entrega", it.entrega)}${row("Unidades", it.unidades && t(it.unidades))}
+        ${row("Estado", it.estado && t(it.estado))}${row("Entrega", it.entrega && t(it.entrega))}${row("Unidades", it.unidades && t(it.unidades))}
+        ${row("Desarrolla", it.desarrollador)}${(it.datos || []).map(([k, v]) => row(k, t(v))).join("")}
         ${row("Dormitorios", it.dormitorios)}${row("Baños", it.banos)}${row("Superficie", it.m2 && it.m2 + " m²")}
       </dl>
       <p class="rd-desc">${esc(t(it.descripcionLarga || it.descripcion || ""))}</p>
-      ${tipologias}${amenities}
+      ${tipologias}${amenities}${cerca}
       <div class="rd-actions">
         ${brochure}
         <a class="btn btn--primary" href="#contacto" data-consultar="${esc(it.id)}">${t(it.tipo === "desarrollo" ? "Consultar por este proyecto" : "Consultar por esta propiedad")}</a>
