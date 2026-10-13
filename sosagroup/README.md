@@ -31,9 +31,9 @@ Sitio estático en HTML, CSS y JavaScript. No necesita instalación ni compilaci
 
 Para encontrar estos puntos en el código, busque `TODO` y `[completar`.
 
-1. **Contacto.** En las dos páginas, reemplazar `[completar número]` y `[completar correo]`. El enlace de WhatsApp debe ser `https://wa.me/595XXXXXXXXX` (número sin espacios ni `+`).
+1. **Contacto.** Real Estate ya tiene el WhatsApp, teléfono y correo de Silvana Gimenez. En la página del grupo y la Guía de Trámites, reemplazar `[completar número]` y `[completar correo]`. El enlace de WhatsApp debe ser `https://wa.me/595XXXXXXXXX` (número sin espacios ni `+`).
 2. **Redes sociales.** En la barra superior de las dos páginas, poner los enlaces reales de Facebook, Instagram, LinkedIn y correo (hoy están en `href="#"`).
-3. **Envío de formularios.** En `assets/main.js`, completar `FORM_ENDPOINT` con la dirección que recibe los formularios (por ejemplo Formspree, Netlify Forms o un servidor propio). Mientras esté vacío, los formularios validan pero muestran el aviso de vista previa.
+3. **Envío de formularios.** El formulario de Real Estate ya envía al correo de Silvana con FormSubmit (`data-endpoint` en el `<form>`; gratis, sin cuenta; la primera vez llega a esa casilla un correo de activación que hay que confirmar). Para los demás, en `assets/main.js`, completar `FORM_ENDPOINT` con la dirección que recibe los formularios (por ejemplo Formspree, Netlify Forms o un servidor propio). Mientras esté vacío, los formularios validan pero muestran el aviso de vista previa.
 4. **Fotos.** Van en `assets/img/`. Si se usa el mismo nombre de archivo, no hay que tocar el HTML.
    - `hero-real-estate.jpg`: portada de Real Estate (falta).
    - `hero-paraguay.jpg`: portada del grupo. La actual sale de una captura; conviene reemplazarla por el original (unos 2400 px de ancho).

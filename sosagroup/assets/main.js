@@ -156,7 +156,9 @@ document.querySelectorAll("form[data-validate]").forEach((form) => {
     if (invalid.length) { invalid[0].focus(); return; }
 
     const btn = form.querySelector('[type="submit"]');
-    if (!FORM_ENDPOINT) {
+    // Un formulario puede tener su propio destino (data-endpoint); si no, usa FORM_ENDPOINT
+    const endpoint = form.dataset.endpoint || FORM_ENDPOINT;
+    if (!endpoint) {
       status.className = "form-status form-status--warn";
       status.textContent = t("Vista previa: el envío del formulario todavía no está conectado.");
       return;
@@ -164,8 +166,10 @@ document.querySelectorAll("form[data-validate]").forEach((form) => {
     btn.disabled = true;
     btn.setAttribute("aria-busy", "true");
     try {
-      const res = await fetch(FORM_ENDPOINT, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
+      const res = await fetch(endpoint, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
       if (!res.ok) throw new Error(res.statusText);
+      const data = await res.json().catch(() => ({}));
+      if (data.success === false || data.success === "false") throw new Error(data.message);
       form.reset();
       status.className = "form-status form-status--ok";
       status.textContent = t("¡Gracias! Recibimos su solicitud y le escribiremos para coordinar la entrevista.");
