@@ -13,6 +13,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="assets/vendor/leaflet.markercluster/MarkerCluster.css">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
@@ -73,7 +75,7 @@
         <a href="index.html">Inicio</a>
         <a href="#servicios">Servicios</a>
         <a href="#zonas">Zonas</a>
-        <a href="#propiedades">Propiedades</a>
+        <a href="#explorar">Mapa</a>
         <a href="#preguntas">Preguntas</a>
         <a href="#contacto">Contacto</a>
       </nav>
@@ -87,7 +89,12 @@
 
   <main id="main">
     <!-- Hero + buscador -->
-    <section class="hero re-hero" aria-labelledby="hero-title">
+    <section class="hero re-hero hero--image" aria-labelledby="hero-title">
+      <div class="hero__bg" aria-hidden="true">
+        <!-- Foto de portada: guardar como assets/img/hero-real-estate.jpg (ideal 2400px de ancho) -->
+        <img src="assets/img/hero-real-estate.jpg" alt="" fetchpriority="high" onerror="this.remove()">
+      </div>
+      <div class="hero__shade" aria-hidden="true"></div>
       <div class="container">
         <div>
           <span class="eyebrow">Sosa Group Real Estate · Nueva división</span>
@@ -101,7 +108,7 @@
 
         <form class="search-panel" id="re-search" aria-labelledby="search-title">
           <h2 id="search-title">¿Qué está buscando?</h2>
-          <p>Estamos preparando nuestra cartera. Cuéntenos su búsqueda y le enviamos opciones que coincidan.</p>
+          <p>Elija qué busca y vea las propiedades y desarrollos ubicados en el mapa.</p>
           <fieldset style="border:0;padding:0;margin:0">
             <legend class="sr-only">Operación</legend>
             <div class="segmented">
@@ -144,7 +151,7 @@
               </select>
             </div>
           </div>
-          <button type="submit" class="btn btn--primary btn--block" style="margin-top:18px"><svg aria-hidden="true" style="transform:none"><use href="#i-search"/></svg> Recibir opciones</button>
+          <button type="submit" class="btn btn--primary btn--block" style="margin-top:18px"><svg aria-hidden="true" style="transform:none"><use href="#i-search"/></svg> Ver en el mapa</button>
         </form>
       </div>
     </section>
@@ -157,6 +164,49 @@
           <li><svg aria-hidden="true"><use href="#i-video"/></svg><span>Visitas <strong>presenciales o virtuales</strong></span></li>
           <li><svg aria-hidden="true"><use href="#i-pin"/></svg><span>Oficinas en el <strong>WTC Asunción</strong></span></li>
         </ul>
+      </div>
+    </section>
+
+    <!-- Mapa de propiedades y desarrollos -->
+    <section id="explorar" class="section explorer-section" aria-labelledby="explorar-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Propiedades y desarrollos</span>
+          <h2 id="explorar-title">Explore la cartera en el mapa</h2>
+          <p>Pase el cursor sobre un punto para ver la información del inmueble o del proyecto. En el celular, tóquelo.</p>
+        </div>
+
+        <form class="re-filters" data-filters aria-label="Filtrar propiedades" onsubmit="return false">
+          <fieldset class="re-chips">
+            <legend class="sr-only">Tipo</legend>
+            <label><input type="radio" name="tipo" value="todos" checked><span>Todos</span></label>
+            <label><input type="radio" name="tipo" value="propiedad"><span><svg aria-hidden="true"><use href="#i-home"/></svg>Propiedades</span></label>
+            <label><input type="radio" name="tipo" value="desarrollo"><span><svg aria-hidden="true"><use href="#i-building"/></svg>Desarrollos</span></label>
+          </fieldset>
+          <div class="re-filters__selects">
+            <label class="sr-only" for="f-operacion">Operación</label>
+            <select id="f-operacion" name="operacion">
+              <option value="">Venta y alquiler</option>
+              <option value="venta">Venta</option>
+              <option value="alquiler">Alquiler</option>
+            </select>
+            <label class="sr-only" for="f-zona">Zona</label>
+            <select id="f-zona" name="zona">
+              <option value="">Todas las zonas</option>
+              <option value="asuncion">Asunción</option>
+              <option value="gran-asuncion">Gran Asunción</option>
+              <option value="san-bernardino">San Bernardino</option>
+              <option value="encarnacion">Encarnación</option>
+            </select>
+          </div>
+          <p class="re-count" data-count aria-live="polite"></p>
+        </form>
+
+        <div id="explorar-mapa" class="explorer">
+          <ul class="explorer__list" data-list aria-label="Resultados"></ul>
+          <div class="explorer__map" data-map role="region" aria-label="Mapa de propiedades y desarrollos"></div>
+        </div>
+        <p class="explorer__legend"><span class="re-pin re-pin--propiedad re-pin--sm" aria-hidden="true"><svg><use href="#i-home"/></svg></span>Propiedad <span class="re-pin re-pin--desarrollo re-pin--sm" aria-hidden="true"><svg><use href="#i-building"/></svg></span>Desarrollo</p>
       </div>
     </section>
 
@@ -260,25 +310,6 @@
       </div>
     </section>
 
-    <!-- Propiedades -->
-    <section id="propiedades" class="section" aria-labelledby="propiedades-title">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Propiedades</span>
-          <h2 id="propiedades-title">Cartera en preparación</h2>
-          <p>Muy pronto publicaremos aquí las primeras propiedades seleccionadas. Si nos cuenta qué busca, se las enviamos antes.</p>
-        </div>
-        <div class="listings reveal" aria-hidden="true">
-          <div class="listing"><div class="listing__img"><svg><use href="#i-home"/></svg></div><div class="listing__body"><div class="skeleton-line" style="width:70%"></div><div class="skeleton-line" style="width:45%"></div></div></div>
-          <div class="listing"><div class="listing__img"><svg><use href="#i-building"/></svg></div><div class="listing__body"><div class="skeleton-line" style="width:60%"></div><div class="skeleton-line" style="width:40%"></div></div></div>
-          <div class="listing"><div class="listing__img"><svg><use href="#i-key"/></svg></div><div class="listing__body"><div class="skeleton-line" style="width:75%"></div><div class="skeleton-line" style="width:50%"></div></div></div>
-        </div>
-        <div class="listings-note reveal">
-          <span><strong>Próximamente.</strong> Reciba las primeras propiedades antes de que se publiquen.</span>
-          <a href="#contacto" class="btn btn--primary">Quiero recibirlas <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        </div>
-      </div>
-    </section>
 
     <!-- FAQ -->
     <section id="preguntas" class="section section--warm" aria-labelledby="faq-title">
@@ -422,7 +453,7 @@
           <ul>
             <li><a href="#servicios">Servicios</a></li>
             <li><a href="#zonas">Zonas</a></li>
-            <li><a href="#propiedades">Propiedades</a></li>
+            <li><a href="#explorar">Mapa</a></li>
             <li><a href="#preguntas">Preguntas frecuentes</a></li>
           </ul>
         </div>
@@ -450,6 +481,10 @@
     </div>
   </footer>
 
+  <script src="assets/vendor/leaflet/leaflet.js" defer></script>
+  <script src="assets/vendor/leaflet.markercluster/leaflet.markercluster.js" defer></script>
+  <script src="assets/data/inmuebles.js" defer></script>
+  <script src="assets/re-map.js" defer></script>
   <script src="assets/main.js" defer></script>
 </body>
 </html>

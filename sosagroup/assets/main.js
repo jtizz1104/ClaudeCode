@@ -93,12 +93,18 @@ if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: re
   reveals.forEach((el) => el.classList.add("is-visible"));
 }
 
-// Buscador de Real Estate → completa el formulario de interés
+// Buscador de Real Estate → filtra el mapa (o, sin mapa, completa el formulario)
 const search = document.getElementById("re-search");
 if (search) {
   search.addEventListener("submit", (e) => {
     e.preventDefault();
     const data = new FormData(search);
+    const smooth = matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+    if (window.sosaApplyFilters) {
+      window.sosaApplyFilters({ operacion: data.get("operacion"), zona: data.get("zona") });
+      document.getElementById("explorar").scrollIntoView({ behavior: smooth });
+      return;
+    }
     const form = document.getElementById("re-form");
     const set = (name, value) => { const el = form.elements[name]; if (el && value) el.value = value; };
     set("operacion", data.get("operacion"));
