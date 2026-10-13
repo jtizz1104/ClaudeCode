@@ -1,4 +1,4 @@
-// Sosa Group Real Estate — mapa de propiedades y desarrollos (Leaflet)
+// SosaGroup Real Estate — mapa de propiedades y desarrollos (Leaflet)
 
 (() => {
   const root = document.getElementById("explorar");

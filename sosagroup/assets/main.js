@@ -1,4 +1,4 @@
-// Sosa Group — interacciones del sitio (sin dependencias)
+// SosaGroup — interacciones del sitio (sin dependencias)
 
 // Endpoint del formulario (Formspree, Netlify Forms, backend propio…).
 // Mientras esté vacío, los formularios validan pero no envían.
