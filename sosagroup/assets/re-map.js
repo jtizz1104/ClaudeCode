@@ -35,6 +35,25 @@
   map.on("focus click", () => map.scrollWheelZoom.enable());
   map.on("blur mouseout", () => map.scrollWheelZoom.disable());
 
+  // Fondo de respaldo debajo de las calles: contorno del país y ciudades de referencia.
+  // Se ve si las capas de calles no cargan (sin conexión, bloqueos de red).
+  if (window.SOSA_PARAGUAY_GEO) {
+    map.createPane("base").style.zIndex = 150;
+    L.geoJSON(window.SOSA_PARAGUAY_GEO, {
+      pane: "base", interactive: false,
+      style: (f) => f.properties.name === "Paraguay"
+        ? { color: "#8a2454", weight: 1.5, fillColor: "#fbf6f8", fillOpacity: 1 }
+        : { color: "#c9b8c0", weight: 1, fillColor: "#ece6e9", fillOpacity: 1 },
+    }).addTo(map);
+    [["Asunción", -25.2637, -57.5759], ["Luque", -25.2667, -57.4872], ["San Lorenzo", -25.3397, -57.5088],
+     ["Lambaré", -25.3468, -57.6065], ["San Bernardino", -25.3125, -57.2978], ["Encarnación", -27.3306, -55.8667],
+     ["Ciudad del Este", -25.5097, -54.6111]]
+      .forEach(([name, lat, lng]) => L.marker([lat, lng], {
+        pane: "base", interactive: false, keyboard: false,
+        icon: L.divIcon({ className: "re-city", html: `<span>${name}</span>`, iconSize: null }),
+      }).addTo(map));
+  }
+
   const popupHTML = (it) => `
     <article class="re-pop">
       <div class="re-pop__img">${photo(it)}${it.ejemplo ? '<span class="re-tag re-tag--demo">Ejemplo</span>' : ""}</div>
