@@ -175,6 +175,7 @@
       <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
       <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></symbol>
       <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
       <symbol id="i-building" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></symbol>
       <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
       <symbol id="i-trend" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></symbol>
@@ -281,8 +282,11 @@
         </div>
         <aside class="proj-side">
           <h2 class="proj-h2">Ubicación</h2>
-          <div id="project-map" class="proj-map" role="region" aria-label="Mapa de ubicación" data-lat="-25.2895" data-lng="-57.5695" data-title="Matrisa Lillo"></div>
-          <a class="btn btn--outline btn--block" href="https://www.google.com/maps/search/?api=1&query=-25.2895,-57.5695" target="_blank" rel="noopener"><svg aria-hidden="true" style="transform:none"><use href="#i-pin"/></svg>Ver ubicación en Google Maps</a>
+          <iframe class="proj-map" src="https://maps.google.com/maps?q=-25.2895,-57.5695&t=k&z=18&output=embed" title="Mapa de ubicación" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <div class="proj-map-actions">
+            <a class="btn btn--primary btn--block" href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=-25.2895,-57.5695" target="_blank" rel="noopener"><svg aria-hidden="true" style="transform:none"><use href="#i-eye"/></svg>Ver la calle (Street View)</a>
+            <a class="btn btn--outline btn--block" href="https://www.google.com/maps/search/?api=1&query=-25.2895,-57.5695" target="_blank" rel="noopener"><svg aria-hidden="true" style="transform:none"><use href="#i-pin"/></svg>Ver ubicación en Google Maps</a>
+          </div>
           <h3 class="proj-h3">Cerca de</h3><ul class="rd-near"><li><svg aria-hidden="true"><use href="#i-pin"/></svg>Facultad de Ciencias de la Salud (UC) · 3 min</li><li><svg aria-hidden="true"><use href="#i-pin"/></svg>Universidad del Pacífico · 4 min</li><li><svg aria-hidden="true"><use href="#i-pin"/></svg>Superseis Denis Roa · 4 min</li><li><svg aria-hidden="true"><use href="#i-pin"/></svg>Shopping del Sol · 5 min</li><li><svg aria-hidden="true"><use href="#i-pin"/></svg>Paseo La Galería · 5 min</li><li><svg aria-hidden="true"><use href="#i-pin"/></svg>Shopping Mariscal · 7 min</li></ul>
         </aside>
       </div>
@@ -442,10 +446,6 @@
 
   <script src="../assets/i18n-dict.js" defer></script>
   <script src="../assets/i18n.js" defer></script>
-  <script src="../assets/vendor/leaflet/leaflet.js" defer></script>
-  <script src="../assets/data/paraguay-geo.js" defer></script>
-  <script src="../assets/map-base.js" defer></script>
-  <script src="../assets/project-map.js" defer></script>
   <script src="../assets/main.js" defer></script>
 </body>
 </html>

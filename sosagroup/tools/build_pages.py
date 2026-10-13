@@ -95,6 +95,9 @@ def project_page(p, top, contact, bottom):
             <a class="btn btn--outline" href="../{esc(p['brochure'])}" download>Descargar brochure (PDF)</a>''' if p.get("brochure")
                 else '<a class="btn btn--primary" href="#contacto">Solicitar el brochure</a>')
     gmaps = f"https://www.google.com/maps/search/?api=1&query={p['lat']},{p['lng']}"
+    # Mapa de Google sin clave (vista satelital) y Street View, que se abre en Google Maps
+    gembed = f"https://maps.google.com/maps?q={p['lat']},{p['lng']}&t=k&z=18&output=embed"
+    street = f"https://www.google.com/maps/@?api=1&map_action=pano&viewpoint={p['lat']},{p['lng']}"
     gallery = "".join(f'<figure><img src="../{esc(f)}" alt="{esc(p["titulo"])}" loading="lazy"></figure>' for f in fotos[1:])
     tip_rows = "".join(f"<tr><td>{esc(u['nombre'])}</td><td>{m2(u.get('m2'))}</td><td>{'Consultar' if not u.get('precio') else 'Desde USD ' + format(u['precio'], ',').replace(',', '.')}</td></tr>" for u in p.get("tipologias", []))
     amen = "".join(f"<li>{esc(a)}</li>" for a in p.get("amenities", []))
@@ -151,8 +154,11 @@ def project_page(p, top, contact, bottom):
         </div>
         <aside class="proj-side">
           <h2 class="proj-h2">Ubicación</h2>
-          <div id="project-map" class="proj-map" role="region" aria-label="Mapa de ubicación" data-lat="{p['lat']}" data-lng="{p['lng']}" data-title="{esc(p['titulo'])}"></div>
-          <a class="btn btn--outline btn--block" href="{gmaps}" target="_blank" rel="noopener"><svg aria-hidden="true" style="transform:none"><use href="#i-pin"/></svg>Ver ubicación en Google Maps</a>
+          <iframe class="proj-map" src="{gembed}" title="Mapa de ubicación" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <div class="proj-map-actions">
+            <a class="btn btn--primary btn--block" href="{street}" target="_blank" rel="noopener"><svg aria-hidden="true" style="transform:none"><use href="#i-eye"/></svg>Ver la calle (Street View)</a>
+            <a class="btn btn--outline btn--block" href="{gmaps}" target="_blank" rel="noopener"><svg aria-hidden="true" style="transform:none"><use href="#i-pin"/></svg>Ver ubicación en Google Maps</a>
+          </div>
           {f'<h3 class="proj-h3">Cerca de</h3><ul class="rd-near">{cerca}</ul>' if cerca else ''}
         </aside>
       </div>
@@ -161,7 +167,7 @@ def project_page(p, top, contact, bottom):
     {f'<section class="section section--warm" aria-labelledby="proj-gallery"><div class="container"><h2 id="proj-gallery" class="proj-h2">Galería</h2><div class="proj-gallery">{gallery}</div></div></section>' if gallery else ''}
 
 {contact.replace('<input type="hidden" name="division" value="real-estate">', f'<input type="hidden" name="division" value="real-estate">\n            <input type="hidden" name="proyecto" value="{esc(p["titulo"])}">')}</main>'''
-    page_bottom = scripts(bottom, ["i18n-dict.js", "i18n.js", "vendor/leaflet/leaflet.js", "data/paraguay-geo.js", "map-base.js", "project-map.js", "main.js"])
+    page_bottom = scripts(bottom, ["i18n-dict.js", "i18n.js", "main.js"])
     return page_top + main + page_bottom
 
 

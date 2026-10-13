@@ -52,4 +52,6 @@
 
   // Enlace a Google Maps con la ubicación exacta
   window.sosaGoogleMaps = (lat, lng) => `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+  // Street View en el punto (se abre en Google Maps; no necesita clave)
+  window.sosaStreetView = (lat, lng) => `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${lat},${lng}`;
 })();

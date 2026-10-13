@@ -80,10 +80,12 @@ El script traduce con `assets/i18n-dict.js` (la clave es la frase exacta en cast
 
 ## Mapa
 
-Las capas están en `assets/map-base.js` y las usan el mapa de Real Estate y el de cada proyecto:
+El mapa de Real Estate usa las capas de `assets/map-base.js`:
 
 - **Calles:** CARTO Voyager, con nombres de calles hasta el máximo acercamiento. Gratis para tráfico moderado.
 - **Satélite:** imágenes de Esri, con los nombres de calles encima.
-- Al abrir un proyecto, el mapa se acerca a nivel de calle. La ficha y la página del proyecto tienen el botón "Ver ubicación en Google Maps".
+- Al abrir un proyecto, el mapa se acerca a nivel de calle. La ficha tiene los botones "Ver la calle (Street View)" y "Ver ubicación en Google Maps".
+
+La página de cada proyecto muestra el mapa de Google en vista satelital (inserción gratuita, sin clave ni cuenta) y los mismos dos botones. Street View se abre en Google Maps; para mostrarlo dentro de la página haría falta una clave de la API Maps Embed.
 
 Si el sitio crece mucho, conviene una cuenta propia (por ejemplo en MapTiler); se cambian las URLs en `map-base.js`. Debajo de las capas hay un contorno de Paraguay (`assets/data/paraguay-geo.js`) que se ve si no cargan.
