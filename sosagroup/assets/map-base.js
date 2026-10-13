@@ -1,8 +1,9 @@
 // SosaGroup — capas base de los mapas (Leaflet)
 //
 // sosaBaseMap(map) agrega:
-//   · "Calles": mapa de CARTO Voyager, con nombres de calles hasta zoom 19
-//   · "Satélite": imagen satelital de Esri + nombres de calles encima
+//   · "Calles": mapa de OpenStreetMap, con nombres de calles hasta zoom 19
+//   · "Satélite": imagen satelital de Esri + calles y nombres de Esri encima
+// Ninguna de las dos capas necesita clave ni cuenta.
 //   · un contorno de Paraguay debajo, que se ve si las capas no cargan
 //   · el selector de capas arriba a la derecha
 // Para cambiar de proveedor (por ejemplo MapTiler con cuenta propia), editar
@@ -13,18 +14,15 @@
   const OSM = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
 
   window.sosaBaseMap = (map) => {
-    const streets = L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
-      maxZoom: 20, maxNativeZoom: 19, subdomains: "abcd",
-      attribution: `${OSM} &copy; <a href="https://carto.com/attributions">CARTO</a>`,
+    const streets = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 20, maxNativeZoom: 19, attribution: OSM,
     });
+    const ESRI = "https://server.arcgisonline.com/ArcGIS/rest/services/";
+    const esri = (layer, opts) => L.tileLayer(`${ESRI}${layer}/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 20, maxNativeZoom: 18, ...opts });
     const satellite = L.layerGroup([
-      L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
-        maxZoom: 20, maxNativeZoom: 19,
-        attribution: "Imágenes &copy; Esri, Maxar, Earthstar Geographics",
-      }),
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}{r}.png", {
-        maxZoom: 20, maxNativeZoom: 19, subdomains: "abcd", attribution: OSM,
-      }),
+      esri("World_Imagery", { attribution: "Imágenes &copy; Esri, Maxar, Earthstar Geographics" }),
+      esri("Reference/World_Transportation"),
+      esri("Reference/World_Boundaries_and_Places"),
     ]);
     streets.addTo(map);
     map.setMaxZoom(20);
