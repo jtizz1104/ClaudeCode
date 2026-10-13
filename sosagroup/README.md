@@ -41,6 +41,10 @@ Para encontrar estos puntos en el código, busque `TODO` y `[completar`.
 5. **Inmuebles reales.** En `assets/data/inmuebles.js`, reemplazar los 8 ejemplos (`ejemplo: true` muestra la etiqueta "Ejemplo"). El archivo explica cada campo. Las coordenadas se copian de Google Maps con clic derecho sobre el punto. Las fotos de los inmuebles van en `assets/img/inmuebles/`.
 6. **Enlace "Acceso equipo"** del pie de página: hoy apunta a `/panel`; ajustarlo o quitarlo.
 
+## Vista de prueba en internet
+
+`.github/workflows/sosagroup-pages.yml` publica esta carpeta en https://jtizz1104.github.io/ClaudeCode/ cada vez que se une un cambio a `main`. Sirve para probar el sitio desde el celular; los buscadores igual toman como dirección oficial `sosagroup.com.py` (canonical). Requiere, una sola vez: GitHub → Settings → Pages → Source: **GitHub Actions**.
+
 ## Generar las páginas
 
 Después de cambiar cualquier HTML en castellano, los datos de proyectos (`assets/data/inmuebles.js`) o de la guía (`assets/data/guia.json`), ejecutar en este orden desde la carpeta `sosagroup/`:
