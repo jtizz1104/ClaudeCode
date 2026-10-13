@@ -25,6 +25,13 @@
     const base = it.tipo === "desarrollo" ? tr("Desde {precio}", { precio: fmtUSD(it.precio) }) : fmtUSD(it.precio);
     return it.operacion === "alquiler" ? tr("{precio} / mes", { precio: base }) : base;
   };
+  // Precio corto para el marcador del mapa: "USD 185 mil", "USD 1,2 M", "USD 750 / mes"
+  const precioCorto = (it) => {
+    if (it.precio == null) return t("Consultar");
+    const n = it.precio, nf = (v) => new Intl.NumberFormat(locale(), { maximumFractionDigits: 1 }).format(v);
+    const v = n >= 1e6 ? `${nf(n / 1e6)} M` : n >= 1e4 ? `${Math.round(n / 1000)}${window.sosaI18n?.lang === "en" ? "K" : " mil"}` : nf(n);
+    return it.operacion === "alquiler" ? tr("{precio} / mes", { precio: "USD " + v }) : "USD " + v;
+  };
   const specs = (it) => it.tipo === "desarrollo"
     ? [it.estado && t(it.estado), it.entrega && tr("Entrega {fecha}", { fecha: t(it.entrega) }), it.unidades && t(it.unidades)].filter(Boolean)
     : [it.dormitorios && tr("{n} dorm.", { n: it.dormitorios }), it.banos && tr("{n} baños", { n: it.banos }), it.m2 && it.m2 + " m²"].filter(Boolean);
@@ -40,6 +47,9 @@
   // Mapa
   const map = L.map(root.querySelector("[data-map]"), { scrollWheelZoom: false, zoomControl: true });
   window.sosaBaseMap(map);
+  // Los movimientos que hace la página (encuadrar, ir a una ficha) no filtran la lista
+  let quietUntil = 0;
+  const auto = (ms = 1500) => { quietUntil = Date.now() + ms; };
   map.on("focus click", () => map.scrollWheelZoom.enable());
   map.on("blur mouseout", () => map.scrollWheelZoom.disable());
 
@@ -63,9 +73,8 @@
         html: `<span class="re-proj"><span class="re-proj__icon"><svg aria-hidden="true"><use href="#i-building"/></svg></span><span class="re-proj__txt"><strong>${esc(t(it.titulo))}</strong><span>${esc(precio(it))}</span></span></span>`,
       })
     : L.divIcon({
-        className: "re-pin-wrap",
-        html: `<span class="re-pin re-pin--${it.tipo}"><svg aria-hidden="true"><use href="${icon(it)}"/></svg></span>`,
-        iconSize: [40, 48], iconAnchor: [20, 46], popupAnchor: [0, -44],
+        className: "re-proj-wrap", iconSize: null, iconAnchor: [0, 0], popupAnchor: [0, -44],
+        html: `<span class="re-price re-price--${it.operacion === "alquiler" ? "alquiler" : "venta"}">${esc(precioCorto(it))}</span>`,
       });
 
   const entries = data.map((it) => {
@@ -117,12 +126,38 @@
     }),
   }) : L.featureGroup()).addTo(map);
 
+  // "Actualizar la lista al mover el mapa": la lista muestra solo lo que se ve en el mapa
+  let followMap = true;
+  const MapSync = L.Control.extend({
+    options: { position: "bottomleft" },
+    onAdd() {
+      const box = L.DomUtil.create("label", "re-sync");
+      box.innerHTML = `<input type="checkbox" checked><span></span>`;
+      const input = box.querySelector("input");
+      const txt = box.querySelector("span");
+      this.setText = () => { txt.textContent = t("Actualizar la lista al mover el mapa"); };
+      this.setText();
+      input.addEventListener("change", () => { followMap = input.checked; renderList(); });
+      L.DomEvent.disableClickPropagation(box);
+      return box;
+    },
+  });
+  const sync = new MapSync().addTo(map);
+  const inView = (e) => !followMap || map.getBounds().pad(0.02).contains(e.marker.getLatLng());
+  map.on("moveend", () => { if (Date.now() > quietUntil) renderList(); });
+
   function render(fit = true) {
     layer.clearLayers();
+    entries.filter((e) => visible(e.it)).forEach((e) => layer.addLayer(e.marker));
+    if (fit && layer.getLayers().length) { auto(); map.fitBounds(layer.getBounds(), { padding: [48, 48], maxZoom: 14 }); }
+    renderList();
+  }
+
+  function renderList() {
     listEl.innerHTML = "";
-    const shown = entries.filter((e) => visible(e.it));
+    const filtered = entries.filter((e) => visible(e.it));
+    const shown = filtered.filter(inView);
     shown.forEach((e) => {
-      layer.addLayer(e.marker);
       const li = document.createElement("li");
       li.innerHTML = `
         <button type="button" class="re-card">
@@ -138,6 +173,7 @@
       e.card = btn;
       const show = () => {
         clearTimeout(closeTimer);
+        auto();
         if (layer.zoomToShowLayer) layer.zoomToShowLayer(e.marker, () => open(e));
         else { map.panInside(e.marker.getLatLng(), { padding: [80, 80] }); open(e); }
       };
@@ -150,8 +186,9 @@
       listEl.appendChild(li);
     });
     countEl.textContent = shown.length === 1 ? t("1 resultado") : tr("{n} resultados", { n: shown.length });
-    if (!shown.length) listEl.innerHTML = `<li class="re-empty">${t("No hay resultados con estos filtros. Cuéntenos qué busca y le avisamos cuando tengamos opciones.")}</li>`;
-    if (fit && shown.length) map.fitBounds(layer.getBounds(), { padding: [48, 48], maxZoom: 14 });
+    if (!shown.length) listEl.innerHTML = `<li class="re-empty">${t(filtered.length
+      ? "No hay propiedades en esta zona del mapa. Aleje o mueva el mapa para ver más."
+      : "No hay resultados con estos filtros. Cuéntenos qué busca y le avisamos cuando tengamos opciones.")}</li>`;
   }
 
   filters.addEventListener("change", (ev) => {
@@ -242,6 +279,7 @@
     // Acercar el mapa a nivel de calle sobre la propiedad
     const e = entries.find((x) => x.it === it);
     if (e) {
+      auto(2500);
       if (layer.zoomToShowLayer) layer.zoomToShowLayer(e.marker, () => map.setView(e.marker.getLatLng(), Math.max(map.getZoom(), 17)));
       else map.setView(e.marker.getLatLng(), 17);
     }
@@ -269,6 +307,7 @@
       e.marker.setIcon(pinIcon(e.it));
       if (el) { el.title = t(e.it.titulo); el.setAttribute("alt", `${label(e.it)}: ${t(e.it.titulo)}, ${t(e.it.zona)}`); }
     });
+    sync.setText();
     render(false);
   });
   render();
