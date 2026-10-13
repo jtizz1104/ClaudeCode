@@ -22,7 +22,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BASE = "https://sosagroup.com.py/"           # dominio público del sitio
-PAGES = {"index.html": "", "real-estate.html": "real-estate.html"}   # archivo -> ruta pública
+PAGES = {"index.html": "", "real-estate.html": "real-estate.html", "guia-de-tramites.html": "guia-de-tramites.html"}   # archivo -> ruta pública
 LANGS = ["es", "en", "pt"]
 OG_LOCALE = {"es": "es_PY", "en": "en_US", "pt": "pt_BR"}
 SKIP_TAGS = ("script", "style", "svg", "textarea")

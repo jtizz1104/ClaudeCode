@@ -726,3 +726,57 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 @media (max-width: 1120px) and (min-width: 1021px) { .nav .badge { display: none; } }
 @media (min-width: 1400px) { .site-header .container { max-width: 1340px; } }
 @media (max-width: 1100px) and (min-width: 1021px) { .header-cta__btn { display: none; } }
+
+/* Páginas internas (Guía de Trámites) */
+.page-hero { background: linear-gradient(120deg, var(--dark-950), var(--dark-800)); color: #e6d6de; padding: clamp(40px, 6vw, 72px) 0 clamp(48px, 7vw, 88px); }
+.page-hero h1 { color: #fff; margin-top: 14px; font-size: clamp(2.2rem, 4.6vw, 3.6rem); }
+.page-hero .eyebrow { color: var(--accent-light); }
+.page-hero__lead { margin-top: 16px; max-width: 640px; font-size: 1.125rem; color: #e6d6de; }
+.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 28px; font-size: .875rem; color: #d2bcc8; }
+.crumbs a { color: #fff; text-underline-offset: 3px; }
+.crumbs [aria-current] { color: #fff; font-weight: 600; }
+.areas { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+.area { grid-column: span 2; display: flex; flex-direction: column; gap: 10px; padding: 28px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--border); scroll-margin-top: 120px; }
+.area:nth-child(4), .area:nth-child(5) { grid-column: span 3; }
+.area .icon-box { width: 52px; height: 52px; border-radius: 12px; background: #f6ebf0; color: var(--brand); }
+.area .icon-box svg { width: 24px; height: 24px; }
+.area h3 { font-size: 1.375rem; margin-top: 6px; }
+.area p { color: var(--muted); }
+.area__cta { margin-top: auto; padding-top: 8px; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; }
+.area__cta svg { width: 16px; height: 16px; }
+.planb { display: grid; grid-template-columns: 1fr auto; gap: 24px 40px; align-items: center; margin-top: 24px; padding: clamp(28px, 4vw, 48px); border-radius: var(--radius); background: linear-gradient(120deg, var(--dark-900), var(--brand)); color: #f1e9ed; }
+.planb h2 { color: #fff; margin-top: 12px; font-size: clamp(1.6rem, 3vw, 2.25rem); }
+.planb p { margin-top: 12px; max-width: 680px; }
+.planb .eyebrow { color: var(--accent-light); }
+.planb .btn--accent { background: #fff; color: var(--brand); }
+.planb .btn--accent:hover { background: #f9eef3; }
+@media (max-width: 1020px) { .areas { grid-template-columns: 1fr 1fr; } .area, .area:nth-child(4), .area:nth-child(5) { grid-column: auto; } .area:nth-child(5) { grid-column: 1 / -1; } .planb { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .areas { grid-template-columns: 1fr; } }
+
+/* Ventana de bienvenida */
+.welcome { width: min(880px, calc(100% - 32px)); max-height: calc(100% - 32px); padding: 0; border: 0; border-radius: 18px; background: var(--card); color: var(--text); box-shadow: var(--shadow-lg); overflow: auto; }
+.welcome[open] { display: grid; grid-template-columns: 340px 1fr; animation: welcome-in .35s var(--ease); }
+.welcome::backdrop { background: rgba(28, 11, 20, .55); backdrop-filter: blur(2px); }
+.welcome__media { position: relative; min-height: 100%; background: #f6ebf0; }
+.welcome__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+.welcome__body { display: grid; gap: 14px; align-content: center; padding: clamp(28px, 4vw, 44px); }
+.welcome h2 { font-size: clamp(1.6rem, 2.8vw, 2.1rem); }
+.welcome__body > p { color: var(--muted); }
+.welcome__facts { list-style: none; display: grid; gap: 8px; margin: 4px 0; }
+.welcome__facts li { display: grid; grid-template-columns: 20px 1fr; gap: 10px; align-items: center; color: var(--text); font-size: .9375rem; }
+.welcome__facts svg { width: 18px; height: 18px; color: var(--brand); }
+.welcome__facts strong { color: var(--ink); }
+.welcome__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+.welcome__close { position: absolute; top: 12px; right: 12px; z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .92); color: var(--ink); cursor: pointer; box-shadow: var(--shadow-sm); }
+.welcome__close svg { width: 22px; height: 22px; transform: rotate(45deg); }
+.welcome__close:hover { background: #fff; color: var(--brand); }
+@keyframes welcome-in { from { opacity: 0; transform: translateY(16px) scale(.98); } }
+@media (max-width: 760px) {
+  .welcome { width: 100%; max-width: 100%; margin: auto 0 0; border-radius: 18px 18px 0 0; max-height: 70%; }
+  .welcome[open] { grid-template-columns: 1fr; animation-name: welcome-up; }
+  .welcome__media, .welcome__more { display: none; }
+  .welcome__body { padding: 24px 20px calc(20px + env(safe-area-inset-bottom, 0px)); gap: 10px; }
+  .welcome__actions .btn { flex: 1; }
+}
+@keyframes welcome-up { from { transform: translateY(100%); } }
+@media (prefers-reduced-motion: reduce) { .welcome[open] { animation: none; } }

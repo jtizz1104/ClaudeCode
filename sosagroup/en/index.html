@@ -155,6 +155,7 @@
       <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
       <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></symbol>
       <symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
       <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
       <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></symbol>
       <symbol id="i-facebook" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
@@ -193,7 +194,7 @@
         <div class="nav__group">
           <button type="button" class="nav__trigger" aria-expanded="false" aria-controls="menu-recursos">Resources <svg aria-hidden="true"><use href="#i-chevron"/></svg></button>
           <div class="nav__menu" id="menu-recursos">
-            <a href="https://sosagroup.com.py/guia-de-tramites-en-paraguay/"><strong>Paperwork Guide</strong><span>Requirements and steps for the most requested procedures.</span></a>
+            <a href="guia-de-tramites.html"><strong>Paperwork Guide</strong><span>Requirements and steps for the most requested procedures.</span></a>
             <a href="https://sosagroup.com.py/gloria-te-responde/"><strong>Gloria answers</strong><span>Gloria's answers to our readers' questions.</span></a>
             <a href="https://sosagroup.com.py/blog/"><strong>Blog</strong><span>News on residency, investment and life in Paraguay.</span></a>
             <a href="#reporte"><strong>Free report</strong><span>The 5 most common residency application mistakes.</span></a>
@@ -880,6 +881,30 @@
       </div>
     </div>
   </footer>
+
+  <dialog id="welcome" class="welcome" aria-labelledby="welcome-title">
+    <button class="welcome__close" type="button" data-close aria-label="Close">
+      <svg aria-hidden="true"><use href="#i-plus"/></svg>
+    </button>
+    <div class="welcome__media">
+      <img src="../assets/img/equipo-sosa-group.jpg" alt="From left to right: Silvana Gimenez, Gloria Sosa and Valeria Gimenez" width="640" height="640" loading="lazy">
+    </div>
+    <div class="welcome__body">
+      <span class="eyebrow">Welcome to SosaGroup</span>
+      <h2 id="welcome-title">Your arrival in Paraguay in expert hands</h2>
+      <p>For over 30 years we have supported Paraguayans abroad and foreigners who choose Paraguay to live, invest or grow their business.</p>
+      <p class="welcome__more">Founded by Sulma Paredes and led today by Gloria Sosa, together with her daughters Silvana and Valeria, from the World Trade Center in Asunción.</p>
+      <ul class="welcome__facts">
+        <li><svg aria-hidden="true"><use href="#i-star"/></svg><span><strong>5.0</strong> on Google · 122 reviews</span></li>
+        <li><svg aria-hidden="true"><use href="#i-shield"/></svg><span><strong>30</strong> years of experience</span></li>
+        <li><svg aria-hidden="true"><use href="#i-globe"/></svg><span>Service in <strong>Spanish, English and Portuguese</strong></span></li>
+      </ul>
+      <div class="welcome__actions">
+        <a class="btn btn--primary" href="#consultas" data-close>Book a consultation</a>
+        <a class="btn btn--outline" href="#nosotros" data-close>Learn more</a>
+      </div>
+    </div>
+  </dialog>
 
   <script src="../assets/i18n-dict.js" defer></script>
   <script src="../assets/i18n.js" defer></script>

@@ -155,6 +155,7 @@
       <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
       <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></symbol>
       <symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
       <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
       <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></symbol>
       <symbol id="i-facebook" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
@@ -193,7 +194,7 @@
         <div class="nav__group">
           <button type="button" class="nav__trigger" aria-expanded="false" aria-controls="menu-recursos">Recursos <svg aria-hidden="true"><use href="#i-chevron"/></svg></button>
           <div class="nav__menu" id="menu-recursos">
-            <a href="https://sosagroup.com.py/guia-de-tramites-en-paraguay/"><strong>Guia de Trâmites</strong><span>Requisitos e etapas dos trâmites mais procurados.</span></a>
+            <a href="guia-de-tramites.html"><strong>Guia de Trâmites</strong><span>Requisitos e etapas dos trâmites mais procurados.</span></a>
             <a href="https://sosagroup.com.py/gloria-te-responde/"><strong>Gloria responde</strong><span>Respostas da Gloria às perguntas dos nossos leitores.</span></a>
             <a href="https://sosagroup.com.py/blog/"><strong>Blog</strong><span>Novidades sobre residência, investimentos e vida no Paraguai.</span></a>
             <a href="#reporte"><strong>Relatório gratuito</strong><span>Os 5 erros mais comuns ao solicitar a residência.</span></a>
@@ -880,6 +881,30 @@
       </div>
     </div>
   </footer>
+
+  <dialog id="welcome" class="welcome" aria-labelledby="welcome-title">
+    <button class="welcome__close" type="button" data-close aria-label="Fechar">
+      <svg aria-hidden="true"><use href="#i-plus"/></svg>
+    </button>
+    <div class="welcome__media">
+      <img src="../assets/img/equipo-sosa-group.jpg" alt="Da esquerda para a direita: Silvana Gimenez, Gloria Sosa e Valeria Gimenez" width="640" height="640" loading="lazy">
+    </div>
+    <div class="welcome__body">
+      <span class="eyebrow">Bem-vindo à SosaGroup</span>
+      <h2 id="welcome-title">Sua chegada ao Paraguai em mãos especializadas</h2>
+      <p>Há mais de 30 anos acompanhamos paraguaios no exterior e estrangeiros que escolhem o Paraguai para morar, investir ou desenvolver seus negócios.</p>
+      <p class="welcome__more">Fundada por Sulma Paredes e dirigida hoje pela Lic. Gloria Sosa, junto com suas filhas Silvana e Valeria, a partir do World Trade Center de Assunção.</p>
+      <ul class="welcome__facts">
+        <li><svg aria-hidden="true"><use href="#i-star"/></svg><span><strong>5.0</strong> no Google · 122 avaliações</span></li>
+        <li><svg aria-hidden="true"><use href="#i-shield"/></svg><span><strong>30</strong> anos de experiência</span></li>
+        <li><svg aria-hidden="true"><use href="#i-globe"/></svg><span>Atendimento em <strong>espanhol, inglês e português</strong></span></li>
+      </ul>
+      <div class="welcome__actions">
+        <a class="btn btn--primary" href="#consultas" data-close>Agendar uma consulta</a>
+        <a class="btn btn--outline" href="#nosotros" data-close>Saiba mais</a>
+      </div>
+    </div>
+  </dialog>
 
   <script src="../assets/i18n-dict.js" defer></script>
   <script src="../assets/i18n.js" defer></script>
