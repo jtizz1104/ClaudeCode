@@ -284,7 +284,7 @@
         <div class="section-head reveal">
           <span class="eyebrow">Propiedades y desarrollos</span>
           <h2 id="explorar-title">Explore la cartera en el mapa</h2>
-          <p>Pase el cursor sobre un punto para ver la información del inmueble o del proyecto. En el celular, tóquelo.</p>
+          <p>Pase el cursor sobre un punto para una vista rápida y haga clic para ver la ficha completa, con fotos, tipologías y brochure.</p>
         </div>
 
         <form class="re-filters" data-filters aria-label="Filtrar propiedades" onsubmit="return false">
@@ -598,6 +598,16 @@
       </div>
     </div>
   </footer>
+
+  <dialog id="re-detail" class="re-detail" aria-labelledby="re-detail-title">
+    <div class="re-detail__bar">
+      <span class="eyebrow">Ficha completa</span>
+      <button type="button" class="welcome__close re-detail__close" data-detail-close aria-label="Cerrar">
+        <svg aria-hidden="true"><use href="#i-plus"/></svg>
+      </button>
+    </div>
+    <div class="re-detail__body" data-detail-body></div>
+  </dialog>
 
   <script src="assets/i18n-dict.js" defer></script>
   <script src="assets/i18n.js" defer></script>
