@@ -23,6 +23,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 BASE = "https://sosagroup.com.py/"           # dominio público del sitio
 PAGES = {"index.html": "", "real-estate.html": "real-estate.html", "guia-de-tramites.html": "guia-de-tramites.html"}   # archivo -> ruta pública
+# Páginas generadas por tools/build_pages.py (proyectos y áreas de la guía), en subcarpetas
+for _sub in ("real-estate", "guia-de-tramites"):
+    for _f in sorted((Path(__file__).resolve().parent.parent / _sub).glob("*.html")):
+        PAGES[f"{_sub}/{_f.name}"] = f"{_sub}/{_f.name}"
 LANGS = ["es", "en", "pt"]
 OG_LOCALE = {"es": "es_PY", "en": "en_US", "pt": "pt_BR"}
 SKIP_TAGS = ("script", "style", "svg", "textarea")
@@ -30,7 +34,7 @@ ATTRS = ("placeholder", "aria-label", "alt", "title", "content")
 LETTERS = re.compile(r"[^\W\d_]")
 TOKENS = re.compile(r"(<!--.*?-->|<[^>]+>)", re.S)
 # Textos que no se traducen (nombres propios, siglas); no se informan como faltantes
-KEEP = {"S", "Sosa", "Group", "SosaGroup", "SosaGroup Real Estate", "Real Estate", "ES", "EN", "PT", "Español", "English",
+KEEP = {"Home Stay San Martín", "Matrisa Lillo", "MATRISA", "P&H Urban Development", "S", "Sosa", "Group", "SosaGroup", "SosaGroup Real Estate", "Real Estate", "ES", "EN", "PT", "Español", "English",
         "Português", "WhatsApp", "Gloria Sosa", "Lic. Gloria Sosa", "Silvana Gimenez", "Valeria Gimenez", "Sulma Paredes",
         "Gloria Sosa & Asociadas", "Miguel Misenta", "· Argentina", "Arturo Arámburo", "Ruth Sosa", "Oliveira Oliveira",
         "JLuis RL", "Ale Calello", "AA", "AC", "JL", "OO", "RS", "SG", "Aviadores del Chaco 2050", "San Bernardino"}
@@ -52,11 +56,10 @@ def url(lang, page):
 
 def rel(from_lang, to_lang, page):
     """Enlace relativo entre versiones de idioma de la misma página."""
-    if from_lang == to_lang:
-        return page
-    if from_lang == "es":
-        return f"{to_lang}/{page}"
-    return f"../{page}" if to_lang == "es" else f"../{to_lang}/{page}"
+    import posixpath
+    src = page if from_lang == "es" else f"{from_lang}/{page}"
+    dst = page if to_lang == "es" else f"{to_lang}/{page}"
+    return posixpath.relpath(dst, posixpath.dirname(src) or ".")
 
 
 def seo_block(lang, page):
@@ -90,6 +93,8 @@ def translate(s, lang, d, missing):
         if not core or not LETTERS.search(core):
             return raw
         key = norm(html.unescape(core))
+        if re.fullmatch(r"[\d.,\s]+m²", key):   # superficies: 32,8 m² -> 32.8 m² en inglés
+            return raw.replace(",", ".") if lang == "en" else raw
         if key in d:
             lead, trail = raw[: len(raw) - len(raw.lstrip())], raw[len(raw.rstrip()):]
             return lead + html.escape(d[key], quote=False) + trail
@@ -125,7 +130,8 @@ def translate(s, lang, d, missing):
             if name == "html":
                 tok = re.sub(r'lang="\w+"', f'lang="{lang}"', tok)
             if not tok.startswith("</"):
-                tok = re.sub(r'\b(src|href)="assets/', r'\1="../assets/', tok)
+                # Los recursos (assets/) son compartidos: un nivel más arriba desde /en/ y /pt/
+                tok = re.sub(r'\b(src|href)="((?:\.\./)*)assets/', r'\1="../\2assets/', tok)
                 def attr(m):
                     v = html.unescape(m.group(2))
                     if not LETTERS.search(v) or m.group(1) == "content" and not META_CONTENT.search(tok):
@@ -172,7 +178,7 @@ def main():
             missing = set()
             out = translate(src, lang, dicts[lang], missing)
             out = set_seo_and_switcher(out, lang, page)
-            (ROOT / lang).mkdir(exist_ok=True)
+            (ROOT / lang / page).parent.mkdir(parents=True, exist_ok=True)
             (ROOT / lang / page).write_text(out, encoding="utf-8")
             report[(lang, page)] = missing
     (ROOT / "sitemap.xml").write_text(sitemap(), encoding="utf-8")

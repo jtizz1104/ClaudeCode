@@ -29,6 +29,8 @@
     ? [it.estado && t(it.estado), it.entrega && tr("Entrega {fecha}", { fecha: t(it.entrega) }), it.unidades && t(it.unidades)].filter(Boolean)
     : [it.dormitorios && tr("{n} dorm.", { n: it.dormitorios }), it.banos && tr("{n} baños", { n: it.banos }), it.m2 && it.m2 + " m²"].filter(Boolean);
   const label = (it) => t(it.tipo === "desarrollo" ? "Desarrollo" : (it.operacion === "alquiler" ? "En alquiler" : "En venta"));
+  // Página propia del proyecto: real-estate/<slug>.html (en el mismo idioma)
+  const projectUrl = (it) => `real-estate/${it.slug}.html`;
   const tag = () => `<span class="re-tag re-tag--demo">${t("Ejemplo")}</span>`;
   const icon = (it) => it.tipo === "desarrollo" ? "#i-building" : "#i-home";
   const photo = (it) => it.foto
@@ -37,31 +39,9 @@
 
   // Mapa
   const map = L.map(root.querySelector("[data-map]"), { scrollWheelZoom: false, zoomControl: true });
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
-    maxZoom: 19, subdomains: "abcd",
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-  }).addTo(map);
+  window.sosaBaseMap(map);
   map.on("focus click", () => map.scrollWheelZoom.enable());
   map.on("blur mouseout", () => map.scrollWheelZoom.disable());
-
-  // Fondo de respaldo debajo de las calles: contorno del país y ciudades de referencia.
-  // Se ve si las capas de calles no cargan (sin conexión, bloqueos de red).
-  if (window.SOSA_PARAGUAY_GEO) {
-    map.createPane("base").style.zIndex = 150;
-    L.geoJSON(window.SOSA_PARAGUAY_GEO, {
-      pane: "base", interactive: false,
-      style: (f) => f.properties.name === "Paraguay"
-        ? { color: "#8a2454", weight: 1.5, fillColor: "#fbf6f8", fillOpacity: 1 }
-        : { color: "#c9b8c0", weight: 1, fillColor: "#ece6e9", fillOpacity: 1 },
-    }).addTo(map);
-    [["Asunción", -25.2637, -57.5759], ["Luque", -25.2667, -57.4872], ["San Lorenzo", -25.3397, -57.5088],
-     ["Lambaré", -25.3468, -57.6065], ["San Bernardino", -25.3125, -57.2978], ["Encarnación", -27.3306, -55.8667],
-     ["Ciudad del Este", -25.5097, -54.6111]]
-      .forEach(([name, lat, lng]) => L.marker([lat, lng], {
-        pane: "base", interactive: false, keyboard: false,
-        icon: L.divIcon({ className: "re-city", html: `<span>${name}</span>`, iconSize: null }),
-      }).addTo(map));
-  }
 
   const popupHTML = (it) => `
     <article class="re-pop">
@@ -250,12 +230,20 @@
       <p class="rd-desc">${esc(t(it.descripcionLarga || it.descripcion || ""))}</p>
       ${tipologias}${amenities}${cerca}
       <div class="rd-actions">
+        ${it.slug ? `<a class="btn btn--primary" href="${esc(projectUrl(it))}">${t(it.tipo === "desarrollo" ? "Ver la página del proyecto" : "Ver la página de la propiedad")}</a>` : ""}
         ${brochure}
+        <a class="btn btn--outline" href="${window.sosaGoogleMaps(it.lat, it.lng)}" target="_blank" rel="noopener"><svg aria-hidden="true" style="transform:none"><use href="#i-pin"/></svg>${t("Ver ubicación en Google Maps")}</a>
         <a class="btn btn--primary" href="#contacto" data-consultar="${esc(it.id)}">${t(it.tipo === "desarrollo" ? "Consultar por este proyecto" : "Consultar por esta propiedad")}</a>
       </div>`;
   };
   function openDetail(it) {
     if (!detail || !it) return;
+    // Acercar el mapa a nivel de calle sobre la propiedad
+    const e = entries.find((x) => x.it === it);
+    if (e) {
+      if (layer.zoomToShowLayer) layer.zoomToShowLayer(e.marker, () => map.setView(e.marker.getLatLng(), Math.max(map.getZoom(), 17)));
+      else map.setView(e.marker.getLatLng(), 17);
+    }
     detailBody.innerHTML = detailHTML(it);
     detailBody.scrollTop = 0;
     if (!detail.open) detail.showModal();
