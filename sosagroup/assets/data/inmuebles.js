@@ -14,7 +14,7 @@
 //   categoria   "departamento" | "casa" | "terreno" | "oficina"
 //   titulo      título corto
 //   zona        texto visible (barrio, ciudad)
-//   zonaId      "asuncion" | "gran-asuncion" | "el-delta" | "san-bernardino" | "encarnacion"
+//   zonaId      "asuncion" | "luque" | "lambare" | "san-lorenzo" | "gran-asuncion" (otras ciudades) | "el-delta" | "san-bernardino" | "encarnacion"
 //   lat, lng    coordenadas (Google Maps → clic derecho sobre el punto → copiar)
 //   precio      número en USD, o null para "Consultar"
 //   dormitorios, banos, m2   opcionales

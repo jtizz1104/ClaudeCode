@@ -823,7 +823,15 @@ window.SOSA_I18N = {
   "Nueva ciudad sobre el río Paraguay, con barrios cerrados, lagunas, golf, marinas y edificios frente al río.": "A new city on the Paraguay River, with gated neighborhoods, lagoons, golf, marinas and riverfront buildings.",
   "1 proyecto en el mapa": "1 project on the map",
   "{n} proyectos en el mapa": "{n} projects on the map",
-  "Próximamente": "Coming soon"
+  "Próximamente": "Coming soon",
+  "Luque": "Luque",
+  "Lambaré": "Lambaré",
+  "San Lorenzo": "San Lorenzo",
+  "Otras ciudades de Gran Asunción": "Other cities in Greater Asunción",
+  "Ciudad del aeropuerto internacional y del parque Ñu Guasu, con barrios residenciales en crecimiento.": "Home to the international airport and Ñu Guasu park, with growing residential neighborhoods.",
+  "Vecina de Asunción sobre el río Paraguay, con el cerro Lambaré y zonas residenciales tranquilas.": "Next to Asunción on the Paraguay River, with Cerro Lambaré and quiet residential areas.",
+  "Ciudad universitaria y comercial, sede de la Universidad Nacional de Asunción, bien conectada con la capital.": "A university and commercial city, home to the Universidad Nacional de Asunción, well connected to the capital.",
+  "Fernando de la Mora, Mariano Roque Alonso, Limpio y otras ciudades cercanas a la capital, con más espacio para familias.": "Fernando de la Mora, Mariano Roque Alonso, Limpio and other cities near the capital, with more space for families."
  },
  "pt": {
   "SosaGroup · Asesoramiento para establecerse en Paraguay": "SosaGroup · Assessoria para se estabelecer no Paraguai",
@@ -1645,6 +1653,14 @@ window.SOSA_I18N = {
   "Nueva ciudad sobre el río Paraguay, con barrios cerrados, lagunas, golf, marinas y edificios frente al río.": "Nova cidade às margens do rio Paraguai, com condomínios fechados, lagoas, golfe, marinas e edifícios de frente para o rio.",
   "1 proyecto en el mapa": "1 projeto no mapa",
   "{n} proyectos en el mapa": "{n} projetos no mapa",
-  "Próximamente": "Em breve"
+  "Próximamente": "Em breve",
+  "Luque": "Luque",
+  "Lambaré": "Lambaré",
+  "San Lorenzo": "San Lorenzo",
+  "Otras ciudades de Gran Asunción": "Outras cidades da Grande Assunção",
+  "Ciudad del aeropuerto internacional y del parque Ñu Guasu, con barrios residenciales en crecimiento.": "Cidade do aeroporto internacional e do parque Ñu Guasu, com bairros residenciais em crescimento.",
+  "Vecina de Asunción sobre el río Paraguay, con el cerro Lambaré y zonas residenciales tranquilas.": "Vizinha de Assunção às margens do rio Paraguai, com o Cerro Lambaré e áreas residenciais tranquilas.",
+  "Ciudad universitaria y comercial, sede de la Universidad Nacional de Asunción, bien conectada con la capital.": "Cidade universitária e comercial, sede da Universidad Nacional de Asunción, bem conectada com a capital.",
+  "Fernando de la Mora, Mariano Roque Alonso, Limpio y otras ciudades cercanas a la capital, con más espacio para familias.": "Fernando de la Mora, Mariano Roque Alonso, Limpio e outras cidades próximas da capital, com mais espaço para famílias."
  }
 };
