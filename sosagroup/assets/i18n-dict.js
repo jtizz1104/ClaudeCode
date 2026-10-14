@@ -719,7 +719,6 @@ window.SOSA_I18N = {
   "Planta de tratamiento de agua potable y efluentes": "Drinking water and wastewater treatment plant",
   "Playa y canal náutico navegable": "Beach and navigable nautical canal",
   "Pórticos de acceso con seguridad 24 hs": "Entrance gates with 24-hour security",
-  "RE/MAX": "RE/MAX",
   "Riverside Zafiro / Las Terrazas del Delta": "Riverside Zafiro / Las Terrazas del Delta",
   "Riverside Zafiro – Departamento 3 y 4 dormitorios en suite (283 a 710 m²)": "Riverside Zafiro – 3- and 4-bedroom en suite apartment (283 to 710 m²)",
   "Río Verde – Departamento 2 y 3 dormitorios en suite": "Río Verde – 2- and 3-bedroom en suite apartment",
@@ -844,7 +843,8 @@ window.SOSA_I18N = {
   "Frente a la laguna, al norte de El Delta, Nueva Asunción (Chaco)": "On the lagoon, on the north side of El Delta, Nueva Asunción (Chaco)",
   "Frente a la laguna, al norte de El Delta, Nueva Asunción": "On the lagoon, on the north side of El Delta, Nueva Asunción",
   "Frente a la laguna, al norte de El Delta": "On the lagoon, on the north side of El Delta",
-  "Terrazas Malibú · Frente a la laguna, al norte de El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate": "Terrazas Malibú · On the lagoon, on the north side of El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate"
+  "Terrazas Malibú · Frente a la laguna, al norte de El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate": "Terrazas Malibú · On the lagoon, on the north side of El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate",
+  "SosaGroup Real Estate · Silvana Gimenez": "SosaGroup Real Estate · Silvana Gimenez"
  },
  "pt": {
   "SosaGroup · Asesoramiento para establecerse en Paraguay": "SosaGroup · Assessoria para se estabelecer no Paraguai",
@@ -1562,7 +1562,6 @@ window.SOSA_I18N = {
   "Planta de tratamiento de agua potable y efluentes": "Estação de tratamento de água potável e efluentes",
   "Playa y canal náutico navegable": "Praia e canal náutico navegável",
   "Pórticos de acceso con seguridad 24 hs": "Portarias de acesso com segurança 24 h",
-  "RE/MAX": "RE/MAX",
   "Riverside Zafiro / Las Terrazas del Delta": "Riverside Zafiro / Las Terrazas del Delta",
   "Riverside Zafiro – Departamento 3 y 4 dormitorios en suite (283 a 710 m²)": "Riverside Zafiro – Apartamento de 3 e 4 dormitórios en suite (283 a 710 m²)",
   "Río Verde – Departamento 2 y 3 dormitorios en suite": "Río Verde – Apartamento de 2 e 3 dormitórios en suite",
@@ -1687,6 +1686,7 @@ window.SOSA_I18N = {
   "Frente a la laguna, al norte de El Delta, Nueva Asunción (Chaco)": "De frente para a lagoa, ao norte de El Delta, Nueva Asunción (Chaco)",
   "Frente a la laguna, al norte de El Delta, Nueva Asunción": "De frente para a lagoa, ao norte de El Delta, Nueva Asunción",
   "Frente a la laguna, al norte de El Delta": "De frente para a lagoa, ao norte de El Delta",
-  "Terrazas Malibú · Frente a la laguna, al norte de El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate": "Terrazas Malibú · De frente para a lagoa, ao norte de El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate"
+  "Terrazas Malibú · Frente a la laguna, al norte de El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate": "Terrazas Malibú · De frente para a lagoa, ao norte de El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate",
+  "SosaGroup Real Estate · Silvana Gimenez": "SosaGroup Real Estate · Silvana Gimenez"
  }
 };
