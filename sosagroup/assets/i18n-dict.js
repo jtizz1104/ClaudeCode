@@ -831,7 +831,12 @@ window.SOSA_I18N = {
   "Ciudad del aeropuerto internacional y del parque Ñu Guasu, con barrios residenciales en crecimiento.": "Home to the international airport and Ñu Guasu park, with growing residential neighborhoods.",
   "Vecina de Asunción sobre el río Paraguay, con el cerro Lambaré y zonas residenciales tranquilas.": "Next to Asunción on the Paraguay River, with Cerro Lambaré and quiet residential areas.",
   "Ciudad universitaria y comercial, sede de la Universidad Nacional de Asunción, bien conectada con la capital.": "A university and commercial city, home to the Universidad Nacional de Asunción, well connected to the capital.",
-  "Fernando de la Mora, Mariano Roque Alonso, Limpio y otras ciudades cercanas a la capital, con más espacio para familias.": "Fernando de la Mora, Mariano Roque Alonso, Limpio and other cities near the capital, with more space for families."
+  "Fernando de la Mora, Mariano Roque Alonso, Limpio y otras ciudades cercanas a la capital, con más espacio para familias.": "Fernando de la Mora, Mariano Roque Alonso, Limpio and other cities near the capital, with more space for families.",
+  "Fernando de la Mora": "Fernando de la Mora",
+  "Mariano Roque Alonso": "Mariano Roque Alonso",
+  "Ciudad residencial y comercial pegada a Asunción, con acceso rápido al centro y a San Lorenzo.": "A residential and commercial city right next to Asunción, with quick access to downtown and San Lorenzo.",
+  "Al norte de Asunción, junto al Puente Remanso y la ruta Transchaco, con zonas residenciales e industriales.": "North of Asunción, next to Puente Remanso and the Transchaco highway, with residential and industrial areas.",
+  "Limpio, Capiatá, Villa Elisa, Ñemby y otras ciudades cercanas a la capital, con más espacio para familias.": "Limpio, Capiatá, Villa Elisa, Ñemby and other cities near the capital, with more space for families."
  },
  "pt": {
   "SosaGroup · Asesoramiento para establecerse en Paraguay": "SosaGroup · Assessoria para se estabelecer no Paraguai",
@@ -1661,6 +1666,11 @@ window.SOSA_I18N = {
   "Ciudad del aeropuerto internacional y del parque Ñu Guasu, con barrios residenciales en crecimiento.": "Cidade do aeroporto internacional e do parque Ñu Guasu, com bairros residenciais em crescimento.",
   "Vecina de Asunción sobre el río Paraguay, con el cerro Lambaré y zonas residenciales tranquilas.": "Vizinha de Assunção às margens do rio Paraguai, com o Cerro Lambaré e áreas residenciais tranquilas.",
   "Ciudad universitaria y comercial, sede de la Universidad Nacional de Asunción, bien conectada con la capital.": "Cidade universitária e comercial, sede da Universidad Nacional de Asunción, bem conectada com a capital.",
-  "Fernando de la Mora, Mariano Roque Alonso, Limpio y otras ciudades cercanas a la capital, con más espacio para familias.": "Fernando de la Mora, Mariano Roque Alonso, Limpio e outras cidades próximas da capital, com mais espaço para famílias."
+  "Fernando de la Mora, Mariano Roque Alonso, Limpio y otras ciudades cercanas a la capital, con más espacio para familias.": "Fernando de la Mora, Mariano Roque Alonso, Limpio e outras cidades próximas da capital, com mais espaço para famílias.",
+  "Fernando de la Mora": "Fernando de la Mora",
+  "Mariano Roque Alonso": "Mariano Roque Alonso",
+  "Ciudad residencial y comercial pegada a Asunción, con acceso rápido al centro y a San Lorenzo.": "Cidade residencial e comercial colada a Assunção, com acesso rápido ao centro e a San Lorenzo.",
+  "Al norte de Asunción, junto al Puente Remanso y la ruta Transchaco, con zonas residenciales e industriales.": "Ao norte de Assunção, junto à Puente Remanso e à rodovia Transchaco, com áreas residenciais e industriais.",
+  "Limpio, Capiatá, Villa Elisa, Ñemby y otras ciudades cercanas a la capital, con más espacio para familias.": "Limpio, Capiatá, Villa Elisa, Ñemby e outras cidades próximas da capital, com mais espaço para famílias."
  }
 };
