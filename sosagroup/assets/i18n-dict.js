@@ -836,7 +836,11 @@ window.SOSA_I18N = {
   "Gral. Torreani esq. Alfredo Seiferheld, Barrio Recoleta, Asunción": "Gral. Torreani & Alfredo Seiferheld, Barrio Recoleta, Asunción",
   "Belive Torreani es un edificio residencial de 6 pisos ubicado en la esquina de Gral. Torreani y Alfredo Seiferheld, en el Barrio Recoleta de Asunción. Reúne 44 departamentos con tipologías monoambiente, 1, 2 y 3 dormitorios, pensados para profesionales y familias jóvenes. Todas las unidades cuentan con balcón y amplios ventanales. El proyecto dispone de 46 cocheras en planta baja y subsuelo con accesos independientes, y amenities como piscina con deck, solarium, quinchos, parrilleros, gimnasio y espacio de co-cooking.": "Belive Torreani is a 6-story residential building located on the corner of Gral. Torreani and Alfredo Seiferheld, in Asunción's Barrio Recoleta. It comprises 44 apartments in studio, 1-, 2- and 3-bedroom layouts, designed for professionals and young families. All units feature a balcony and large windows. The project offers 46 parking spaces on the ground floor and basement with separate entrances, and amenities such as a pool with deck, solarium, barbecue areas, grills, gym and a co-cooking space.",
   "Belive Torreani · Gral. Torreani esq. Alfredo Seiferheld, Barrio Recoleta, Asunción | SosaGroup Real Estate": "Belive Torreani · Gral. Torreani & Alfredo Seiferheld, Barrio Recoleta, Asunción | SosaGroup Real Estate",
-  "Gral. Torreani esq. Alfredo Seiferheld, Barrio Recoleta": "Gral. Torreani & Alfredo Seiferheld, Barrio Recoleta"
+  "Gral. Torreani esq. Alfredo Seiferheld, Barrio Recoleta": "Gral. Torreani & Alfredo Seiferheld, Barrio Recoleta",
+  "Junto al Puente Remanso, El Delta, Nueva Asunción (Chaco)": "Next to Puente Remanso, El Delta, Nueva Asunción (Chaco)",
+  "Junto al Puente Remanso, El Delta, Nueva Asunción": "Next to Puente Remanso, El Delta, Nueva Asunción",
+  "Riverside Zafiro · Junto al Puente Remanso, El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate": "Riverside Zafiro · Next to Puente Remanso, El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate",
+  "Junto al Puente Remanso, El Delta": "Next to Puente Remanso, El Delta"
  },
  "pt": {
   "SosaGroup · Asesoramiento para establecerse en Paraguay": "SosaGroup · Assessoria para se estabelecer no Paraguai",
@@ -1671,6 +1675,10 @@ window.SOSA_I18N = {
   "Gral. Torreani esq. Alfredo Seiferheld, Barrio Recoleta, Asunción": "Gral. Torreani esquina com Alfredo Seiferheld, Barrio Recoleta, Asunción",
   "Belive Torreani es un edificio residencial de 6 pisos ubicado en la esquina de Gral. Torreani y Alfredo Seiferheld, en el Barrio Recoleta de Asunción. Reúne 44 departamentos con tipologías monoambiente, 1, 2 y 3 dormitorios, pensados para profesionales y familias jóvenes. Todas las unidades cuentan con balcón y amplios ventanales. El proyecto dispone de 46 cocheras en planta baja y subsuelo con accesos independientes, y amenities como piscina con deck, solarium, quinchos, parrilleros, gimnasio y espacio de co-cooking.": "Belive Torreani é um edifício residencial de 6 andares localizado na esquina da Gral. Torreani com a Alfredo Seiferheld, no Barrio Recoleta de Asunción. Reúne 44 apartamentos nas tipologias studio, 1, 2 e 3 dormitórios, pensados para profissionais e famílias jovens. Todas as unidades contam com varanda e amplas janelas. O projeto dispõe de 46 vagas de garagem no térreo e no subsolo com acessos independentes, e amenities como piscina com deck, solário, áreas gourmet, churrasqueiras, academia e espaço de co-cooking.",
   "Belive Torreani · Gral. Torreani esq. Alfredo Seiferheld, Barrio Recoleta, Asunción | SosaGroup Real Estate": "Belive Torreani · Gral. Torreani esquina com Alfredo Seiferheld, Barrio Recoleta, Asunción | SosaGroup Real Estate",
-  "Gral. Torreani esq. Alfredo Seiferheld, Barrio Recoleta": "Gral. Torreani esquina com Alfredo Seiferheld, Barrio Recoleta"
+  "Gral. Torreani esq. Alfredo Seiferheld, Barrio Recoleta": "Gral. Torreani esquina com Alfredo Seiferheld, Barrio Recoleta",
+  "Junto al Puente Remanso, El Delta, Nueva Asunción (Chaco)": "Junto à Puente Remanso, El Delta, Nueva Asunción (Chaco)",
+  "Junto al Puente Remanso, El Delta, Nueva Asunción": "Junto à Puente Remanso, El Delta, Nueva Asunción",
+  "Riverside Zafiro · Junto al Puente Remanso, El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate": "Riverside Zafiro · Junto à Puente Remanso, El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate",
+  "Junto al Puente Remanso, El Delta": "Junto à Puente Remanso, El Delta"
  }
 };
