@@ -121,14 +121,15 @@ window.SOSA_INMUEBLES = [
     brochure: "assets/brochures/aura-villa-morra.pdf"
   },
   {
-    // Ubicación APROXIMADA (estimada del mapa del brochure): confirmar en Google Maps y ajustar lat/lng
+    // Esquina confirmada por el equipo; coordenadas APROXIMADAS: confirmar en Google Maps y ajustar lat/lng
     id: "belive-torreani",
+    googleMaps: "https://www.google.com/maps/search/?api=1&query=General%20Torreani%20y%20Alfredo%20Seiferheld%2C%20Asunci%C3%B3n%2C%20Paraguay",
     slug: "belive-torreani",
     tipo: "desarrollo",
     operacion: "venta",
     categoria: "departamento",
     titulo: "Belive Torreani",
-    zona: "Torreani entre India Juliana y Alfredo Seiferheld, Barrio Recoleta, Asunción",
+    zona: "Gral. Torreani esq. Alfredo Seiferheld, Barrio Recoleta, Asunción",
     zonaId: "asuncion",
     lat: -25.2985,
     lng: -57.5885,
@@ -138,7 +139,7 @@ window.SOSA_INMUEBLES = [
     foto: "assets/img/inmuebles/belive-torreani-fachada.jpg",
     galeria: ["assets/img/inmuebles/belive-torreani-fachada.jpg", "assets/img/inmuebles/belive-torreani-piscina.jpg", "assets/img/inmuebles/belive-torreani-quincho-abierto.jpg", "assets/img/inmuebles/belive-torreani-quincho-climatizado.jpg", "assets/img/inmuebles/belive-torreani-gimnasio.jpg", "assets/img/inmuebles/belive-torreani-lobby.jpg", "assets/img/inmuebles/belive-torreani-dormitorio.jpg", "assets/img/inmuebles/belive-torreani-vista-aerea.jpg"],
     descripcion: "Edificio de 6 pisos con 44 departamentos, de monoambientes a PH de 3 dormitorios, con piscina, quincho y gimnasio en Barrio Recoleta.",
-    descripcionLarga: "Belive Torreani es un edificio residencial de 6 pisos ubicado sobre la calle Torreani, entre India Juliana y Alfredo Seiferheld, en el Barrio Recoleta de Asunción. Reúne 44 departamentos con tipologías monoambiente, 1, 2 y 3 dormitorios, pensados para profesionales y familias jóvenes. Todas las unidades cuentan con balcón y amplios ventanales. El proyecto dispone de 46 cocheras en planta baja y subsuelo con accesos independientes, y amenities como piscina con deck, solarium, quinchos, parrilleros, gimnasio y espacio de co-cooking.",
+    descripcionLarga: "Belive Torreani es un edificio residencial de 6 pisos ubicado en la esquina de Gral. Torreani y Alfredo Seiferheld, en el Barrio Recoleta de Asunción. Reúne 44 departamentos con tipologías monoambiente, 1, 2 y 3 dormitorios, pensados para profesionales y familias jóvenes. Todas las unidades cuentan con balcón y amplios ventanales. El proyecto dispone de 46 cocheras en planta baja y subsuelo con accesos independientes, y amenities como piscina con deck, solarium, quinchos, parrilleros, gimnasio y espacio de co-cooking.",
     datos: [["Altura", "6 pisos"], ["Departamentos", "44"], ["Cocheras", "46 (planta baja y subsuelo)"], ["Accesos", "Vehiculares independientes por nivel y peatonal por el lobby"], ["Pisos 1 a 4", "Monoambientes, 1 y 2 dormitorios"], ["Piso 5", "PH de 3 dormitorios con terraza"], ["Balcones", "En todas las unidades"]],
     tipologias: [{"nombre": "Monoambiente (100% vendido)", "m2": 35.7}, {"nombre": "1 dormitorio + 1 baño", "m2": 47.5}, {"nombre": "1 dormitorio + 2 baños (unidad 105, contrafrente)", "m2": 50.3}, {"nombre": "1 dormitorio + 2 baños (unidad 104, frente)", "m2": 50.8}, {"nombre": "1 dormitorio + 2 baños (unidad 102, frente)", "m2": 53.2}, {"nombre": "2 dormitorios + 2 baños", "m2": 65.5}, {"nombre": "PH 3 dormitorios (unidad 504)", "m2": 119}, {"nombre": "PH 3 dormitorios (unidad 503)", "m2": 131}, {"nombre": "PH 3 dormitorios (unidades 501-502)", "m2": 133}],
     amenities: ["Quincho climatizado", "Quincho al aire libre", "Parrilleros", "Gimnasio equipado", "Espacio de co-cooking", "Terraza", "Piscina con deck", "Solarium", "Front desk"],
