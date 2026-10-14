@@ -1,9 +1,7 @@
 // Cartera de Sosa Group Real Estate que se muestra en el mapa.
 //
-// IMPORTANTE: los registros con ejemplo: true son EJEMPLOS para ver el mapa
-// funcionando (muestran la etiqueta "Ejemplo"). Reemplácelos por los
-// inmuebles reales antes de publicar. Home Stay San Martín y Matrisa Lillo
-// son proyectos reales cargados desde sus brochures.
+// Proyectos reales cargados desde sus brochures. Un registro con ejemplo: true
+// muestra la etiqueta "Ejemplo" (para pruebas).
 //
 // Campos:
 //   id          identificador único (texto)
@@ -37,36 +35,6 @@
 //   brochure         ruta al PDF, ej. "assets/brochures/torre-residencial.pdf"
 //                    (sin brochure, la ficha muestra "Solicitar el brochure")
 window.SOSA_INMUEBLES = [
-  {
-    id: "ej-01", ejemplo: true, tipo: "propiedad", operacion: "venta", categoria: "departamento",
-    titulo: "Departamento de 2 dormitorios", zona: "Villa Morra, Asunción", zonaId: "asuncion",
-    lat: -25.2925, lng: -57.5770, precio: 185000, dormitorios: 2, banos: 2, m2: 95, foto: null,
-    descripcion: "Edificio con amenities, a pasos de shoppings y oficinas."
-  },
-  {
-    id: "ej-02", ejemplo: true, tipo: "propiedad", operacion: "alquiler", categoria: "departamento",
-    titulo: "Monoambiente amoblado", zona: "Carmelitas, Asunción", zonaId: "asuncion",
-    lat: -25.2850, lng: -57.5655, precio: 750, dormitorios: 1, banos: 1, m2: 48, foto: null,
-    descripcion: "Ideal para recién llegados: listo para entrar a vivir."
-  },
-  {
-    id: "ej-03", ejemplo: true, tipo: "propiedad", operacion: "venta", categoria: "casa",
-    titulo: "Casa familiar con jardín", zona: "Las Mercedes, Asunción", zonaId: "asuncion",
-    lat: -25.2965, lng: -57.6120, precio: 320000, dormitorios: 4, banos: 3, m2: 280, foto: null,
-    descripcion: "Barrio residencial tranquilo, cerca de colegios."
-  },
-  {
-    id: "ej-04", ejemplo: true, tipo: "propiedad", operacion: "venta", categoria: "oficina",
-    titulo: "Oficina corporativa", zona: "Eje corporativo, Asunción", zonaId: "asuncion",
-    lat: -25.2830, lng: -57.5610, precio: null, m2: 120, foto: null,
-    descripcion: "Planta libre en torre de oficinas con estacionamiento."
-  },
-  {
-    id: "ej-05", ejemplo: true, tipo: "propiedad", operacion: "venta", categoria: "casa",
-    titulo: "Casa de descanso cerca del lago", zona: "San Bernardino", zonaId: "san-bernardino",
-    lat: -25.3105, lng: -57.2955, precio: 210000, dormitorios: 3, banos: 2, m2: 190, foto: null,
-    descripcion: "A pocos minutos del lago Ypacaraí."
-  },
   {
     id: "home-stay", slug: "home-stay-san-martin", tipo: "desarrollo", operacion: "venta", categoria: "departamento",
     titulo: "Home Stay San Martín", zona: "Av. San Martín y San Juan XXIII, Asunción", zonaId: "asuncion",

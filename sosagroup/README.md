@@ -38,7 +38,7 @@ Para encontrar estos puntos en el código, busque `TODO` y `[completar`.
    - `hero-real-estate.jpg`: portada de Real Estate (falta).
    - `hero-paraguay.jpg`: portada del grupo. La actual sale de una captura; conviene reemplazarla por el original (unos 2400 px de ancho).
    - `gloria-sosa.jpg`, `wtc-asuncion.jpg`, `gloria-con-clientes.jpg`: salen de capturas del sitio anterior; conviene reemplazarlas por los originales.
-5. **Inmuebles reales.** En `assets/data/inmuebles.js`, reemplazar los 8 ejemplos (`ejemplo: true` muestra la etiqueta "Ejemplo"). El archivo explica cada campo. Las coordenadas se copian de Google Maps con clic derecho sobre el punto. Las fotos de los inmuebles van en `assets/img/inmuebles/`.
+5. **Inmuebles y proyectos.** Se cargan en `assets/data/inmuebles.js` (el archivo explica cada campo). Las coordenadas se copian de Google Maps con clic derecho sobre el punto. Las fotos van en `assets/img/inmuebles/` y los brochures en `assets/brochures/`.
 6. **Enlace "Acceso equipo"** del pie de página: hoy apunta a `/panel`; ajustarlo o quitarlo.
 
 ## Vista de prueba en internet
