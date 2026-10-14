@@ -14,7 +14,7 @@
 //   categoria   "departamento" | "casa" | "terreno" | "oficina"
 //   titulo      título corto
 //   zona        texto visible (barrio, ciudad)
-//   zonaId      "asuncion" | "gran-asuncion" | "san-bernardino" | "encarnacion"
+//   zonaId      "asuncion" | "gran-asuncion" | "el-delta" | "san-bernardino" | "encarnacion"
 //   lat, lng    coordenadas (Google Maps → clic derecho sobre el punto → copiar)
 //   precio      número en USD, o null para "Consultar"
 //   dormitorios, banos, m2   opcionales
@@ -153,7 +153,7 @@ window.SOSA_INMUEBLES = [
     categoria: "departamento",
     titulo: "Riverside Zafiro",
     zona: "El Delta, frente a Asunción (Chaco)",
-    zonaId: "gran-asuncion",
+    zonaId: "el-delta",
     lat: -25.205,
     lng: -57.565,
     precio: null,
@@ -177,7 +177,7 @@ window.SOSA_INMUEBLES = [
     categoria: "casa",
     titulo: "Terrazas Malibú",
     zona: "El Delta, frente a Asunción (Chaco)",
-    zonaId: "gran-asuncion",
+    zonaId: "el-delta",
     lat: -25.222,
     lng: -57.6,
     precio: null,
@@ -201,7 +201,7 @@ window.SOSA_INMUEBLES = [
     categoria: "terreno",
     titulo: "El Delta",
     zona: "El Delta, frente a Asunción (Chaco)",
-    zonaId: "gran-asuncion",
+    zonaId: "el-delta",
     lat: -25.215,
     lng: -57.585,
     precio: null,

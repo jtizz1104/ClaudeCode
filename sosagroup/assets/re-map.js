@@ -230,6 +230,31 @@
     render();
   };
 
+  // Tarjetas de "Zonas": cantidad de proyectos y botón para verlos en el mapa
+  document.querySelectorAll("[data-zone]").forEach((card) => {
+    const z = card.dataset.zone;
+    const n = data.filter((d) => d.zonaId === z).length;
+    const foot = document.createElement("p");
+    foot.className = "zone__count";
+    card.appendChild(foot);
+    const paint = () => {
+      foot.innerHTML = n
+        ? `<a href="#explorar" data-zona-btn="${esc(z)}">${esc(n === 1 ? t("1 proyecto en el mapa") : tr("{n} proyectos en el mapa", { n }))} →</a>`
+        : esc(t("Próximamente"));
+    };
+    paint();
+    document.addEventListener("sosa:lang", paint);
+  });
+  document.addEventListener("click", (ev) => {
+    const a = ev.target.closest("[data-zona-btn]");
+    if (!a) return;
+    state.zona = a.dataset.zonaBtn;
+    state.tipo = "todos";
+    filters.elements.zona.value = state.zona;
+    filters.querySelector('input[name="tipo"][value="todos"]').checked = true;
+    render();
+  });
+
   // Ficha completa (panel lateral)
   const detail = document.getElementById("re-detail");
   const detailBody = detail?.querySelector("[data-detail-body]");

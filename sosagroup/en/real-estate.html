@@ -249,6 +249,7 @@
                 <option value="">Any</option>
                 <option value="asuncion">Asunción</option>
                 <option value="gran-asuncion">Greater Asunción</option>
+                <option value="el-delta">El Delta (Chaco)</option>
                 <option value="san-bernardino">San Bernardino</option>
                 <option value="encarnacion">Encarnación</option>
                 <option value="otra">Other area</option>
@@ -309,6 +310,7 @@
               <option value="">All areas</option>
               <option value="asuncion">Asunción</option>
               <option value="gran-asuncion">Greater Asunción</option>
+                <option value="el-delta">El Delta (Chaco)</option>
               <option value="san-bernardino">San Bernardino</option>
               <option value="encarnacion">Encarnación</option>
             </select>
@@ -384,22 +386,27 @@
           <p>We help you choose the area based on your lifestyle, your work and your children's school.</p>
         </div>
         <div class="zones reveal">
-          <article class="zone" style="--zone-bg: linear-gradient(135deg, #1c3a66, #0b1b33)">
+          <article class="zone" data-zone="asuncion" style="--zone-bg: linear-gradient(135deg, #1c3a66, #0b1b33)">
             <span class="zone__tag">Capital</span>
             <h3>Asunción</h3>
             <p>Residential and business neighborhoods such as Villa Morra, Carmelitas and Las Mercedes.</p>
           </article>
-          <article class="zone" style="--zone-bg: linear-gradient(135deg, #3b4f6b, #12284a)">
+          <article class="zone" data-zone="gran-asuncion" style="--zone-bg: linear-gradient(135deg, #3b4f6b, #12284a)">
             <span class="zone__tag">Metro area</span>
             <h3>Greater Asunción</h3>
             <p>Cities near the capital with more space and options for families.</p>
           </article>
-          <article class="zone" style="--zone-bg: linear-gradient(135deg, #2f5d50, #12284a)">
+          <article class="zone" data-zone="el-delta" style="--zone-bg: linear-gradient(135deg, #1d5f74, #0b1b33)">
+            <span class="zone__tag">Across from Asunción</span>
+            <h3>El Delta (Chaco)</h3>
+            <p>A new city on the Paraguay River, with gated neighborhoods, lagoons, golf, marinas and riverfront buildings.</p>
+          </article>
+          <article class="zone" data-zone="san-bernardino" style="--zone-bg: linear-gradient(135deg, #2f5d50, #12284a)">
             <span class="zone__tag">Lake Ypacaraí</span>
             <h3>San Bernardino</h3>
             <p>Weekend homes and a quiet life, a short drive from Asunción.</p>
           </article>
-          <article class="zone" style="--zone-bg: linear-gradient(135deg, #7d5a1c, #12284a)">
+          <article class="zone" data-zone="encarnacion" style="--zone-bg: linear-gradient(135deg, #7d5a1c, #12284a)">
             <span class="zone__tag">South of the country</span>
             <h3>Encarnación</h3>
             <p>A riverside city on the Paraná, with beaches and a mid-sized-city lifestyle.</p>
@@ -525,6 +532,7 @@
                   <option value="">Any</option>
                   <option value="asuncion">Asunción</option>
                   <option value="gran-asuncion">Greater Asunción</option>
+                <option value="el-delta">El Delta (Chaco)</option>
                   <option value="san-bernardino">San Bernardino</option>
                   <option value="encarnacion">Encarnación</option>
                   <option value="otra">Other area</option>
