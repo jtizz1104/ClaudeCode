@@ -95,14 +95,15 @@ window.SOSA_INMUEBLES = [
     brochure: "assets/brochures/matrisa-lillo.pdf"
   },
   {
-    // Ubicación APROXIMADA (estimada del mapa del brochure): confirmar en Google Maps y ajustar lat/lng
+    // Dirección confirmada por el equipo; coordenadas APROXIMADAS: confirmar en Google Maps y ajustar lat/lng
     id: "aura-villa-morra",
+    googleMaps: "https://www.google.com/maps/search/?api=1&query=Avenida%20Doctor%20Guido%20Boggiani%20y%20Avenida%20Rep%C3%BAblica%20Argentina%2C%20Asunci%C3%B3n%2C%20Paraguay",
     slug: "aura-villa-morra",
     tipo: "desarrollo",
     operacion: "venta",
     categoria: "departamento",
     titulo: "Aura Japandi Residences",
-    zona: "Argüello y Quesada, Villa Morra, Asunción",
+    zona: "Av. Dr. Guido Boggiani casi Av. República Argentina, Villa Morra, Asunción",
     zonaId: "asuncion",
     lat: -25.2968,
     lng: -57.5768,
@@ -112,7 +113,7 @@ window.SOSA_INMUEBLES = [
     foto: "assets/img/inmuebles/aura-avanza-fachada.jpg",
     galeria: ["assets/img/inmuebles/aura-avanza-fachada.jpg", "assets/img/inmuebles/aura-avanza-piscina.jpg", "assets/img/inmuebles/aura-avanza-rooftop.jpg", "assets/img/inmuebles/aura-avanza-lobby.jpg", "assets/img/inmuebles/aura-avanza-lounge.jpg", "assets/img/inmuebles/aura-avanza-grill.jpg", "assets/img/inmuebles/aura-avanza-wellness.jpg", "assets/img/inmuebles/aura-avanza-interior.jpg"],
     descripcion: "Aura – Japandi Residences: edificio residencial de estilo Japandi en Villa Morra, con rooftop de bienestar y unidades de 31 a 71 m².",
-    descripcionLarga: "Aura – Japandi Residences es un edificio residencial que adopta la estética y la filosofía Japandi, fusión entre la calidez funcional del diseño escandinavo y la serenidad minimalista japonesa. Se ubica sobre las calles Argüello y Quesada, en una de las zonas más conectadas de Asunción, cerca de Avda. Mariscal López, Avda. Rca. Argentina y los principales shoppings. Cuenta con planta baja de lobby y espacios comunes, un nivel de cocheras, diez niveles de residencias y la azotea SORA Rooftop con piscina panorámica, spa, wellness center y gimnasio. Ofrece tipologías desde monoambientes de 31 m² hasta unidades de dos dormitorios de 71 m². La desarrolladora opera unidades bajo sistema de rental pool.",
+    descripcionLarga: "Aura – Japandi Residences es un edificio residencial que adopta la estética y la filosofía Japandi, fusión entre la calidez funcional del diseño escandinavo y la serenidad minimalista japonesa. Se ubica sobre la Avda. Dr. Guido Boggiani casi Av. República Argentina, en una de las zonas más conectadas de Asunción, cerca de Avda. Mariscal López, Avda. Rca. Argentina y los principales shoppings. Cuenta con planta baja de lobby y espacios comunes, un nivel de cocheras, diez niveles de residencias y la azotea SORA Rooftop con piscina panorámica, spa, wellness center y gimnasio. Ofrece tipologías desde monoambientes de 31 m² hasta unidades de dos dormitorios de 71 m². La desarrolladora opera unidades bajo sistema de rental pool.",
     datos: [["Estilo", "Japandi Residences"], ["Planta baja", "Lobby de acceso, cocheras y espacios comunes"], ["Piso 1", "Cocheras"], ["Pisos 2 al 11", "10 niveles de residencias"], ["Azotea", "SORA Rooftop"], ["Cocheras", "Con elevador de autos"], ["Tipologías", "Desde 31 m² hasta 71 m²"], ["Administración", "Sistema de rental pool"]],
     tipologias: [{"nombre": "Aura Studio (monoambiente)", "m2": 31}, {"nombre": "Aura Studio+ (monoambiente plus)", "m2": 32}, {"nombre": "Aura One (1 dormitorio)", "m2": 33}, {"nombre": "Aura One+ (1 dormitorio plus)", "m2": 46}, {"nombre": "Aura Suite (2 dormitorios)", "m2": 71}],
     amenities: ["Piscina panorámica", "Tereré lounge con fogonero", "Wellness center", "Community grill", "Spa", "Sala de masajes", "SUM", "Gimnasio", "Caminero panorámico", "Lobby", "Meeting points", "Tea nook", "Laundry room"],
