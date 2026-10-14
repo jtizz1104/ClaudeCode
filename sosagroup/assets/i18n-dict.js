@@ -817,7 +817,13 @@ window.SOSA_I18N = {
   "Riverside Zafiro": "Riverside Zafiro",
   "Acceso al nuevo Puente Héroes del Chaco · 5 min": "Access to the new Puente Héroes del Chaco · 5 min",
   "Centro de Asunción · 20 min": "Downtown Asunción · 20 min",
-  "Zona comercial": "Commercial area"
+  "Zona comercial": "Commercial area",
+  "El Delta (Chaco)": "El Delta (Chaco)",
+  "Frente a Asunción": "Across from Asunción",
+  "Nueva ciudad sobre el río Paraguay, con barrios cerrados, lagunas, golf, marinas y edificios frente al río.": "A new city on the Paraguay River, with gated neighborhoods, lagoons, golf, marinas and riverfront buildings.",
+  "1 proyecto en el mapa": "1 project on the map",
+  "{n} proyectos en el mapa": "{n} projects on the map",
+  "Próximamente": "Coming soon"
  },
  "pt": {
   "SosaGroup · Asesoramiento para establecerse en Paraguay": "SosaGroup · Assessoria para se estabelecer no Paraguai",
@@ -1633,6 +1639,12 @@ window.SOSA_I18N = {
   "Riverside Zafiro": "Riverside Zafiro",
   "Acceso al nuevo Puente Héroes del Chaco · 5 min": "Acesso à nova Puente Héroes del Chaco · 5 min",
   "Centro de Asunción · 20 min": "Centro de Asunção · 20 min",
-  "Zona comercial": "Área comercial"
+  "Zona comercial": "Área comercial",
+  "El Delta (Chaco)": "El Delta (Chaco)",
+  "Frente a Asunción": "Em frente a Assunção",
+  "Nueva ciudad sobre el río Paraguay, con barrios cerrados, lagunas, golf, marinas y edificios frente al río.": "Nova cidade às margens do rio Paraguai, com condomínios fechados, lagoas, golfe, marinas e edifícios de frente para o rio.",
+  "1 proyecto en el mapa": "1 projeto no mapa",
+  "{n} proyectos en el mapa": "{n} projetos no mapa",
+  "Próximamente": "Em breve"
  }
 };

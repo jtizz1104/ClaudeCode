@@ -249,6 +249,7 @@
                 <option value="">Cualquiera</option>
                 <option value="asuncion">Asunción</option>
                 <option value="gran-asuncion">Gran Asunción</option>
+                <option value="el-delta">El Delta (Chaco)</option>
                 <option value="san-bernardino">San Bernardino</option>
                 <option value="encarnacion">Encarnación</option>
                 <option value="otra">Otra zona</option>
@@ -309,6 +310,7 @@
               <option value="">Todas las zonas</option>
               <option value="asuncion">Asunción</option>
               <option value="gran-asuncion">Gran Asunción</option>
+                <option value="el-delta">El Delta (Chaco)</option>
               <option value="san-bernardino">San Bernardino</option>
               <option value="encarnacion">Encarnación</option>
             </select>
@@ -384,22 +386,27 @@
           <p>Le ayudamos a elegir la zona según su estilo de vida, su trabajo y la escuela de sus hijos.</p>
         </div>
         <div class="zones reveal">
-          <article class="zone" style="--zone-bg: linear-gradient(135deg, #1c3a66, #0b1b33)">
+          <article class="zone" data-zone="asuncion" style="--zone-bg: linear-gradient(135deg, #1c3a66, #0b1b33)">
             <span class="zone__tag">Capital</span>
             <h3>Asunción</h3>
             <p>Barrios residenciales y corporativos como Villa Morra, Carmelitas y Las Mercedes.</p>
           </article>
-          <article class="zone" style="--zone-bg: linear-gradient(135deg, #3b4f6b, #12284a)">
+          <article class="zone" data-zone="gran-asuncion" style="--zone-bg: linear-gradient(135deg, #3b4f6b, #12284a)">
             <span class="zone__tag">Área metropolitana</span>
             <h3>Gran Asunción</h3>
             <p>Ciudades cercanas a la capital con más espacio y opciones para familias.</p>
           </article>
-          <article class="zone" style="--zone-bg: linear-gradient(135deg, #2f5d50, #12284a)">
+          <article class="zone" data-zone="el-delta" style="--zone-bg: linear-gradient(135deg, #1d5f74, #0b1b33)">
+            <span class="zone__tag">Frente a Asunción</span>
+            <h3>El Delta (Chaco)</h3>
+            <p>Nueva ciudad sobre el río Paraguay, con barrios cerrados, lagunas, golf, marinas y edificios frente al río.</p>
+          </article>
+          <article class="zone" data-zone="san-bernardino" style="--zone-bg: linear-gradient(135deg, #2f5d50, #12284a)">
             <span class="zone__tag">Lago Ypacaraí</span>
             <h3>San Bernardino</h3>
             <p>Casas de descanso y vida tranquila, a poca distancia de Asunción.</p>
           </article>
-          <article class="zone" style="--zone-bg: linear-gradient(135deg, #7d5a1c, #12284a)">
+          <article class="zone" data-zone="encarnacion" style="--zone-bg: linear-gradient(135deg, #7d5a1c, #12284a)">
             <span class="zone__tag">Sur del país</span>
             <h3>Encarnación</h3>
             <p>Ciudad costera sobre el río Paraná, con playas y vida de ciudad intermedia.</p>
@@ -525,6 +532,7 @@
                   <option value="">Cualquiera</option>
                   <option value="asuncion">Asunción</option>
                   <option value="gran-asuncion">Gran Asunción</option>
+                <option value="el-delta">El Delta (Chaco)</option>
                   <option value="san-bernardino">San Bernardino</option>
                   <option value="encarnacion">Encarnación</option>
                   <option value="otra">Otra zona</option>

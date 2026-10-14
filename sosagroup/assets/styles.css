@@ -350,7 +350,7 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .synergy__list span { color: #dccad3; }
 .synergy__list .icon-box { width: 48px; height: 48px; }
 
-.zones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.zones { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
 .zone { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 260px; padding: 24px; border-radius: var(--radius); overflow: hidden; color: #e2e8f0; isolation: isolate; }
 .zone::before { content: ""; position: absolute; inset: 0; z-index: -2; background: var(--zone-bg); }
 .zone::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, transparent 20%, rgba(28, 11, 20, .9)); }
@@ -917,3 +917,11 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .info-list div { min-width: 0; }
 .info-list a { overflow-wrap: anywhere; }
 .info-card .info-list small { color: rgba(255, 255, 255, .75); }
+
+/* Zonas: cantidad de proyectos */
+.zone__count { margin-top: 12px; font-size: .875rem; font-weight: 700; color: #fff; }
+.zone__count a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.zone__count a:hover { color: var(--accent-light); }
+.zone__count a::after { content: ""; position: absolute; inset: 0; }
+.zone { padding-top: 64px; }
+@media (min-width: 1021px) { .zone h3 { font-size: 1.3rem; } }
