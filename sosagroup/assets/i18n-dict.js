@@ -840,7 +840,11 @@ window.SOSA_I18N = {
   "Junto al Puente Remanso, El Delta, Nueva Asunción (Chaco)": "Next to Puente Remanso, El Delta, Nueva Asunción (Chaco)",
   "Junto al Puente Remanso, El Delta, Nueva Asunción": "Next to Puente Remanso, El Delta, Nueva Asunción",
   "Riverside Zafiro · Junto al Puente Remanso, El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate": "Riverside Zafiro · Next to Puente Remanso, El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate",
-  "Junto al Puente Remanso, El Delta": "Next to Puente Remanso, El Delta"
+  "Junto al Puente Remanso, El Delta": "Next to Puente Remanso, El Delta",
+  "Frente a la laguna, al norte de El Delta, Nueva Asunción (Chaco)": "On the lagoon, on the north side of El Delta, Nueva Asunción (Chaco)",
+  "Frente a la laguna, al norte de El Delta, Nueva Asunción": "On the lagoon, on the north side of El Delta, Nueva Asunción",
+  "Frente a la laguna, al norte de El Delta": "On the lagoon, on the north side of El Delta",
+  "Terrazas Malibú · Frente a la laguna, al norte de El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate": "Terrazas Malibú · On the lagoon, on the north side of El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate"
  },
  "pt": {
   "SosaGroup · Asesoramiento para establecerse en Paraguay": "SosaGroup · Assessoria para se estabelecer no Paraguai",
@@ -1679,6 +1683,10 @@ window.SOSA_I18N = {
   "Junto al Puente Remanso, El Delta, Nueva Asunción (Chaco)": "Junto à Puente Remanso, El Delta, Nueva Asunción (Chaco)",
   "Junto al Puente Remanso, El Delta, Nueva Asunción": "Junto à Puente Remanso, El Delta, Nueva Asunción",
   "Riverside Zafiro · Junto al Puente Remanso, El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate": "Riverside Zafiro · Junto à Puente Remanso, El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate",
-  "Junto al Puente Remanso, El Delta": "Junto à Puente Remanso, El Delta"
+  "Junto al Puente Remanso, El Delta": "Junto à Puente Remanso, El Delta",
+  "Frente a la laguna, al norte de El Delta, Nueva Asunción (Chaco)": "De frente para a lagoa, ao norte de El Delta, Nueva Asunción (Chaco)",
+  "Frente a la laguna, al norte de El Delta, Nueva Asunción": "De frente para a lagoa, ao norte de El Delta, Nueva Asunción",
+  "Frente a la laguna, al norte de El Delta": "De frente para a lagoa, ao norte de El Delta",
+  "Terrazas Malibú · Frente a la laguna, al norte de El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate": "Terrazas Malibú · De frente para a lagoa, ao norte de El Delta, Nueva Asunción (Chaco) | SosaGroup Real Estate"
  }
 };
