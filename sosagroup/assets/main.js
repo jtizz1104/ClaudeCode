@@ -214,6 +214,8 @@ document.querySelectorAll("[data-year]").forEach((el) => { el.textContent = new 
 document.querySelectorAll(".hero__video").forEach((v) => {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) { v.removeAttribute("autoplay"); v.pause(); return; }
   v.addEventListener("playing", () => v.classList.add("is-playing"));
+  if (!v.paused && v.readyState > 2) v.classList.add("is-playing");
+  v.addEventListener("timeupdate", () => v.classList.add("is-playing"), { once: true });
   const play = () => v.play().catch(() => {});
   play();
   if ("IntersectionObserver" in window) {

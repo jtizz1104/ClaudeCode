@@ -98,3 +98,9 @@ El mapa de Real Estate usa las capas de `assets/map-base.js`:
 La página de cada proyecto muestra el mapa de Google en vista satelital (inserción gratuita, sin clave ni cuenta) y los mismos dos botones. Street View se abre en Google Maps; para mostrarlo dentro de la página haría falta una clave de la API Maps Embed.
 
 Si el sitio crece mucho, conviene una cuenta propia (por ejemplo en MapTiler); se cambian las URLs en `map-base.js`. Debajo de las capas hay un contorno de Paraguay (`assets/data/paraguay-geo.js`) que se ve si no cargan.
+
+## Video de la portada de inicio (WTC Asunción)
+
+- `assets/video/inicio-wtc.mp4` / `.webm`: video de fondo de la portada (`index.html`), 1280×720, ~29 s en bucle, sin sonido, armado con fotos del WTC Asunción (oficinas en Torre 4 · Piso 12 · Of. C).
+- `assets/img/hero-wtc.jpg`: primer cuadro, se muestra mientras carga el video o si el navegador no lo reproduce.
+- Arranca solo, se pausa cuando sale de pantalla y no se reproduce si el usuario tiene activado "reducir movimiento".
