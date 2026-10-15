@@ -1377,7 +1377,11 @@ window.SOSA_I18N = {
   "Torre de 9 niveles en Mariano Roque Alonso con monoambientes y departamentos de 1 y 2 dormitorios, coworking, quincho y gimnasio.": "9-level tower in Mariano Roque Alonso with studios and 1 and 2-bedroom apartments, coworking, barbecue area and gym.",
   "Sanmar Aurora es una torre residencial de 9 niveles ubicada en el barrio San Jorge de Mariano Roque Alonso, sobre la Avda. Soldado Robustiano Quintana esquina Fulgencio R. Moreno. Ofrece monoambientes desde 28,15 m², departamentos de 1 dormitorio desde 40,30 m² y de 2 dormitorios desde 65,03 m². Las unidades incluyen cocina integrada, aires acondicionados, muebles de cocina y placares, y baños con mamparas y espejos. Entre sus amenities se cuentan coworking, quincho, gimnasio, terraza, lounge, laundry y seguridad 24 horas. El proyecto es de Julia Galanti Arquitecta y la construcción está a cargo de Gómez Abente Construcciones.": "Sanmar Aurora is a 9-level residential tower located in the San Jorge neighborhood of Mariano Roque Alonso, on Avda. Soldado Robustiano Quintana & Fulgencio R. Moreno. It offers studios from 28.15 m², 1-bedroom apartments from 40.30 m² and 2-bedroom apartments from 65.03 m². Units include an open kitchen, air conditioners, kitchen cabinets and closets, and bathrooms with shower screens and mirrors. Its amenities include coworking, barbecue area, gym, terrace, lounge, laundry and 24-hour security. The project was designed by Julia Galanti Arquitecta and built by Gómez Abente Construcciones.",
   "9": "9",
-  "Sanmar Aurora · Avda. Soldado Robustiano Quintana esq. Fulgencio R. Moreno, San Jorge, Mariano Roque Alonso | SosaGroup Real Estate": "Sanmar Aurora · Avda. Soldado Robustiano Quintana & Fulgencio R. Moreno, San Jorge, Mariano Roque Alonso | SosaGroup Real Estate"
+  "Sanmar Aurora · Avda. Soldado Robustiano Quintana esq. Fulgencio R. Moreno, San Jorge, Mariano Roque Alonso | SosaGroup Real Estate": "Sanmar Aurora · Avda. Soldado Robustiano Quintana & Fulgencio R. Moreno, San Jorge, Mariano Roque Alonso | SosaGroup Real Estate",
+  "Activar sonido": "Turn on sound",
+  "Silenciar": "Mute",
+  "Silenciar la música": "Mute the music",
+  "Activar la música de fondo": "Turn on the background music"
  },
  "pt": {
   "SosaGroup · Asesoramiento para establecerse en Paraguay": "SosaGroup · Assessoria para se estabelecer no Paraguai",
@@ -2753,6 +2757,10 @@ window.SOSA_I18N = {
   "Torre de 9 niveles en Mariano Roque Alonso con monoambientes y departamentos de 1 y 2 dormitorios, coworking, quincho y gimnasio.": "Torre de 9 andares em Mariano Roque Alonso com studios e apartamentos de 1 e 2 dormitórios, coworking, área gourmet e academia.",
   "Sanmar Aurora es una torre residencial de 9 niveles ubicada en el barrio San Jorge de Mariano Roque Alonso, sobre la Avda. Soldado Robustiano Quintana esquina Fulgencio R. Moreno. Ofrece monoambientes desde 28,15 m², departamentos de 1 dormitorio desde 40,30 m² y de 2 dormitorios desde 65,03 m². Las unidades incluyen cocina integrada, aires acondicionados, muebles de cocina y placares, y baños con mamparas y espejos. Entre sus amenities se cuentan coworking, quincho, gimnasio, terraza, lounge, laundry y seguridad 24 horas. El proyecto es de Julia Galanti Arquitecta y la construcción está a cargo de Gómez Abente Construcciones.": "Sanmar Aurora é uma torre residencial de 9 andares localizada no bairro San Jorge de Mariano Roque Alonso, na Avda. Soldado Robustiano Quintana esquina com Fulgencio R. Moreno. Oferece studios a partir de 28,15 m², apartamentos de 1 dormitório a partir de 40,30 m² e de 2 dormitórios a partir de 65,03 m². As unidades incluem cozinha integrada, aparelhos de ar-condicionado, móveis de cozinha e armários, e banheiros com box e espelhos. Entre suas amenities estão coworking, área gourmet, academia, terraço, lounge, lavanderia e segurança 24 horas. O projeto é de Julia Galanti Arquitecta e a construção está a cargo de Gómez Abente Construcciones.",
   "9": "9",
-  "Sanmar Aurora · Avda. Soldado Robustiano Quintana esq. Fulgencio R. Moreno, San Jorge, Mariano Roque Alonso | SosaGroup Real Estate": "Sanmar Aurora · Avda. Soldado Robustiano Quintana esquina com Fulgencio R. Moreno, San Jorge, Mariano Roque Alonso | SosaGroup Real Estate"
+  "Sanmar Aurora · Avda. Soldado Robustiano Quintana esq. Fulgencio R. Moreno, San Jorge, Mariano Roque Alonso | SosaGroup Real Estate": "Sanmar Aurora · Avda. Soldado Robustiano Quintana esquina com Fulgencio R. Moreno, San Jorge, Mariano Roque Alonso | SosaGroup Real Estate",
+  "Activar sonido": "Ativar som",
+  "Silenciar": "Silenciar",
+  "Silenciar la música": "Silenciar a música",
+  "Activar la música de fondo": "Ativar a música de fundo"
  }
 };
