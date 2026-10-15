@@ -209,3 +209,44 @@ if (welcome && typeof welcome.showModal === "function") {
 }
 
 document.querySelectorAll("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });
+
+// Video de fondo: se muestra al empezar a reproducirse y se pausa cuando la portada no está a la vista
+document.querySelectorAll(".hero__video").forEach((v) => {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) { v.removeAttribute("autoplay"); v.pause(); return; }
+  v.addEventListener("playing", () => v.classList.add("is-playing"));
+  const play = () => v.play().catch(() => {});
+  play();
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([e]) => (e.isIntersecting ? play() : v.pause())).observe(v);
+  }
+  document.addEventListener("visibilitychange", () => (document.hidden ? v.pause() : play()));
+});
+
+// Música de fondo opcional (se activa con el botón; arranca suave)
+document.querySelectorAll(".hero__sound").forEach((btn) => {
+  const audio = btn.parentElement.querySelector(".hero__audio");
+  if (!audio) return;
+  audio.volume = 0;
+  const txt = btn.querySelector(".hero__sound-txt");
+  let fade;
+  const ramp = (to, done) => {
+    clearInterval(fade);
+    fade = setInterval(() => {
+      const v = audio.volume + (to > audio.volume ? 0.03 : -0.05);
+      if ((to > audio.volume && v >= to) || (to <= audio.volume && v <= to)) { audio.volume = to; clearInterval(fade); done?.(); }
+      else audio.volume = Math.min(1, Math.max(0, v));
+    }, 60);
+  };
+  const set = (on) => {
+    btn.setAttribute("aria-pressed", String(on));
+    if (txt) txt.textContent = t(on ? "Silenciar" : "Activar sonido");
+    btn.setAttribute("aria-label", t(on ? "Silenciar la música" : "Activar la música de fondo"));
+  };
+  set(false);
+  btn.addEventListener("click", () => {
+    if (audio.paused) { audio.play().then(() => { set(true); ramp(0.35); }).catch(() => {}); }
+    else ramp(0, () => { audio.pause(); set(false); });
+  });
+  document.addEventListener("visibilitychange", () => { if (document.hidden && !audio.paused) { audio.pause(); set(false); } });
+  document.addEventListener("sosa:lang", () => set(!audio.paused));
+});

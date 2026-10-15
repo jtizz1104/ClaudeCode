@@ -45,6 +45,11 @@ Para encontrar estos puntos en el código, busque `TODO` y `[completar`.
 
 `.github/workflows/sosagroup-pages.yml` publica esta carpeta en https://jtizz1104.github.io/ClaudeCode/ cada vez que se une un cambio a `main`. Sirve para probar el sitio desde el celular; los buscadores igual toman como dirección oficial `sosagroup.com.py` (canonical). Requiere, una sola vez: GitHub → Settings → Pages → Source: **GitHub Actions**.
 
+## Video y música de la portada de Real Estate
+
+- **Video:** `assets/video/real-estate-hero.mp4` y `.webm` (sin sonido, en bucle; se pausa cuando la portada no está a la vista). Se generaron recortando el 38 % izquierdo del video original para que sus títulos no se crucen con los textos de la portada. Para cambiarlo, reemplazar los dos archivos con el mismo nombre.
+- **Música:** `assets/audio/arpa-guarania.mp3`, composición original de arpa en estilo guarania (sin derechos de terceros). Los navegadores no permiten sonido automático, así que suena solo al tocar el botón "Activar sonido". Para usar otra grabación (con licencia), reemplazar el archivo.
+
 ## Generar las páginas
 
 Después de cambiar cualquier HTML en castellano, los datos de proyectos (`assets/data/inmuebles.js`) o de la guía (`assets/data/guia.json`), ejecutar en este orden desde la carpeta `sosagroup/`:

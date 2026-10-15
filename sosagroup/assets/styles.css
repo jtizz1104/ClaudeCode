@@ -925,3 +925,20 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .zone__count a::after { content: ""; position: absolute; inset: 0; }
 .zone { padding-top: 64px; }
 @media (min-width: 1021px) { .zone h3 { font-size: 1.3rem; } }
+
+/* Video de fondo de la portada de Real Estate */
+.hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .8s ease; }
+.hero__video.is-playing { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .hero__video { display: none; } }
+
+/* Botón de sonido de la portada */
+.hero__sound { position: absolute; right: 20px; bottom: 20px; z-index: 3; display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border: 1px solid rgba(255, 255, 255, .35); border-radius: 999px; background: rgba(20, 14, 18, .55); color: #fff; font: 600 .875rem var(--font-body); cursor: pointer; backdrop-filter: blur(6px); transition: background-color .2s; }
+.hero__sound:hover { background: rgba(138, 36, 84, .8); }
+.hero__sound:focus-visible { outline: 3px solid var(--ring); outline-offset: 3px; }
+.hero__sound svg { width: 18px; height: 18px; }
+.hero__sound .hero__sound-on, .hero__sound[aria-pressed="true"] .hero__sound-off { display: none; }
+.hero__sound[aria-pressed="true"] .hero__sound-on { display: block; }
+@media (max-width: 640px) { .hero__sound { right: 12px; bottom: 12px; padding: 10px; } .hero__sound-txt { display: none; } }
+/* El video trae sus propios títulos abajo a la izquierda: se encuadra hacia la derecha y se oscurece el lado del texto */
+.hero__video { object-position: center; }
+.re-hero.hero--image .hero__shade { background: linear-gradient(90deg, rgba(20, 14, 18, .9) 0%, rgba(20, 14, 18, .72) 45%, rgba(20, 14, 18, .35) 100%), linear-gradient(0deg, rgba(20, 14, 18, .55), transparent 40%); }
