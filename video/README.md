@@ -1,54 +1,27 @@
-# Remotion video
+# SosaGroup Real Estate – video
 
-<p align="center">
-  <a href="https://github.com/remotion-dev/logo">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-dark.apng">
-      <img alt="Animated Remotion Logo" src="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-light.gif">
-    </picture>
-  </a>
-</p>
+A ~90 second showcase of the SosaGroup Real Estate projects, made with [Remotion](https://www.remotion.dev).
+It reads the projects and photos straight from the website (`../sosagroup`), so nothing is copied.
 
-Welcome to your Remotion project!
+- Intro → one scene per project (two photos, name, location, units, delivery date) → contact card.
+- 1920×1080, 30 fps.
 
 ## Commands
 
-**Install Dependencies**
-
 ```console
-npm i --loglevel=error
+npm install
+npm run dev      # preview in Remotion Studio
+npm run render   # writes out/sosagroup-real-estate.mp4
 ```
 
-**Start Preview**
+Both commands first run `npm run sync`, which reads `sosagroup/assets/data/inmuebles.js`
+and rewrites `src/properties.json`. After adding or editing a project on the site, just render again.
 
-```console
-npm run dev
-```
+## Where things are
 
-**Render video**
-
-```console
-npx remotion render
-```
-
-**Upgrade Remotion**
-
-```console
-npx remotion upgrade
-```
-
-## Docs
-
-Get started with Remotion by reading the [fundamentals page](https://www.remotion.dev/docs/the-fundamentals).
-
-## Help
-
-We provide help on our [Discord server](https://discord.gg/6VzzNDwUwV).
-
-## Issues
-
-Found an issue with Remotion? [File an issue here](https://github.com/remotion-dev/remotion/issues/new).
-
-## License
-
-Note that for some entities a company license is needed. [Read the terms here](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md).
+| File | What it does |
+| --- | --- |
+| `scripts/sync-properties.mjs` | Builds `src/properties.json` from the site's data (first photo + one gallery photo per project). |
+| `src/Showcase/theme.ts` | Brand colors, fonts and the length of each part. |
+| `src/Showcase/Intro.tsx`, `PropertyScene.tsx`, `Outro.tsx` | The three kinds of scenes. |
+| `src/Showcase/Photo.tsx` | Wide photos fill the frame; tall ones are shown framed over a blurred copy. |

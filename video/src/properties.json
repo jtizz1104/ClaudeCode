@@ -1,0 +1,422 @@
+[
+  {
+    "id": "home-stay",
+    "titulo": "Home Stay San Martín",
+    "zona": "Av. San Martín y San Juan XXIII, Asunción",
+    "unidades": "Suites, 1 y 2 dormitorios",
+    "entrega": "Julio 2027",
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/homestay-torre.jpg",
+        "w": 557,
+        "h": 696
+      },
+      {
+        "src": "img/inmuebles/homestay-fachada.jpg",
+        "w": 832,
+        "h": 666
+      }
+    ]
+  },
+  {
+    "id": "matrisa-lillo",
+    "titulo": "Matrisa Lillo",
+    "zona": "Eusebio Lillo Robles y Bélgica, Asunción",
+    "unidades": "Monoambientes, 1, 2 y 3 dormitorios",
+    "entrega": null,
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/lillo-torre.jpg",
+        "w": 573,
+        "h": 720
+      },
+      {
+        "src": "img/inmuebles/lillo-piscina-2.jpg",
+        "w": 1400,
+        "h": 1389
+      }
+    ]
+  },
+  {
+    "id": "aura-villa-morra",
+    "titulo": "Aura Japandi Residences",
+    "zona": "Av. Dr. Guido Boggiani casi Av. República Argentina, Villa Morra, Asunción",
+    "unidades": "Monoambientes, 1 y 2 dormitorios (31 a 71 m²)",
+    "entrega": null,
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/aura-avanza-fachada.jpg",
+        "w": 1600,
+        "h": 1127
+      },
+      {
+        "src": "img/inmuebles/aura-avanza-piscina.jpg",
+        "w": 1600,
+        "h": 1114
+      }
+    ]
+  },
+  {
+    "id": "belive-torreani",
+    "titulo": "Belive Torreani",
+    "zona": "Gral. Torreani esq. Alfredo Seiferheld, Barrio Recoleta, Asunción",
+    "unidades": "Monoambientes, 1, 2 y 3 dormitorios (PH)",
+    "entrega": null,
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/belive-torreani-fachada.jpg",
+        "w": 1600,
+        "h": 901
+      },
+      {
+        "src": "img/inmuebles/belive-torreani-piscina.jpg",
+        "w": 1600,
+        "h": 900
+      }
+    ]
+  },
+  {
+    "id": "riverside-zafiro",
+    "titulo": "Riverside Zafiro",
+    "zona": "Junto al Puente Remanso, El Delta, Nueva Asunción (Chaco)",
+    "unidades": "3 y 4 dormitorios en suite y penthouses (283 a 710 m²)",
+    "entrega": null,
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/riverside-zafiro-aerea.jpg",
+        "w": 1600,
+        "h": 902
+      },
+      {
+        "src": "img/inmuebles/riverside-zafiro-fachada.jpg",
+        "w": 1107,
+        "h": 949
+      }
+    ]
+  },
+  {
+    "id": "terrazas-malibu",
+    "titulo": "Terrazas Malibú",
+    "zona": "Frente a la laguna, al norte de El Delta, Nueva Asunción (Chaco)",
+    "unidades": "30 casas frente a la laguna (20 Tipo A y 10 Tipo B)",
+    "entrega": null,
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/terrazas-malibu-fachada-laguna.jpg",
+        "w": 1182,
+        "h": 665
+      },
+      {
+        "src": "img/inmuebles/terrazas-malibu-laguna.jpg",
+        "w": 1185,
+        "h": 773
+      }
+    ]
+  },
+  {
+    "id": "el-delta",
+    "titulo": "El Delta",
+    "zona": "El Delta, frente a Asunción (Chaco)",
+    "unidades": "Lotes desde 1.200 m², residencias desde 500 m² y departamentos de 2 a 4 dormitorios",
+    "entrega": null,
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/el-delta-aerea.jpg",
+        "w": 1060,
+        "h": 596
+      },
+      {
+        "src": "img/inmuebles/el-delta-nautico.jpg",
+        "w": 1600,
+        "h": 900
+      }
+    ]
+  },
+  {
+    "id": "torre-narciso",
+    "titulo": "Torre Narciso",
+    "zona": "Narciso R. Colmán 1775, Asunción",
+    "unidades": "Departamentos de 1, 2 y 3 dormitorios (46 a 97 m²)",
+    "entrega": null,
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/torre-narciso-fachada.jpg",
+        "w": 1600,
+        "h": 1100
+      },
+      {
+        "src": "img/inmuebles/torre-narciso-acceso.jpg",
+        "w": 1600,
+        "h": 1030
+      }
+    ]
+  },
+  {
+    "id": "sol-city",
+    "titulo": "Sol City",
+    "zona": "Prof. Manuel Riquelme N° 1985 entre San Juan XXIII y Herib Campos Cervera, Las Lomas, Asunción",
+    "unidades": "Departamentos de 1 dormitorio, 1 dormitorio en dúplex, 2 dormitorios (tipos A y B), 3 dormitorios y 3 dormitorios Plus, de 57 a 201 m² propios",
+    "entrega": null,
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/solcity-fachada.jpg",
+        "w": 562,
+        "h": 815
+      },
+      {
+        "src": "img/inmuebles/solcity-fachada-sol.jpg",
+        "w": 1100,
+        "h": 830
+      }
+    ]
+  },
+  {
+    "id": "rootz-recoleta",
+    "titulo": "Rootz Studio Recoleta",
+    "zona": "Emilio Hassler y Gral. Torreani Viera, Barrio Recoleta, Asunción",
+    "unidades": "Monoambientes (27,5 y 35 m²) y departamentos de 1 dormitorio (desde 44,7 m²)",
+    "entrega": null,
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/rootz-recoleta-fachada.jpg",
+        "w": 1600,
+        "h": 838
+      },
+      {
+        "src": "img/inmuebles/rootz-recoleta-fachada-superior.jpg",
+        "w": 1160,
+        "h": 710
+      }
+    ]
+  },
+  {
+    "id": "velvet-mariscal",
+    "titulo": "Velvet Mariscal",
+    "zona": "Av. Mariscal López, junto al Shopping Mariscal, Asunción",
+    "unidades": null,
+    "entrega": null,
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/velvet-mariscal-fachada.jpg",
+        "w": 1600,
+        "h": 901
+      },
+      {
+        "src": "img/inmuebles/velvet-mariscal-piscina.jpg",
+        "w": 1276,
+        "h": 688
+      }
+    ]
+  },
+  {
+    "id": "veralta-mariscal",
+    "titulo": "Veralta Mariscal",
+    "zona": "Legión Civil Extranjera esq. Manuel del Castillo, Barrio Recoleta, Asunción",
+    "unidades": null,
+    "entrega": null,
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/veralta-mariscal-fachada.jpg",
+        "w": 1600,
+        "h": 900
+      },
+      {
+        "src": "img/inmuebles/veralta-mariscal-torres.jpg",
+        "w": 1520,
+        "h": 1600
+      }
+    ]
+  },
+  {
+    "id": "veralta-los-laureles",
+    "titulo": "Veralta Los Laureles",
+    "zona": "Camilo Recalde esq. Serafina Dávalos, Los Laureles, Asunción",
+    "unidades": null,
+    "entrega": null,
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/veralta-los-laureles-fachada.jpg",
+        "w": 1600,
+        "h": 1133
+      },
+      {
+        "src": "img/inmuebles/veralta-los-laureles-piscina.jpg",
+        "w": 1600,
+        "h": 894
+      }
+    ]
+  },
+  {
+    "id": "alban-trium",
+    "titulo": "Alban Trium",
+    "zona": "Papa Juan XXIII y Narciso R. Colmán, Asunción",
+    "unidades": null,
+    "entrega": null,
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/trium-fachada.jpg",
+        "w": 1600,
+        "h": 901
+      },
+      {
+        "src": "img/inmuebles/trium-acceso.jpg",
+        "w": 1470,
+        "h": 927
+      }
+    ]
+  },
+  {
+    "id": "marena",
+    "titulo": "Marena",
+    "zona": "Calle 12 de Junio, zona Parque Ñu Guasu, Luque",
+    "unidades": "Monoambientes y unidades de 1, 2 y 3 dormitorios con cochera cubierta, distribuidos en 8 torres",
+    "entrega": null,
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/marena-laguna.jpg",
+        "w": 724,
+        "h": 800
+      },
+      {
+        "src": "img/inmuebles/marena-kayaks.jpg",
+        "w": 1132,
+        "h": 690
+      }
+    ]
+  },
+  {
+    "id": "cumbres-san-bernardino",
+    "titulo": "Cumbres de San Bernardino",
+    "zona": "Calle Jacarandá, junto al Anfiteatro José Asunción Flores, San Bernardino",
+    "unidades": "Más de 60 lotes en 12 manzanas",
+    "entrega": null,
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/cumbres-vista-aerea.jpg",
+        "w": 1600,
+        "h": 968
+      },
+      {
+        "src": "img/inmuebles/cumbres-portico.jpg",
+        "w": 1600,
+        "h": 900
+      }
+    ]
+  },
+  {
+    "id": "torre-narciso-la-cuadrita",
+    "titulo": "Torre Narciso La Cuadrita",
+    "zona": "Du Graty y San Roque González, Asunción",
+    "unidades": null,
+    "entrega": "Septiembre 2029",
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/tnlc-fachada.jpg",
+        "w": 1600,
+        "h": 1129
+      },
+      {
+        "src": "img/inmuebles/tnlc-basamento.jpg",
+        "w": 1600,
+        "h": 1067
+      }
+    ]
+  },
+  {
+    "id": "matrisa-molas-lopez",
+    "titulo": "Edificio Matrisa Molas López",
+    "zona": "Av. Dr. Felipe Molas López, Asunción",
+    "unidades": null,
+    "entrega": "Diciembre 2029",
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/molas-lopez-fachada.jpg",
+        "w": 1042,
+        "h": 1600
+      },
+      {
+        "src": "img/inmuebles/molas-lopez-piscina.jpg",
+        "w": 1250,
+        "h": 893
+      }
+    ]
+  },
+  {
+    "id": "venire-568",
+    "titulo": "Venire 568 Recoleta",
+    "zona": "Manuel del Castillo esq. San Roque González, Recoleta, Asunción",
+    "unidades": null,
+    "entrega": null,
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/venire-568-fachada.jpg",
+        "w": 1600,
+        "h": 1235
+      },
+      {
+        "src": "img/inmuebles/venire-568-acceso.jpg",
+        "w": 1600,
+        "h": 1014
+      }
+    ]
+  },
+  {
+    "id": "trivium-recoleta",
+    "titulo": "Trivium Recoleta",
+    "zona": "Alberto de Souza y Rodolfo Zotti, Recoleta, Asunción",
+    "unidades": null,
+    "entrega": null,
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/trivium-recoleta-fachada.jpg",
+        "w": 1066,
+        "h": 882
+      },
+      {
+        "src": "img/inmuebles/trivium-recoleta-piscina.jpg",
+        "w": 628,
+        "h": 1105
+      }
+    ]
+  },
+  {
+    "id": "sanmar-aurora",
+    "titulo": "Sanmar Aurora",
+    "zona": "Avda. Soldado Robustiano Quintana esq. Fulgencio R. Moreno, San Jorge, Mariano Roque Alonso",
+    "unidades": null,
+    "entrega": null,
+    "estado": null,
+    "photos": [
+      {
+        "src": "img/inmuebles/sanmar-aurora-fachada.jpg",
+        "w": 1600,
+        "h": 901
+      },
+      {
+        "src": "img/inmuebles/sanmar-aurora-lobby.jpg",
+        "w": 1600,
+        "h": 903
+      }
+    ]
+  }
+]

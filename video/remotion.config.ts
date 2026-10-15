@@ -8,3 +8,6 @@ import { Config } from "@remotion/cli/config";
 Config.setRspack(true);
 Config.setVideoImageFormat("jpeg");
 Config.setOverwriteOutput(true);
+
+// Photos come straight from the website, so they are not duplicated here.
+Config.setPublicDir("../sosagroup/assets");
