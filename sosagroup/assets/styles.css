@@ -942,3 +942,8 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 /* El video trae sus propios títulos abajo a la izquierda: se encuadra hacia la derecha y se oscurece el lado del texto */
 .hero__video { object-position: center; }
 .re-hero.hero--image .hero__shade { background: linear-gradient(90deg, rgba(20, 14, 18, .9) 0%, rgba(20, 14, 18, .72) 45%, rgba(20, 14, 18, .35) 100%), linear-gradient(0deg, rgba(20, 14, 18, .55), transparent 40%); }
+/* Portada de Real Estate más clara: video con más brillo y color, sombra solo detrás del texto */
+.hero__video { filter: brightness(1.18) saturate(1.35) contrast(1.05); }
+.re-hero.hero--image .hero__shade { background: linear-gradient(90deg, rgba(20, 14, 18, .62) 0%, rgba(20, 14, 18, .38) 40%, rgba(20, 14, 18, 0) 70%); }
+.re-hero h1, .re-hero .hero__lead, .re-hero .eyebrow { text-shadow: 0 2px 18px rgba(0, 0, 0, .55); }
+@media (max-width: 1020px) { .re-hero.hero--image .hero__shade { background: linear-gradient(180deg, rgba(20, 14, 18, .55) 0%, rgba(20, 14, 18, .35) 60%, rgba(20, 14, 18, .15) 100%); } }
