@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>CRM con IA de respuestas aprobadas</title>
+<style>
+  @page { size: A4; margin: 11mm 12mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 8.1pt; line-height: 1.27; color: #1a1a1a; margin: 0; }
+  h1 { font-size: 15pt; margin: 0 0 1mm; color: #0b3d5c; }
+  .sub { color: #555; font-size: 8pt; margin-bottom: 2.5mm; }
+  .lead { background: #eef5fa; border-left: 3px solid #0b6a9c; padding: 2mm 3mm; margin-bottom: 3mm; font-size: 9pt; }
+  h2 { font-size: 10pt; color: #0b3d5c; margin: 0 0 1.5mm; padding-bottom: 0.8mm; border-bottom: 1px solid #c9dbe7; text-transform: uppercase; letter-spacing: .3px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm 5mm; }
+  .full { grid-column: 1 / -1; }
+  table { width: 100%; border-collapse: collapse; font-size: 7.7pt; }
+  th, td { border: 1px solid #d5dee5; padding: 1mm 1.6mm; text-align: left; vertical-align: top; }
+  th { background: #f1f5f8; }
+  tr.rec td { background: #e8f4ec; font-weight: 600; }
+  ol, ul { margin: 0; padding-left: 4.5mm; }
+  li { margin-bottom: 0.7mm; }
+  p { margin: 0 0 1.2mm; }
+  .close { margin-top: 3mm; text-align: center; font-weight: 700; font-size: 9.5pt; color: #0b3d5c; border-top: 2px solid #0b3d5c; padding-top: 2mm; }
+  .box { border: 1px solid #f0c36d; background: #fffaf0; padding: 2mm 3mm; }
+</style>
+</head>
+<body>
+<h1>CRM con IA de respuestas aprobadas: resumen ejecutivo</h1>
+<div class="sub">Preparación para la reunión · 16 de octubre de 2026</div>
+
+<div class="lead"><strong>Idea central:</strong> queremos una IA que entienda como una persona pero que responda solo lo que nosotros aprobamos. Técnicamente se llama <strong>RAG</strong>: la IA recupera la respuesta de una base cargada y la redacta en lenguaje natural, sin inventar.</div>
+
+<div class="grid">
+  <section>
+    <h2>Opciones</h2>
+    <table>
+      <tr><th>Opción</th><th>Qué hace</th><th>Veredicto</th></tr>
+      <tr><td>Bot de menú o palabras clave</td><td>Responde si detecta "precio" o "1"</td><td>Rígido, frustra al cliente</td></tr>
+      <tr class="rec"><td>IA sobre respuestas aprobadas (RAG)</td><td>Entiende la intención y responde desde nuestra base</td><td>Recomendado</td></tr>
+      <tr><td>IA agéntica</td><td>Decide y ejecuta acciones sola</td><td>Más riesgo y costo, menos control</td></tr>
+    </table>
+    <p style="margin-top:1.5mm"><strong>Punto medio ideal:</strong> RAG más acciones simples con confirmación del cliente ("¿Te agendo el martes 10 hs?").</p>
+  </section>
+
+  <section>
+    <h2>Cómo funciona</h2>
+    <ol>
+      <li>Llega el mensaje (WhatsApp, web, Instagram).</li>
+      <li>Se clasifica la intención: precio, reclamo, turno, hablar con alguien.</li>
+      <li>Se buscan las respuestas aprobadas más parecidas.</li>
+      <li>La IA redacta con esa respuesta y los datos del cliente en el CRM.</li>
+      <li>Si no hay respuesta confiable, no improvisa: deriva a un humano con un resumen.</li>
+      <li>Todo queda registrado en el CRM.</li>
+    </ol>
+  </section>
+
+  <section class="full">
+    <h2>Ejemplos prácticos</h2>
+    <table>
+      <tr><th style="width:14%">Rubro</th><th style="width:36%">Pregunta del cliente</th><th>Qué hace la IA</th></tr>
+      <tr><td>Inmobiliaria</td><td>¿El departamento de Palermo acepta mascotas?</td><td>Lee la ficha de la propiedad; si falta el dato, avisa al agente y crea la oportunidad</td></tr>
+      <tr><td>Clínica</td><td>¿Cuánto sale una limpieza? ¿Atienden OSDE?</td><td>Responde precio y coberturas y ofrece turno; los consejos médicos están bloqueados</td></tr>
+      <tr><td>E-commerce</td><td>¿Dónde está mi pedido?</td><td>Lee el estado real en el CRM y envía el número de seguimiento</td></tr>
+      <tr><td>Ventas B2B</td><td>¿Se integra con mi sistema?</td><td>Responde lo aprobado, califica al lead y lo asigna al vendedor</td></tr>
+    </table>
+  </section>
+
+  <section class="full box">
+    <h2>Lo que casi nadie menciona</h2>
+    <div class="grid" style="gap:0 5mm">
+      <ul>
+        <li><strong>El producto real es la base de respuestas.</strong> Sin un responsable que la mantenga, en 3 meses el bot da precios viejos.</li>
+        <li><strong>Precios, stock y horarios van en campos del CRM, no en texto.</strong> Es la causa número 1 de errores graves.</li>
+        <li><strong>El "no sé" se diseña:</strong> cuándo deriva y cómo pasa el contexto, para que el cliente no repita todo.</li>
+        <li><strong>Las preguntas sin respuesta son oro:</strong> registrarlas define qué cargar cada semana.</li>
+        <li><strong>Deflexión no es resolución:</strong> que no llegue a un humano puede significar que el cliente se fue.</li>
+      </ul>
+      <ul>
+        <li><strong>Respuestas cortas, una por pregunta.</strong> Un PDF de 20 páginas se recupera en pedazos mal cortados.</li>
+        <li><strong>WhatsApp:</strong> fuera de la ventana de 24 hs solo se pueden usar plantillas aprobadas por Meta, y se pagan.</li>
+        <li><strong>Probar con 100 preguntas reales</strong> antes de lanzar, y repetir la prueba en cada cambio.</li>
+        <li><strong>Costo oculto:</strong> horas semanales de revisión humana, sobre todo el primer mes.</li>
+        <li><strong>Exportabilidad:</strong> poder llevarse las respuestas y las conversaciones evita quedar atado al proveedor.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Preguntas al proveedor</h2>
+    <ul>
+      <li>¿Puede responder algo fuera de mi base?</li>
+      <li>¿Qué hace cuando no tiene respuesta? ¿Se configura?</li>
+      <li>¿Veo qué respuesta usó en cada caso?</li>
+      <li>¿Hay un reporte de preguntas sin respuesta?</li>
+      <li>¿El traspaso al humano incluye resumen?</li>
+      <li>¿Cuánto cuesta por conversación, con WhatsApp incluido?</li>
+      <li>¿Puedo exportar todo? ¿Dónde se guardan los datos?</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Métricas</h2>
+    <ul>
+      <li>Resolución real sin humano (no solo deflexión)</li>
+      <li>Más del 90% de aciertos en el set de prueba antes de lanzar</li>
+      <li>Tiempo de primera respuesta</li>
+      <li>Conversión a turno o venta</li>
+      <li>Preguntas sin respuesta en baja cada mes</li>
+    </ul>
+    <h2 style="margin-top:2.5mm">Plan</h2>
+    <ol>
+      <li><strong>Semanas 1–2:</strong> escribir 50 a 100 preguntas frecuentes con respuestas cortas.</li>
+      <li><strong>Semana 3:</strong> cargar precios y horarios como datos y definir la derivación.</li>
+      <li><strong>Semana 4:</strong> prueba interna con preguntas reales.</li>
+      <li><strong>Mes 2:</strong> un solo canal, con supervisión humana.</li>
+      <li><strong>Mes 3:</strong> más canales y acciones simples con confirmación.</li>
+    </ol>
+  </section>
+</div>
+
+<div class="close">No compramos una IA: compramos un sistema de respuestas aprobadas que una IA sabe usar.</div>
+</body>
+</html>
