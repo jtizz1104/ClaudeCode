@@ -22,6 +22,11 @@
   p { margin: 0 0 1.2mm; }
   .close { margin-top: 3mm; text-align: center; font-weight: 700; font-size: 9.5pt; color: #0b3d5c; border-top: 2px solid #0b3d5c; padding-top: 2mm; }
   .box { border: 1px solid #f0c36d; background: #fffaf0; padding: 2mm 3mm; }
+  .page2 { break-before: page; }
+  .page2 td ul { padding-left: 3.5mm; }
+  .src { font-size: 6.9pt; color: #555; margin-top: 2mm; }
+  .src a { color: #0b6a9c; text-decoration: none; }
+  .warn { border: 1px solid #e3a3a3; background: #fdf3f3; padding: 1.5mm 3mm; margin: 2mm 0; }
 </style>
 </head>
 <body>
@@ -58,10 +63,10 @@
     <h2>Ejemplos prácticos: gestoría de trámites en Paraguay</h2>
     <table>
       <tr><th style="width:15%">Trámite</th><th style="width:30%">Pregunta del cliente</th><th>Qué hace la IA</th></tr>
-      <tr><td>Residencia temporaria</td><td>"Soy argentino, ¿puedo irme a vivir a Paraguay?"</td><td>Responde con el texto aprobado para nacionales del Mercosur, envía la lista de documentos y ofrece una consulta. Crea el lead con la nacionalidad cargada.</td></tr>
+      <tr><td>Residencia temporaria</td><td>"Soy argentino, ¿puedo irme a vivir a Paraguay?"</td><td>Aclara que, al ser del Mercosur, no necesita visa previa; manda los documentos (anexo) y crea el lead.</td></tr>
       <tr><td>Residencia permanente</td><td>"Ya tengo la temporaria, ¿cuándo paso a la permanente?"</td><td>Lee en el CRM la fecha en que obtuvo la temporaria, le dice desde cuándo puede iniciar y agenda un recordatorio.</td></tr>
-      <tr><td>Ciudadanía</td><td>"¿Cuánto tarda sacar la ciudadanía paraguaya?"</td><td>Explica los requisitos aprobados (años de residencia y documentos). Como los plazos dependen de cada caso, deriva al abogado para evaluarlo.</td></tr>
-      <tr><td>Inversión</td><td>"¿Puedo obtener la residencia invirtiendo?"</td><td>Responde lo aprobado sobre la residencia por inversión. El monto mínimo lo toma de un campo actualizado del CRM, no de un texto. Califica el lead (monto y rubro) y lo asigna al asesor.</td></tr>
+      <tr><td>Ciudadanía</td><td>"¿Cuánto tarda sacar la ciudadanía paraguaya?"</td><td>Explica el art. 148 (3 años de radicación, actividad y buena conducta; resuelve la Corte) y deriva al abogado.</td></tr>
+      <tr><td>Inversión</td><td>"¿Puedo obtener la residencia invirtiendo?"</td><td>Toma los montos mínimos de un campo del CRM, no de un texto, califica el lead (monto y rubro) y lo asigna al asesor.</td></tr>
       <tr><td>Seguimiento</td><td>"¿Cómo va mi trámite?"</td><td>Lee la etapa real del expediente (por ejemplo, "presentado en Migraciones") y la informa. Si el trámite está demorado, alerta al gestor.</td></tr>
       <tr><td>Tema bloqueado</td><td>"¿Me conviene tributar en Paraguay o en mi país?"</td><td>No responde: es asesoramiento fiscal personalizado. Deriva al contador con el resumen de la conversación.</td></tr>
     </table>
@@ -122,5 +127,85 @@
 </div>
 
 <div class="close">No compramos una IA: compramos un sistema de respuestas aprobadas que una IA sabe usar.</div>
+
+<div class="page2">
+<h1>Anexo: base de respuestas sobre trámites en Paraguay</h1>
+<div class="sub">Requisitos para cargar en la base de la IA · fuentes al pie · verificar con el organismo antes de publicar</div>
+<table>
+  <tr><th style="width:15%">Trámite</th><th style="width:53%">Requisitos y documentos</th><th>Dónde y datos clave</th></tr>
+  <tr><td><strong>Residencia temporal</strong> (régimen general, Ley 6984/2022)</td><td><ul>
+    <li>Documento de identidad vigente del país de origen: pasaporte, cédula o DNI</li>
+    <li>Certificado de nacimiento</li>
+    <li>Constancia de ingreso al país</li>
+    <li>Certificado de estado civil, si corresponde</li>
+    <li>Antecedentes penales del país de origen</li>
+    <li>Antecedentes de Interpol</li>
+    <li>Certificado de antecedentes para extranjeros de la Policía Nacional</li>
+    <li>Declaraciones juradas de cumplimiento de las leyes, de la actividad a desarrollar y del domicilio en el país</li>
+    <li>Documentos extranjeros legalizados o apostillados; si no están en español, traducidos por traductor público</li>
+  </ul></td><td><ul>
+    <li>Se tramita en la Dirección Nacional de Migraciones (DNM)</li>
+    <li>Dura hasta 2 años y se puede prorrogar por otros 2</li>
+    <li>Es el paso previo a la permanente</li>
+    <li>No exige inversión ni tener una propiedad</li>
+    <li>Durante el trámite la persona es "residente precario": puede trabajar, estudiar y salir y volver a entrar al país</li>
+    <li>Con la residencia se puede sacar la cédula paraguaya, con la misma vigencia que el carnet</li>
+  </ul></td></tr>
+  <tr><td><strong>Mercosur</strong> (Acuerdo de Residencia)</td><td><ul>
+    <li>La misma base documental que la residencia temporal</li>
+    <li>Los nacionales del Mercosur no necesitan visa de residencia previa</li>
+  </ul></td><td><ul>
+    <li>Quien no es del Mercosur primero debe obtener la visa de residencia en Cancillería, y después inicia el trámite en la DNM</li>
+  </ul></td></tr>
+  <tr><td><strong>Residencia permanente</strong></td><td><ul>
+    <li>Haber tenido antes la residencia temporal</li>
+    <li><em>Pendiente:</em> la lista exacta de documentos para pasar de temporal a permanente. Hay que confirmarla con la DNM.</li>
+  </ul></td><td><ul>
+    <li>Es por tiempo indeterminado</li>
+    <li>Riesgo: si la persona está fuera del país más de 1 año, la DNM puede cancelarle la residencia</li>
+  </ul></td></tr>
+  <tr><td><strong>Inversionista</strong> (Constancia de Inversionista Extranjero, CIE, Res. MIC 283/2026)</td><td><ul>
+    <li>Inversión mínima según la modalidad:
+      <ul>
+        <li>Productiva: USD 70.000, con plan de negocios aprobado y al menos 5 empleos formales</li>
+        <li>Financiera: USD 200.000</li>
+        <li>Inmobiliaria: USD 200.000</li>
+        <li>Turística: USD 150.000</li>
+      </ul></li>
+    <li>Las modalidades financiera e inmobiliaria no exigen crear empleos ni presentar plan de negocios</li>
+  </ul></td><td><ul>
+    <li>Paso 1: obtener la CIE en el SUACE del Ministerio de Industria y Comercio (MIC)</li>
+    <li>Paso 2: pedir la residencia permanente categoría inversionista en la DNM, y después la cédula</li>
+    <li>Según la guía del MIC, la inversión se debe completar en un plazo de 2 años</li>
+  </ul></td></tr>
+  <tr><td><strong>Ciudadanía por naturalización</strong> (Constitución, art. 148)</td><td><ul>
+    <li>Ser mayor de edad</li>
+    <li>Tener una radicación mínima de 3 años en el país</li>
+    <li>Ejercer regularmente una profesión, oficio, ciencia, arte o industria</li>
+    <li>Tener buena conducta</li>
+    <li>Documentos que suelen pedir las guías: pasaporte, partida de nacimiento legalizada, antecedentes del país de origen, carnet de residente y foto. Hay que confirmarlos con la Corte.</li>
+  </ul></td><td><ul>
+    <li>La resuelve el pleno de la Corte Suprema de Justicia (Ley 609/1995; Acordada 464/2007)</li>
+    <li>Según ABC (mayo de 2026), en la práctica se cuentan 3 años con residencia permanente. Hay que confirmarlo, porque la Constitución solo dice "radicación".</li>
+  </ul></td></tr>
+</table>
+
+<div class="warn"><strong>Para completar la gestoría antes de cargar la base:</strong> las tasas de cada trámite, los honorarios de la gestoría, los plazos promedio que maneja y la lista de documentos para pasar de temporal a permanente. Estos datos van en <strong>campos del CRM</strong>, no en el texto de las respuestas, para poder actualizarlos sin reescribir nada.</div>
+
+<p><strong>Cómo se usa en la IA:</strong> cada fila se divide en respuestas cortas, una por pregunta. Por ejemplo: "¿Qué documentos necesito para la temporal?", "¿Necesito invertir para vivir en Paraguay?", "¿Cuánto tengo que invertir para la residencia de inversionista?" o "¿Puedo salir del país mientras sale mi residencia?". Cada respuesta lleva la fuente y la fecha de la última revisión.</p>
+
+<div class="src"><strong>Fuentes</strong> (relevadas el 16/10/2026 a partir de resúmenes de búsqueda: los sitios oficiales no se pudieron abrir desde esta sesión):
+<a href="https://www.ip.gov.py/ip/?p=580020">IP Paraguay, "Migraciones detalla requisitos… residencia temporal"</a> ·
+<a href="https://infonegocios.com.py/infolegal/residencias-en-paraguay">Infonegocios, "Residencias en Paraguay"</a> ·
+<a href="https://abogados.com.ar/index.php/visa-para-residencias-en-paraguay/32472">abogados.com.ar, "Visa para residencias en Paraguay"</a> ·
+<a href="https://abogados.com.ar/index.php/servicios-de-migraciones-en-paraguay-como-tramitar-la-radicacion-temporal-o-permanente/25101">abogados.com.ar, radicación temporal o permanente</a> ·
+<a href="https://ferrere.com/es/novedades/paraguay-lanza-el-investor-pass-y-simplifica-la-residencia-para-inversionistas-extranjeros/">Ferrere, "Investor Pass"</a> ·
+<a href="https://www.deloitte.com/latam/es/services/tax/perspectives/paraguay-investor-pass-residencia-inversion.html">Deloitte, "Investor Pass"</a> ·
+<a href="https://www.mic.gov.py/wp-content/uploads/2025/06/GUIA-PARA-INVERSIONISTAS-EXTRANJEROS.pdf">MIC, Guía para inversionistas extranjeros</a> ·
+<a href="https://mre.gov.py/embapar-turquia/index.php/download_file/224/346">MRE, Nationality and Citizenship (art. 148)</a> ·
+<a href="https://www.pj.gov.py/images/contenido/superintendencia/pdf/Acordada_nro_464_2007.pdf">CSJ, Acordada 464/2007</a> ·
+<a href="https://www.abc.com.py/nacionales/2026/05/04/en-cuanto-tiempo-puede-un-ciudadano-extranjero-acceder-a-un-pasaporte-paraguayo/">ABC Color, 04/05/2026</a>
+</div>
+</div>
 </body>
 </html>
