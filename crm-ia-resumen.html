@@ -4,21 +4,21 @@
 <meta charset="utf-8">
 <title>CRM con IA de respuestas aprobadas</title>
 <style>
-  @page { size: A4; margin: 11mm 12mm; }
+  @page { size: A4; margin: 9mm 11mm; }
   * { box-sizing: border-box; }
-  body { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 8.1pt; line-height: 1.27; color: #1a1a1a; margin: 0; }
+  body { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 7.7pt; line-height: 1.24; color: #1a1a1a; margin: 0; }
   h1 { font-size: 15pt; margin: 0 0 1mm; color: #0b3d5c; }
   .sub { color: #555; font-size: 8pt; margin-bottom: 2.5mm; }
-  .lead { background: #eef5fa; border-left: 3px solid #0b6a9c; padding: 2mm 3mm; margin-bottom: 3mm; font-size: 9pt; }
+  .lead { background: #eef5fa; border-left: 3px solid #0b6a9c; padding: 1.5mm 3mm; margin-bottom: 2.4mm; font-size: 9pt; }
   h2 { font-size: 10pt; color: #0b3d5c; margin: 0 0 1.5mm; padding-bottom: 0.8mm; border-bottom: 1px solid #c9dbe7; text-transform: uppercase; letter-spacing: .3px; }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm 5mm; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4mm 5mm; }
   .full { grid-column: 1 / -1; }
-  table { width: 100%; border-collapse: collapse; font-size: 7.7pt; }
-  th, td { border: 1px solid #d5dee5; padding: 1mm 1.6mm; text-align: left; vertical-align: top; }
+  table { width: 100%; border-collapse: collapse; font-size: 7.4pt; }
+  th, td { border: 1px solid #d5dee5; padding: 0.7mm 1.5mm; text-align: left; vertical-align: top; }
   th { background: #f1f5f8; }
   tr.rec td { background: #e8f4ec; font-weight: 600; }
   ol, ul { margin: 0; padding-left: 4.5mm; }
-  li { margin-bottom: 0.7mm; }
+  li { margin-bottom: 0.4mm; }
   p { margin: 0 0 1.2mm; }
   .close { margin-top: 3mm; text-align: center; font-weight: 700; font-size: 9.5pt; color: #0b3d5c; border-top: 2px solid #0b3d5c; padding-top: 2mm; }
   .box { border: 1px solid #f0c36d; background: #fffaf0; padding: 2mm 3mm; }
@@ -55,14 +55,17 @@
   </section>
 
   <section class="full">
-    <h2>Ejemplos prácticos</h2>
+    <h2>Ejemplos prácticos: gestoría de trámites en Paraguay</h2>
     <table>
-      <tr><th style="width:14%">Rubro</th><th style="width:36%">Pregunta del cliente</th><th>Qué hace la IA</th></tr>
-      <tr><td>Inmobiliaria</td><td>¿El departamento de Palermo acepta mascotas?</td><td>Lee la ficha de la propiedad; si falta el dato, avisa al agente y crea la oportunidad</td></tr>
-      <tr><td>Clínica</td><td>¿Cuánto sale una limpieza? ¿Atienden OSDE?</td><td>Responde precio y coberturas y ofrece turno; los consejos médicos están bloqueados</td></tr>
-      <tr><td>E-commerce</td><td>¿Dónde está mi pedido?</td><td>Lee el estado real en el CRM y envía el número de seguimiento</td></tr>
-      <tr><td>Ventas B2B</td><td>¿Se integra con mi sistema?</td><td>Responde lo aprobado, califica al lead y lo asigna al vendedor</td></tr>
+      <tr><th style="width:15%">Trámite</th><th style="width:30%">Pregunta del cliente</th><th>Qué hace la IA</th></tr>
+      <tr><td>Residencia temporaria</td><td>"Soy argentino, ¿puedo irme a vivir a Paraguay?"</td><td>Responde con el texto aprobado para nacionales del Mercosur, envía la lista de documentos y ofrece una consulta. Crea el lead con la nacionalidad cargada.</td></tr>
+      <tr><td>Residencia permanente</td><td>"Ya tengo la temporaria, ¿cuándo paso a la permanente?"</td><td>Lee en el CRM la fecha en que obtuvo la temporaria, le dice desde cuándo puede iniciar y agenda un recordatorio.</td></tr>
+      <tr><td>Ciudadanía</td><td>"¿Cuánto tarda sacar la ciudadanía paraguaya?"</td><td>Explica los requisitos aprobados (años de residencia y documentos). Como los plazos dependen de cada caso, deriva al abogado para evaluarlo.</td></tr>
+      <tr><td>Inversión</td><td>"¿Puedo obtener la residencia invirtiendo?"</td><td>Responde lo aprobado sobre la residencia por inversión. El monto mínimo lo toma de un campo actualizado del CRM, no de un texto. Califica el lead (monto y rubro) y lo asigna al asesor.</td></tr>
+      <tr><td>Seguimiento</td><td>"¿Cómo va mi trámite?"</td><td>Lee la etapa real del expediente (por ejemplo, "presentado en Migraciones") y la informa. Si el trámite está demorado, alerta al gestor.</td></tr>
+      <tr><td>Tema bloqueado</td><td>"¿Me conviene tributar en Paraguay o en mi país?"</td><td>No responde: es asesoramiento fiscal personalizado. Deriva al contador con el resumen de la conversación.</td></tr>
     </table>
+    <p style="margin-top:1mm;color:#555">Los requisitos, montos y plazos se validan con la normativa vigente antes de cargarlos, y se actualizan cuando cambia la ley.</p>
   </section>
 
   <section class="full box">
