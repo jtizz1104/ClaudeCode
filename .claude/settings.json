@@ -5,7 +5,8 @@
     "claude-seo@agricidaniel-claude-seo": true,
     "humanizer@humanizer": true,
     "hyperframes@hyperframes": true,
-    "caveman@caveman": true
+    "caveman@caveman": true,
+    "claude-code-setup@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "marketingskills": {
@@ -42,6 +43,12 @@
       "source": {
         "source": "github",
         "repo": "JuliusBrussee/caveman"
+      }
+    },
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
       }
     }
   }
