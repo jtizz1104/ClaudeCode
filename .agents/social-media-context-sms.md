@@ -63,6 +63,13 @@ last_updated: 2026-10-24
 | Instagram Reels | Crecer audiencia | Manual (pipeline listo, falta credenciales API) | Diaria | Guion+video sí, publicación no (falta Graph API + storage público) |
 | TikTok | Crecer audiencia | Manual (pipeline listo, falta App Review) | Diaria | Guion+video sí, publicación no (falta App Review) |
 
+**Roadmap de automatización (decisión del usuario, 2026-10-24):** arrancar con
+el pipeline propio (gratis, render casero, publicación manual vía dashboard)
+y medir resultados reales. Si funciona, pasar a video generado con IA
+(higgsfield_ai) y publicación 100% automática en IG/YouTube/TikTok vía
+Metricool. No activar higgsfield/Metricool todavía — es la fase siguiente,
+condicionada a ver cómo responde la audiencia con el enfoque actual.
+
 ---
 
 ## Content Formats
