@@ -26,7 +26,8 @@ def main() -> None:
     storage.save_json("markets", "report.json", report)
 
     print("3/3 Escribiendo guiones de shorts por sector...")
-    scripts = write_scripts_for_report(report)
+    recent_titles = storage.recent_titles("markets")
+    scripts = write_scripts_for_report(report, recent_titles)
     storage.save_json("markets", "scripts.json", scripts)
 
     out_dir = storage.output_dir("markets")

@@ -37,3 +37,18 @@ def list_dates(pipeline: str) -> list[str]:
     if not pipeline_dir.exists():
         return []
     return sorted((d.name for d in pipeline_dir.iterdir() if d.is_dir()), reverse=True)
+
+
+def recent_titles(pipeline: str, days: int = 7, exclude_today: bool = True) -> list[str]:
+    """Títulos de guiones de los últimos `days` con datos, para que el guionista
+    pueda detectar continuidad entre videos (ej. "es la tercera vez que...")."""
+    dates = list_dates(pipeline)
+    if exclude_today:
+        dates = [d for d in dates if d != date.today().isoformat()]
+    titles: list[str] = []
+    for d in dates[:days]:
+        if not has_json(pipeline, "scripts.json", date.fromisoformat(d)):
+            continue
+        scripts = load_json(pipeline, "scripts.json", date.fromisoformat(d))
+        titles.extend(f"{d}: {s['title']}" for s in scripts if "title" in s)
+    return titles

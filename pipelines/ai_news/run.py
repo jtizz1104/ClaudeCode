@@ -27,7 +27,8 @@ def main() -> None:
     storage.save_json("ai_news", "digest.json", digest)
 
     print("3/3 Escribiendo guiones de shorts...")
-    scripts = write_scripts_for_digest(digest)
+    recent_titles = storage.recent_titles("ai_news")
+    scripts = write_scripts_for_digest(digest, recent_titles)
     storage.save_json("ai_news", "scripts.json", scripts)
 
     out_dir = storage.output_dir("ai_news")

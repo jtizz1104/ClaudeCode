@@ -1,5 +1,8 @@
 """Renderiza un short vertical (1080x1920) a partir de un guion generado por
-los pipelines: {title, narration, on_screen_text, hashtags}.
+los pipelines: {title, lines, broll, hashtags}. "lines" es el guion
+numerado tipo "beat" (una idea corta por línea) — se narra todo seguido
+para el audio y cada línea se muestra como su propio corte de texto en
+pantalla, en sincro con el audio.
 
 No depende de ImageMagick: el texto se renderiza como PNG con Pillow y se
 compone en video con moviepy. Es un render "flat design" (fondo sólido +
@@ -71,10 +74,11 @@ def build_short(script: dict, out_path: str | Path) -> Path:
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    audio_path = tts.synthesize(script["narration"], out_path.with_suffix(".mp3"))
+    narration = " ".join(script["lines"])
+    audio_path = tts.synthesize(narration, out_path.with_suffix(".mp3"))
     audio = AudioFileClip(str(audio_path))
 
-    segments = script.get("on_screen_text") or [script["title"]]
+    segments = script.get("lines") or [script["title"]]
     seg_duration = max(audio.duration / len(segments), 1.0)
 
     frame_paths = []

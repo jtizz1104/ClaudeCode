@@ -60,12 +60,21 @@ uvicorn dashboard.app:app --reload
 # abrir http://localhost:8000
 ```
 
-Por ahora la subida a redes es manual: en el panel revisás cada short (guion,
-texto en pantalla, video, caption por plataforma) y lo marcás como aprobado;
-una vez que lo subís a mano desde la app de cada plataforma, lo marcás como
-publicado. Cada guion ya incluye un campo `captions` con el texto listo para
-pegar en Instagram, TikTok y YouTube (hook + hashtags ajustados a las reglas
-de cada red) — el botón "Copiar" de cada card lo copia al portapapeles.
+Cada guion sigue el formato real de producción del canal (no un párrafo
+narrado): 9-14 líneas numeradas tipo "beat", una tabla de b-roll/fuente en
+pantalla por rango de líneas, una nota de contraste visual, marca de si
+incluye el disclaimer de inversión, y continuidad automática con noticias
+de días anteriores (el guionista recibe los títulos recientes del canal y
+puede marcar explícitamente "es la tercera vez que..."). El render usa esas
+mismas líneas como texto animado en pantalla, sincronizadas con el audio.
+
+Por ahora la subida a redes es manual: en el panel revisás cada short
+(guion línea por línea, b-roll sugerido, video, caption por plataforma) y
+lo marcás como aprobado; una vez que lo subís a mano desde la app de cada
+plataforma, lo marcás como publicado. Cada guion ya incluye un campo
+`captions` con el texto listo para pegar en Instagram, TikTok y YouTube
+(hook + hashtags ajustados a las reglas de cada red) — el botón "Copiar"
+de cada card lo copia al portapapeles.
 Los módulos de `publish/` ya están escritos y listos para activar en cuanto
 tengas las cuentas de developer de cada plataforma — la guía paso a paso
 para darlas de alta está en [`docs/PLATFORM_SETUP.md`](docs/PLATFORM_SETUP.md).
@@ -103,6 +112,7 @@ incluidas en `pipelines/common/caption_rules.py`.
 
 **Fase 1 — Calidad de contenido**
 - [x] Voz de marca definida (`.agents/social-media-context-sms.md`) + captions por plataforma (IG/TikTok/YouTube) generados junto al guion
+- [x] Formato de guion alineado a producción real: líneas numeradas tipo "beat" + tabla de b-roll + disclaimer + continuidad entre días
 - [ ] Mejorar el render: B-roll/gráficos reales (charts de precios, logos de empresas), transiciones, marca del canal
 - [ ] Subir la calidad de voz (ElevenLabs u otro TTS neural, ya soportado en `render/tts.py`)
 - [ ] Sumar más fuentes de noticias / afinar el criterio de selección de historias

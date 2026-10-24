@@ -219,6 +219,71 @@ video {
   border-radius: 999px;
 }
 
+.script-lines {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin: 0 0 10px;
+  padding-left: 22px;
+  color: var(--text);
+}
+
+.script-lines li {
+  margin-bottom: 4px;
+}
+
+.contrast-note {
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--accent);
+  margin: 0 0 10px;
+}
+
+.disclaimer-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--approved);
+  background: rgba(245, 196, 81, 0.12);
+  border: 1px solid rgba(245, 196, 81, 0.3);
+  padding: 3px 8px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+.broll-details {
+  margin-bottom: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+
+.broll-details summary {
+  cursor: pointer;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+
+.broll-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 0.78rem;
+}
+
+.broll-table th,
+.broll-table td {
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.broll-table th {
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
 .captions {
   display: flex;
   flex-direction: column;

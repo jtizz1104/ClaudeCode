@@ -85,6 +85,37 @@ function renderCards(items) {
       )
       .join("");
 
+    const lines = item.lines || [];
+    const linesBlock = lines.length
+      ? `<ol class="script-lines">${lines.map((l) => `<li>${l}</li>`).join("")}</ol>`
+      : `<p class="narration">${item.narration || ""}</p>`;
+
+    const broll = item.broll || [];
+    const brollBlock = broll.length
+      ? `<details class="broll-details">
+          <summary>B-roll / fuentes en pantalla (${broll.length})</summary>
+          <table class="broll-table">
+            <thead><tr><th>Líneas</th><th>Visual</th><th>Fuente en pantalla</th></tr></thead>
+            <tbody>
+              ${broll
+                .map(
+                  (b) =>
+                    `<tr><td>${b.lines ?? ""}</td><td>${b.visual ?? ""}</td><td>${b.on_screen_source ?? "—"}</td></tr>`
+                )
+                .join("")}
+            </tbody>
+          </table>
+        </details>`
+      : "";
+
+    const contrastNote = item.visual_contrast_note
+      ? `<p class="contrast-note">🎬 ${item.visual_contrast_note}</p>`
+      : "";
+
+    const disclaimerBadge = item.disclaimer_included
+      ? `<span class="disclaimer-badge">Incluye disclaimer</span>`
+      : "";
+
     card.innerHTML = `
       <div class="card-header">
         <h2 class="card-title">${item.title}</h2>
@@ -94,7 +125,10 @@ function renderCards(items) {
       <div class="card-body">
         <div>${videoBlock}</div>
         <div>
-          <p class="narration">${item.narration}</p>
+          ${linesBlock}
+          ${contrastNote}
+          ${brollBlock}
+          ${disclaimerBadge}
           <div class="hashtags">${hashtags}</div>
           ${captionsBlock ? `<div class="captions">${captionsBlock}</div>` : ""}
           <div class="actions" data-role="actions">
