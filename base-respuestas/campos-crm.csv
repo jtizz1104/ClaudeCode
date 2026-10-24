@@ -1,0 +1,11 @@
+﻿campo,descripcion,valor_actual,fuente
+min_inv_productiva,"Inversión mínima, modalidad productiva",USD 70.000,Res. MIC 283/2026 (verificar)
+min_inv_financiera,"Inversión mínima, modalidad financiera",USD 200.000,Res. MIC 283/2026 (verificar)
+min_inv_inmobiliaria,"Inversión mínima, modalidad inmobiliaria",USD 200.000,Res. MIC 283/2026 (verificar)
+min_inv_turistica,"Inversión mínima, modalidad turística",USD 150.000,Res. MIC 283/2026 (verificar)
+tasa_tramite,Arancel oficial de Migraciones por trámite,Temporal general: G. 2.787.550 · Temporal Mercosur: G. 2.230.040 · Otros: (completar),DNM vía Agencia IP (04/05/2026)
+honorarios_tramite,Honorarios de la gestoría por trámite,(completar),Gestoría
+plazo_promedio_tramite,Plazo promedio actual por trámite,(completar),Gestoría
+horarios_disponibles,Turnos libres para consultas,(agenda del CRM),CRM
+instrucciones_envio_documentos,Cómo y dónde enviar documentos,(completar),Gestoría
+"nombre, nacionalidad, tramite, etapa_expediente, fecha_ultima_actualizacion, fecha_residencia_temporal, fecha_residencia_permanente, monto_inversion, rubro",Datos de la ficha del cliente,(por cliente),CRM
