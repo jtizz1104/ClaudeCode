@@ -1,0 +1,17 @@
+﻿campo,qué es,valor actual,fuente / quién lo mantiene
+link_agenda,Link de Calendly para la llamada de 15 minutos sin costo,(pendiente: link de Valeria),Valeria
+link_reunion_informativa / precio_reunion_informativa,Reunión informativa de 30 minutos,(completar),Sosa Group
+link_mentoria / precio_mentoria,Mentoría online con la Lic. Gloria Sosa,(completar),Gloria
+arancel_temporal_general,"Arancel de Migraciones, residencia temporal general",G. 2.787.550,DNM vía Agencia IP (04/05/2026)
+arancel_temporal_mercosur,"Arancel de Migraciones, residencia temporal Mercosur",G. 2.230.040,DNM vía Agencia IP (04/05/2026)
+tasa_tramite / honorarios_tramite / plazo_promedio_tramite,"Arancel, honorarios y plazo de cada trámite",(completar por trámite),Gloria
+min_inv_productiva,Inversión mínima productiva,USD 70.000,Res. MIC 283/2026 (verificar)
+min_inv_financiera,Inversión mínima financiera,USD 200.000,Res. MIC 283/2026 (verificar)
+min_inv_inmobiliaria,Inversión mínima inmobiliaria,USD 200.000,Res. MIC 283/2026 (verificar)
+min_inv_turistica,Inversión mínima turística,USD 150.000,Res. MIC 283/2026 (verificar)
+direccion_oficina / horario_atencion,Dirección y horario,(completar),Sosa Group
+instrucciones_envio_documentos,Cómo y dónde enviar documentos,(completar),Sosa Group
+responsable,Persona asignada a la oportunidad (obligatorio en el CRM nuevo),(por cliente),CRM
+responsable_legal / responsable_contable / responsable_reclamos,"Quién atiende temas legales, fiscales y reclamos",(definir),Gloria
+responsable_documentos,Expedición de documentos,Nadia,Contexto del proyecto
+"nombre, nacionalidad, tramite, tipo_residencia, etapa_expediente, fecha_ultima_actualizacion, fecha_residencia_temporal, fecha_residencia_permanente, monto_inversion, rubro",Ficha del cliente,(por cliente),CRM
