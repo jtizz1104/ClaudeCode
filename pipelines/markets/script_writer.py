@@ -5,6 +5,7 @@ from __future__ import annotations
 import os
 
 from pipelines.common import llm
+from pipelines.common.caption_rules import PLATFORM_CAPTION_RULES
 
 CHANNEL_HANDLE = os.environ.get("CHANNEL_HANDLE", "@codigonegocioia")
 
@@ -21,7 +22,9 @@ Cada guion dura 30-45 segundos hablados (~90-130 palabras). Estructura:
 3. Cierre invitando a seguir {CHANNEL_HANDLE} para el informe de mañana
 
 Además, indicá "on_screen_text": 3-5 frases cortas con los números clave
-(tickers y %) para mostrar como texto/gráfico animado en pantalla."""
+(tickers y %) para mostrar como texto/gráfico animado en pantalla.
+
+{PLATFORM_CAPTION_RULES}"""
 
 
 def write_sector_script(sector_report: dict) -> dict:
@@ -35,7 +38,12 @@ Devolvé JSON con esta forma exacta:
   "title": "título corto para el video",
   "narration": "el guion completo, listo para locutar",
   "on_screen_text": ["frase 1", "frase 2", "frase 3"],
-  "hashtags": ["#Mercados", "#hashtag2", "#hashtag3"]
+  "hashtags": ["#Mercados", "#hashtag2", "#hashtag3"],
+  "captions": {{
+    "instagram": "caption de Reel lista para pegar (hook + payoff + CTA + 3-10 hashtags)",
+    "tiktok": "caption de TikTok lista para pegar (hook + 3-5 hashtags, bajo 150 caracteres)",
+    "youtube": "título (60-70 caracteres) + descripción corta de Short con #shorts"
+  }}
 }}"""
     result = llm.ask_json(SYSTEM_PROMPT, user_prompt)
     brand_tag = f"#{CHANNEL_HANDLE.lstrip('@')}"

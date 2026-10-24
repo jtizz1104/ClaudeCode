@@ -82,6 +82,7 @@ def _build_items(pipeline: str, date: str) -> dict:
                 "narration": script["narration"],
                 "on_screen_text": script.get("on_screen_text", []),
                 "hashtags": script.get("hashtags", []),
+                "captions": script.get("captions", {}),
                 "video_url": _video_url(pipeline, date, i),
                 "status": status.get(str(i), "pending"),
             }

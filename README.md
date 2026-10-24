@@ -61,11 +61,37 @@ uvicorn dashboard.app:app --reload
 ```
 
 Por ahora la subida a redes es manual: en el panel revisás cada short (guion,
-texto en pantalla, video, hashtags), lo marcás como aprobado y, una vez que
-lo subís a mano desde la app de cada plataforma, lo marcás como publicado.
+texto en pantalla, video, caption por plataforma) y lo marcás como aprobado;
+una vez que lo subís a mano desde la app de cada plataforma, lo marcás como
+publicado. Cada guion ya incluye un campo `captions` con el texto listo para
+pegar en Instagram, TikTok y YouTube (hook + hashtags ajustados a las reglas
+de cada red) — el botón "Copiar" de cada card lo copia al portapapeles.
 Los módulos de `publish/` ya están escritos y listos para activar en cuanto
 tengas las cuentas de developer de cada plataforma — la guía paso a paso
 para darlas de alta está en [`docs/PLATFORM_SETUP.md`](docs/PLATFORM_SETUP.md).
+
+## Correrlo solo todos los días (cron)
+
+El pipeline necesita salida a internet sin restricciones (RSS, Yahoo
+Finance/yfinance, arXiv, y el endpoint de gTTS), así que tiene que vivir en
+tu propia máquina o un servidor tuyo, no en un sandbox con red restringida.
+Para que se autogenere sin que lo toques, agregá algo así a tu `crontab -e`
+(ejemplo: todos los días a las 7am, hora local):
+
+```cron
+0 7 * * * cd /ruta/a/ClaudeCode && .venv/bin/python -m pipelines.ai_news.run >> storage/ai_news.log 2>&1
+5 7 * * * cd /ruta/a/ClaudeCode && .venv/bin/python -m pipelines.markets.run >> storage/markets.log 2>&1
+10 7 * * * cd /ruta/a/ClaudeCode && .venv/bin/python scripts/build_shorts.py ai_news >> storage/ai_news.log 2>&1
+15 7 * * * cd /ruta/a/ClaudeCode && .venv/bin/python scripts/build_shorts.py markets >> storage/markets.log 2>&1
+```
+
+Con eso, todas las mañanas vas a tener los shorts + captions del día
+esperando en el panel (`uvicorn dashboard.app:app`) para que los revises y
+subas. El archivo `.agents/social-media-context-sms.md` (voz de marca,
+audiencia, pilares de contenido — generado con la skill
+`social-media-context-sms`) ya está completado con los datos de
+@codigonegocioia y los guiones lo respetan vía las reglas de caption
+incluidas en `pipelines/common/caption_rules.py`.
 
 ## Roadmap
 
@@ -76,6 +102,7 @@ para darlas de alta está en [`docs/PLATFORM_SETUP.md`](docs/PLATFORM_SETUP.md).
 - [x] Módulos de publicación (YouTube, Instagram, TikTok) documentados y listos para activar
 
 **Fase 1 — Calidad de contenido**
+- [x] Voz de marca definida (`.agents/social-media-context-sms.md`) + captions por plataforma (IG/TikTok/YouTube) generados junto al guion
 - [ ] Mejorar el render: B-roll/gráficos reales (charts de precios, logos de empresas), transiciones, marca del canal
 - [ ] Subir la calidad de voz (ElevenLabs u otro TTS neural, ya soportado en `render/tts.py`)
 - [ ] Sumar más fuentes de noticias / afinar el criterio de selección de historias

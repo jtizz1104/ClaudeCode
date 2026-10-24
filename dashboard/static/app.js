@@ -12,6 +12,26 @@ const STATUS_LABELS = {
   posted: "Publicado",
 };
 
+const PLATFORM_LABELS = [
+  ["instagram", "Instagram"],
+  ["tiktok", "TikTok"],
+  ["youtube", "YouTube"],
+];
+
+async function copyCaption(btn, text) {
+  if (!text) return;
+  try {
+    await navigator.clipboard.writeText(text);
+    const original = btn.textContent;
+    btn.textContent = "Copiado ✓";
+    setTimeout(() => {
+      btn.textContent = original;
+    }, 1500);
+  } catch {
+    // Clipboard API no disponible (ej. sin HTTPS) — no hacemos nada más.
+  }
+}
+
 async function loadPipelines() {
   const res = await fetch("/api/pipelines");
   const data = await res.json();
@@ -51,6 +71,20 @@ function renderCards(items) {
       .map((h) => `<span class="hashtag">${h}</span>`)
       .join("");
 
+    const captions = item.captions || {};
+    const captionsBlock = PLATFORM_LABELS.filter(([key]) => captions[key])
+      .map(
+        ([key, label]) => `
+      <div class="caption-block">
+        <div class="caption-header">
+          <span class="caption-label">${label}</span>
+          <button class="copy-btn" data-role="copy" data-platform="${key}">Copiar</button>
+        </div>
+        <p class="caption-text" data-role="caption-text" data-platform="${key}">${captions[key]}</p>
+      </div>`
+      )
+      .join("");
+
     card.innerHTML = `
       <div class="card-header">
         <h2 class="card-title">${item.title}</h2>
@@ -62,6 +96,7 @@ function renderCards(items) {
         <div>
           <p class="narration">${item.narration}</p>
           <div class="hashtags">${hashtags}</div>
+          ${captionsBlock ? `<div class="captions">${captionsBlock}</div>` : ""}
           <div class="actions" data-role="actions">
             <button data-status="pending">Pendiente</button>
             <button data-status="approved">Aprobar</button>
@@ -75,6 +110,10 @@ function renderCards(items) {
 
     card.querySelectorAll("[data-role='actions'] button").forEach((btn) => {
       btn.addEventListener("click", () => setStatus(item.index, btn.dataset.status, card));
+    });
+
+    card.querySelectorAll("[data-role='copy']").forEach((btn) => {
+      btn.addEventListener("click", () => copyCaption(btn, captions[btn.dataset.platform]));
     });
 
     cardsEl.appendChild(card);
