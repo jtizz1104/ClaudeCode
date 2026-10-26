@@ -1381,7 +1381,22 @@ window.SOSA_I18N = {
   "Activar sonido": "Turn on sound",
   "Silenciar": "Mute",
   "Silenciar la música": "Mute the music",
-  "Activar la música de fondo": "Turn on the background music"
+  "Activar la música de fondo": "Turn on the background music",
+  "Respaldo institucional": "Institutional backing",
+  "Somos miembros de": "We are members of",
+  "Cámara Nacional de Comercio y Servicios del Paraguay": "Cámara Nacional de Comercio y Servicios del Paraguay (National Chamber of Commerce and Services)",
+  "Club de Ejecutivos del Paraguay": "Club de Ejecutivos del Paraguay (Paraguay Executives Club)",
+  "Asociación de Empresarios Cristianos de Paraguay (ADEC)": "Asociación de Empresarios Cristianos de Paraguay (ADEC, Christian Business Association)",
+  "En la prensa:": "In the press:",
+  "Gloria Sosa en revista Ejecutivos": "Gloria Sosa in Ejecutivos magazine",
+  "Consúltanos": "Ask us",
+  "Escribir por WhatsApp a SosaGroup": "Message SosaGroup on WhatsApp",
+  "Miles de trámites realizados cada año en tiempo y forma para hacerles las cosas más simples a las empresas y las personas.": "Thousands of procedures completed every year, on time and in due form, to make things simpler for companies and people.",
+  "Para mensajes y llamadas": "For messages and calls",
+  "Teléfono móvil": "Mobile phone",
+  "SosaGroup · Gestoría Integral en Paraguay®. Todos los derechos reservados.": "SosaGroup · Gestoría Integral en Paraguay®. All rights reserved.",
+  "YouTube de SosaGroup": "SosaGroup on YouTube",
+  "info@sosagroup.com.py": "info@sosagroup.com.py"
  },
  "pt": {
   "SosaGroup · Asesoramiento para establecerse en Paraguay": "SosaGroup · Assessoria para se estabelecer no Paraguai",
@@ -2761,6 +2776,21 @@ window.SOSA_I18N = {
   "Activar sonido": "Ativar som",
   "Silenciar": "Silenciar",
   "Silenciar la música": "Silenciar a música",
-  "Activar la música de fondo": "Ativar a música de fundo"
+  "Activar la música de fondo": "Ativar a música de fundo",
+  "Respaldo institucional": "Respaldo institucional",
+  "Somos miembros de": "Somos membros de",
+  "Cámara Nacional de Comercio y Servicios del Paraguay": "Cámara Nacional de Comercio y Servicios del Paraguay (Câmara Nacional de Comércio e Serviços)",
+  "Club de Ejecutivos del Paraguay": "Club de Ejecutivos del Paraguay (Clube de Executivos do Paraguai)",
+  "Asociación de Empresarios Cristianos de Paraguay (ADEC)": "Asociación de Empresarios Cristianos de Paraguay (ADEC, Associação de Empresários Cristãos)",
+  "En la prensa:": "Na imprensa:",
+  "Gloria Sosa en revista Ejecutivos": "Gloria Sosa na revista Ejecutivos",
+  "Consúltanos": "Fale conosco",
+  "Escribir por WhatsApp a SosaGroup": "Falar com a SosaGroup pelo WhatsApp",
+  "Miles de trámites realizados cada año en tiempo y forma para hacerles las cosas más simples a las empresas y las personas.": "Milhares de trâmites realizados todos os anos, no prazo e na forma, para simplificar a vida de empresas e pessoas.",
+  "Para mensajes y llamadas": "Para mensagens e ligações",
+  "Teléfono móvil": "Celular",
+  "SosaGroup · Gestoría Integral en Paraguay®. Todos los derechos reservados.": "SosaGroup · Gestoría Integral en Paraguay®. Todos os direitos reservados.",
+  "YouTube de SosaGroup": "SosaGroup no YouTube",
+  "info@sosagroup.com.py": "info@sosagroup.com.py"
  }
 };

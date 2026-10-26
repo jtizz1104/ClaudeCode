@@ -950,3 +950,20 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 /* Portada de inicio: video del WTC con colores naturales y sombra para leer el texto centrado */
 .hero--photo .hero__video { filter: saturate(1.1); }
 .hero--photo:has(.hero__video) .hero__shade { background: radial-gradient(65% 60% at 50% 50%, rgba(20, 14, 18, .5), rgba(20, 14, 18, .2) 75%), linear-gradient(180deg, rgba(20, 14, 18, .25) 0%, rgba(20, 14, 18, .1) 50%, rgba(20, 14, 18, .5) 100%); }
+
+/* Respaldo institucional (membresías y prensa) */
+.members__list { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.members__list li { display: flex; align-items: center; gap: 14px; padding: 20px 22px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); font-weight: 600; color: var(--ink); }
+.members__list svg { width: 26px; height: 26px; flex: none; color: var(--brand); }
+.members__press { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 24px; color: var(--muted); }
+.members__press svg { width: 20px; height: 20px; color: var(--brand); flex: none; }
+@media (max-width: 760px) { .members__list { grid-template-columns: 1fr; } }
+
+/* Pie de página: contacto y redes */
+.site-footer .footer-contact { margin-top: 16px; }
+.site-footer .footer-contact a { gap: 10px; }
+.site-footer .footer-contact svg { width: 18px; height: 18px; color: var(--accent-light); flex: none; }
+.footer-social { display: flex; gap: 8px; margin-top: 12px; }
+.footer-social a { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .15); color: #dccad3; transition: background-color .2s, color .2s; }
+.footer-social a:hover { background: rgba(255, 255, 255, .1); color: #fff; }
+.footer-social svg { width: 18px; height: 18px; }
