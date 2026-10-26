@@ -22,7 +22,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BASE = "https://sosagroup.com.py/"           # dominio público del sitio
-PAGES = {"index.html": "", "real-estate.html": "real-estate.html", "guia-de-tramites.html": "guia-de-tramites.html"}   # archivo -> ruta pública
+PAGES = {"index.html": "", "real-estate.html": "real-estate.html", "guia-de-tramites.html": "guia-de-tramites.html",
+         "privacidad.html": "privacidad.html"}   # archivo -> ruta pública
 # Páginas generadas por tools/build_pages.py (proyectos y áreas de la guía), en subcarpetas
 for _sub in ("real-estate", "guia-de-tramites"):
     for _f in sorted((Path(__file__).resolve().parent.parent / _sub).glob("*.html")):
@@ -37,7 +38,7 @@ TOKENS = re.compile(r"(<!--.*?-->|<[^>]+>)", re.S)
 KEEP = {"Home Stay San Martín", "Matrisa Lillo", "MATRISA", "P&H Urban Development", "S", "Sosa", "Group", "SosaGroup", "SosaGroup Real Estate", "Real Estate", "ES", "EN", "PT", "Español", "English",
         "Português", "WhatsApp", "Gloria Sosa", "Lic. Gloria Sosa", "Silvana Gimenez", "Valeria Gimenez", "Sulma Paredes",
         "Gloria Sosa & Asociadas", "Miguel Misenta", "· Argentina", "Arturo Arámburo", "Ruth Sosa", "Oliveira Oliveira",
-        "JLuis RL", "Ale Calello", "AA", "AC", "JL", "OO", "RS", "SG", "Aviadores del Chaco 2050", "San Bernardino"}
+        "JLuis RL", "Ale Calello", "AA", "AC", "JL", "OO", "RS", "SG", "Aviadores del Chaco 2050", "San Bernardino", "info@sosagroup.com.py"}
 META_CONTENT = re.compile(r'(name="description"|property="og:(title|description)")')
 
 
@@ -132,6 +133,7 @@ def translate(s, lang, d, missing):
             if not tok.startswith("</"):
                 # Los recursos (assets/) son compartidos: un nivel más arriba desde /en/ y /pt/
                 tok = re.sub(r'\b(src|href)="((?:\.\./)*)assets/', r'\1="../\2assets/', tok)
+                tok = re.sub(r'\bsrcset="[^"]*"', lambda m: re.sub(r'(^|[",]\s*)((?:\.\./)*)assets/', r'\1../\2assets/', m.group(0)), tok)
                 def attr(m):
                     v = html.unescape(m.group(2))
                     if not LETTERS.search(v) or m.group(1) == "content" and not META_CONTENT.search(tok):
@@ -178,10 +180,18 @@ def main():
             missing = set()
             out = translate(src, lang, dicts[lang], missing)
             out = set_seo_and_switcher(out, lang, page)
+            # Las páginas traducidas cargan solo el diccionario de su idioma (las de castellano, ninguno)
+            out = re.sub(r'(  <script src="((?:\.\./)*)assets/i18n\.js" defer></script>)',
+                         rf'  <script src="\2assets/i18n-{lang}.js" defer></script>\n\1', out)
             (ROOT / lang / page).parent.mkdir(parents=True, exist_ok=True)
             (ROOT / lang / page).write_text(out, encoding="utf-8")
             report[(lang, page)] = missing
     (ROOT / "sitemap.xml").write_text(sitemap(), encoding="utf-8")
+    for lang in LANGS[1:]:
+        (ROOT / f"assets/i18n-{lang}.js").write_text(
+            "// Generado por tools/build_i18n.py a partir de assets/i18n-dict.js (no editar a mano)\n"
+            "window.SOSA_I18N = " + json.dumps({lang: dicts[lang]}, ensure_ascii=False, separators=(",", ":")) + ";\n",
+            encoding="utf-8")
 
     for (lang, page), missing in report.items():
         print(f"{lang}/{page}: {len(missing)} frases sin traducir")

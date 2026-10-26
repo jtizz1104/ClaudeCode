@@ -64,6 +64,27 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://sosagroup.com.py/guia-de-tramites.html"/>
   </url>
   <url>
+    <loc>https://sosagroup.com.py/privacidad.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sosagroup.com.py/privacidad.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sosagroup.com.py/en/privacidad.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://sosagroup.com.py/pt/privacidad.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sosagroup.com.py/privacidad.html"/>
+  </url>
+  <url>
+    <loc>https://sosagroup.com.py/en/privacidad.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sosagroup.com.py/privacidad.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sosagroup.com.py/en/privacidad.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://sosagroup.com.py/pt/privacidad.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sosagroup.com.py/privacidad.html"/>
+  </url>
+  <url>
+    <loc>https://sosagroup.com.py/pt/privacidad.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sosagroup.com.py/privacidad.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sosagroup.com.py/en/privacidad.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://sosagroup.com.py/pt/privacidad.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sosagroup.com.py/privacidad.html"/>
+  </url>
+  <url>
     <loc>https://sosagroup.com.py/real-estate/alban-trium.html</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://sosagroup.com.py/real-estate/alban-trium.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://sosagroup.com.py/en/real-estate/alban-trium.html"/>

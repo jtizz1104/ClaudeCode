@@ -1,6 +1,12 @@
 /* Sosa Group — design tokens + components
    Brand: bordó (#8a2454) sobre blanco, Outfit / Inter */
 
+/* Tipografías alojadas en el propio sitio (Inter y Outfit, licencia OFL: assets/fonts/LICENSE-*) */
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: swap; src: url(fonts/inter-latin-wght-normal.woff2) format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: swap; src: url(fonts/inter-latin-ext-wght-normal.woff2) format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: 'Outfit'; font-style: normal; font-weight: 100 900; font-display: swap; src: url(fonts/outfit-latin-wght-normal.woff2) format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: 'Outfit'; font-style: normal; font-weight: 100 900; font-display: swap; src: url(fonts/outfit-latin-ext-wght-normal.woff2) format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+
 :root {
   --dark-950: #1c0b14;
   --dark-900: #2c1020;
@@ -318,7 +324,7 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .site-footer .brand, .site-footer .brand__name { color: #fff; }
 .site-footer .brand__name b { color: var(--accent-light); }
 .site-footer .brand__name small { color: var(--accent-light); }
-.site-footer h4 { font: 700 .8125rem/1.2 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: #e2e8f0; margin-bottom: 16px; }
+.site-footer h3 { font: 700 .8125rem/1.2 var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: #e2e8f0; margin-bottom: 16px; }
 .site-footer ul { list-style: none; display: grid; gap: 4px; }
 .site-footer ul a { display: inline-flex; min-height: 36px; align-items: center; color: #dccad3; text-decoration: none; }
 .site-footer ul a:hover { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
@@ -908,9 +914,9 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 .re-sync input { width: 16px; height: 16px; accent-color: var(--brand); margin: 0; }
 
 /* Botón fijo de WhatsApp */
-.wa-float { position: fixed; right: 18px; bottom: 18px; z-index: 900; display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px 12px 14px; border-radius: 999px; background: #1fa855; color: #fff; font: 700 .9375rem var(--font-body); text-decoration: none; box-shadow: 0 10px 24px -8px rgba(0, 0, 0, .45); transition: transform .2s var(--ease), background-color .2s; }
+.wa-float { position: fixed; right: 18px; bottom: 18px; z-index: 900; display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px 12px 14px; border-radius: 999px; background: #15803d; color: #fff; font: 700 .9375rem var(--font-body); text-decoration: none; box-shadow: 0 10px 24px -8px rgba(0, 0, 0, .45); transition: transform .2s var(--ease), background-color .2s; }
 .wa-float svg { width: 22px; height: 22px; }
-.wa-float:hover { background: #178a45; transform: translateY(-2px); }
+.wa-float:hover { background: #166534; transform: translateY(-2px); }
 .wa-float:focus-visible { outline: 3px solid var(--ring); outline-offset: 3px; }
 .info-list small { display: block; color: var(--muted); font-size: .8125rem; }
 @media (max-width: 560px) { .wa-float span { display: none; } .wa-float { padding: 14px; } }
@@ -950,3 +956,14 @@ fieldset.field { border: 0; padding: 0; margin: 0; }
 /* Portada de inicio: video del WTC con colores naturales y sombra para leer el texto centrado */
 .hero--photo .hero__video { filter: saturate(1.1); }
 .hero--photo:has(.hero__video) .hero__shade { background: radial-gradient(65% 60% at 50% 50%, rgba(20, 14, 18, .5), rgba(20, 14, 18, .2) 75%), linear-gradient(180deg, rgba(20, 14, 18, .25) 0%, rgba(20, 14, 18, .1) 50%, rgba(20, 14, 18, .5) 100%); }
+/* Campo trampa anti-bots de los formularios (invisible para las personas) */
+.hp-field { position: absolute !important; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+/* Página de aviso de privacidad */
+.legal { max-width: 760px; }
+.legal h2 { font-size: 1.4rem; margin-top: 40px; }
+.legal p, .legal ul { margin-top: 12px; color: var(--muted); font-size: 1.0625rem; line-height: 1.7; }
+.legal ul { padding-left: 1.2em; list-style: disc; }
+.legal li + li { margin-top: 6px; }
+.legal a { color: var(--brand); text-decoration: underline; }
+.legal__date { font-size: .95rem !important; }
+.hero__bg picture { display: block; width: 100%; height: 100%; }

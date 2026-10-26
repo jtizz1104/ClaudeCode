@@ -1,8 +1,13 @@
 // SosaGroup — interacciones del sitio (sin dependencias)
 
-// Endpoint del formulario (Formspree, Netlify Forms, backend propio…).
-// Mientras esté vacío, los formularios validan pero no envían.
-const FORM_ENDPOINT = "";
+// Destino de cada formulario (atributo data-form del <form>), con FormSubmit.
+// La primera vez llega a cada casilla un correo "Activate Form" que hay que confirmar.
+// Después de activarlo, FormSubmit da un código aleatorio: conviene reemplazar el correo
+// por ese código (https://formsubmit.co/ajax/<código>) para no dejar la dirección a la vista.
+const FORM_ENDPOINTS = {
+  grupo: "https://formsubmit.co/ajax/info@sosagroup.com.py",
+  "real-estate": "https://formsubmit.co/ajax/silvanagimenezbienesraices@gmail.com",
+};
 
 document.documentElement.classList.remove("no-js");
 
@@ -149,15 +154,22 @@ document.querySelectorAll("form[data-validate]").forEach((form) => {
     el.addEventListener("change", () => check(el));
   });
 
+  // Trampa anti-bots: un campo invisible que una persona nunca completa
+  const honey = document.createElement("input");
+  Object.assign(honey, { type: "text", name: "_honey", tabIndex: -1, autocomplete: "off" });
+  honey.className = "hp-field";
+  honey.setAttribute("aria-hidden", "true");
+  form.prepend(honey);
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    if (honey.value) { form.reset(); return; }
     const fields = [...form.querySelectorAll("input, select, textarea")].filter((el) => el.willValidate);
     const invalid = fields.filter((el) => !check(el));
     if (invalid.length) { invalid[0].focus(); return; }
 
     const btn = form.querySelector('[type="submit"]');
-    // Un formulario puede tener su propio destino (data-endpoint); si no, usa FORM_ENDPOINT
-    const endpoint = form.dataset.endpoint || FORM_ENDPOINT;
+    const endpoint = FORM_ENDPOINTS[form.dataset.form];
     if (!endpoint) {
       status.className = "form-status form-status--warn";
       status.textContent = t("Vista previa: el envío del formulario todavía no está conectado.");
@@ -210,18 +222,25 @@ if (welcome && typeof welcome.showModal === "function") {
 
 document.querySelectorAll("[data-year]").forEach((el) => { el.textContent = new Date().getFullYear(); });
 
-// Video de fondo: se muestra al empezar a reproducirse y se pausa cuando la portada no está a la vista
+// Video de fondo: arranca después de que carga la página (para no demorar el texto),
+// se muestra al empezar a reproducirse y se pausa cuando la portada no está a la vista.
+// No se reproduce con "reducir movimiento" ni con el ahorro de datos activado.
 document.querySelectorAll(".hero__video").forEach((v) => {
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) { v.removeAttribute("autoplay"); v.pause(); return; }
+  const conn = navigator.connection;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches || conn?.saveData || /2g/.test(conn?.effectiveType || "")) return;
   v.addEventListener("playing", () => v.classList.add("is-playing"));
-  if (!v.paused && v.readyState > 2) v.classList.add("is-playing");
   v.addEventListener("timeupdate", () => v.classList.add("is-playing"), { once: true });
-  const play = () => v.play().catch(() => {});
-  play();
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver(([e]) => (e.isIntersecting ? play() : v.pause())).observe(v);
-  }
-  document.addEventListener("visibilitychange", () => (document.hidden ? v.pause() : play()));
+  let visible = true;
+  const play = () => { if (visible && !document.hidden) v.play().catch(() => {}); };
+  const start = () => {
+    play();
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; visible ? play() : v.pause(); }).observe(v);
+    }
+    document.addEventListener("visibilitychange", () => (document.hidden ? v.pause() : play()));
+  };
+  if (document.readyState === "complete") start();
+  else addEventListener("load", start, { once: true });
 });
 
 // Música de fondo opcional (se activa con el botón; arranca suave)
@@ -241,8 +260,9 @@ document.querySelectorAll(".hero__sound").forEach((btn) => {
   };
   const set = (on) => {
     btn.setAttribute("aria-pressed", String(on));
-    if (txt) txt.textContent = t(on ? "Silenciar" : "Activar sonido");
-    btn.setAttribute("aria-label", t(on ? "Silenciar la música" : "Activar la música de fondo"));
+    const label = t(on ? "Silenciar" : "Activar sonido");
+    if (txt) txt.textContent = label;
+    btn.setAttribute("aria-label", label);
   };
   set(false);
   btn.addEventListener("click", () => {

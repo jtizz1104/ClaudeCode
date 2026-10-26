@@ -2,6 +2,9 @@
 <html lang="pt" class="no-js">
 <head>
   <meta charset="utf-8">
+  <!-- Seguridad: qué puede cargar la página (si se agrega un servicio externo, sumarlo acá) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://tile.openstreetmap.org https://server.arcgisonline.com; font-src 'self'; connect-src 'self' https://formsubmit.co; frame-src https://maps.google.com https://www.google.com; media-src 'self'; form-action 'self' https://formsubmit.co; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Home Stay San Martín · Av. San Martín e San Juan XXIII, Assunção | SosaGroup Real Estate</title>
   <meta name="description" content="Torre de 22 andares com serviços de hotel 5 estrelas, a 150 m do Shopping del Sol.">
@@ -24,9 +27,8 @@
   <meta property="og:locale:alternate" content="en_US">
   <!-- seo:end -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%238a2454'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-size='24' fill='%23ffffff'%3ES%3C/text%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../../assets/vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="../../assets/vendor/leaflet.markercluster/MarkerCluster.css">
   <link rel="stylesheet" href="../../assets/styles.css">
@@ -262,17 +264,13 @@
         <a data-lang="en" hreflang="en" lang="en" title="English" href="../../en/real-estate/home-stay-san-martin.html"><svg class="flag" aria-hidden="true"><use href="#f-gb"/></svg>EN</a>
         <a aria-current="true" data-lang="pt" hreflang="pt" lang="pt" title="Português" href="home-stay-san-martin.html"><svg class="flag" aria-hidden="true"><use href="#f-br"/></svg>PT</a>
       </nav>
-      <!-- TODO: completar los enlaces reales de redes -->
-      <a href="#" aria-label="SosaGroup no Facebook"><svg aria-hidden="true"><use href="#i-facebook"/></svg></a>
-      <a href="#" aria-label="SosaGroup no Instagram"><svg aria-hidden="true"><use href="#i-instagram"/></svg></a>
-      <a href="#" aria-label="SosaGroup no LinkedIn"><svg aria-hidden="true"><use href="#i-linkedin"/></svg></a>
       <a href="mailto:silvanagimenezbienesraices@gmail.com" aria-label="E-mail da SosaGroup"><svg aria-hidden="true"><use href="#i-mail"/></svg></a>
     </div>
   </div>
 
   <header class="site-header">
     <div class="container">
-      <a class="brand" href="../index.html" aria-label="SosaGroup, início">
+      <a class="brand" href="../index.html">
         <span class="brand__mark" aria-hidden="true">S</span>
         <span class="brand__name">Sosa<b>Group</b><small>Real Estate</small></span>
       </a>
@@ -311,7 +309,7 @@
               <a class="btn btn--outline" href="#contacto">Consultar sobre este projeto</a>
             </div>
           </div>
-          <img class="proj-hero__img" src="../../assets/img/inmuebles/homestay-torre.jpg" alt="Home Stay San Martín" width="560" height="700">
+          <img class="proj-hero__img" src="../../assets/img/inmuebles/homestay-torre.jpg" srcset="../../assets/img/inmuebles/homestay-torre-sm.webp 640w, ../../assets/img/inmuebles/homestay-torre.jpg 1600w" sizes="(max-width: 900px) 92vw, 560px" alt="Home Stay San Martín" width="560" height="700">
         </div>
       </div>
     </section>
@@ -337,7 +335,7 @@
       </div>
     </section>
 
-    <section class="section section--warm" aria-labelledby="proj-gallery"><div class="container"><h2 id="proj-gallery" class="proj-h2">Galeria</h2><div class="proj-gallery"><figure><img src="../../assets/img/inmuebles/homestay-fachada.jpg" alt="Home Stay San Martín" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/homestay-vista-aerea.jpg" alt="Home Stay San Martín" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/homestay-piscina.jpg" alt="Home Stay San Martín" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/homestay-rooftop.jpg" alt="Home Stay San Martín" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/homestay-lobby.jpg" alt="Home Stay San Martín" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/homestay-living.jpg" alt="Home Stay San Martín" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/homestay-suite.jpg" alt="Home Stay San Martín" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/homestay-gimnasio.jpg" alt="Home Stay San Martín" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/homestay-coffee-bar.jpg" alt="Home Stay San Martín" loading="lazy"></figure></div></div></section>
+    <section class="section section--warm" aria-labelledby="proj-gallery"><div class="container"><h2 id="proj-gallery" class="proj-h2">Galeria</h2><div class="proj-gallery"><figure><img src="../../assets/img/inmuebles/homestay-fachada.jpg" srcset="../../assets/img/inmuebles/homestay-fachada-sm.webp 640w, ../../assets/img/inmuebles/homestay-fachada.jpg 1600w" sizes="(max-width: 600px) 92vw, 400px" alt="Home Stay San Martín" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/homestay-vista-aerea.jpg" srcset="../../assets/img/inmuebles/homestay-vista-aerea-sm.webp 640w, ../../assets/img/inmuebles/homestay-vista-aerea.jpg 1600w" sizes="(max-width: 600px) 92vw, 400px" alt="Home Stay San Martín" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/homestay-piscina.jpg" srcset="../../assets/img/inmuebles/homestay-piscina-sm.webp 640w, ../../assets/img/inmuebles/homestay-piscina.jpg 1600w" sizes="(max-width: 600px) 92vw, 400px" alt="Home Stay San Martín" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/homestay-rooftop.jpg" srcset="../../assets/img/inmuebles/homestay-rooftop-sm.webp 640w, ../../assets/img/inmuebles/homestay-rooftop.jpg 1600w" sizes="(max-width: 600px) 92vw, 400px" alt="Home Stay San Martín" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/homestay-lobby.jpg" srcset="../../assets/img/inmuebles/homestay-lobby-sm.webp 640w, ../../assets/img/inmuebles/homestay-lobby.jpg 1600w" sizes="(max-width: 600px) 92vw, 400px" alt="Home Stay San Martín" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/homestay-living.jpg" srcset="../../assets/img/inmuebles/homestay-living-sm.webp 640w, ../../assets/img/inmuebles/homestay-living.jpg 1600w" sizes="(max-width: 600px) 92vw, 400px" alt="Home Stay San Martín" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/homestay-suite.jpg" srcset="../../assets/img/inmuebles/homestay-suite-sm.webp 640w, ../../assets/img/inmuebles/homestay-suite.jpg 1600w" sizes="(max-width: 600px) 92vw, 400px" alt="Home Stay San Martín" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/homestay-gimnasio.jpg" srcset="../../assets/img/inmuebles/homestay-gimnasio-sm.webp 640w, ../../assets/img/inmuebles/homestay-gimnasio.jpg 1600w" sizes="(max-width: 600px) 92vw, 400px" alt="Home Stay San Martín" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/homestay-coffee-bar.jpg" srcset="../../assets/img/inmuebles/homestay-coffee-bar-sm.webp 640w, ../../assets/img/inmuebles/homestay-coffee-bar.jpg 1600w" sizes="(max-width: 600px) 92vw, 400px" alt="Home Stay San Martín" loading="lazy"></figure></div></div></section>
 
     <!-- Contacto -->
     <section id="contacto" class="section" aria-labelledby="contacto-title">
@@ -365,7 +363,7 @@
 
         <div class="form-card reveal">
           <!-- Envío con FormSubmit (formsubmit.co): llega al correo de Silvana. La primera vez, FormSubmit manda un correo de activación a esa casilla. -->
-          <form id="re-form" data-validate novalidate data-endpoint="https://formsubmit.co/ajax/silvanagimenezbienesraices@gmail.com">
+          <form id="re-form" data-validate novalidate data-form="real-estate">
             <input type="hidden" name="division" value="real-estate">
             <input type="hidden" name="proyecto" value="Home Stay San Martín">
             <input type="hidden" name="_subject" value="Consulta desde la web · SosaGroup Real Estate">
@@ -442,7 +440,7 @@
                 <span class="hint" id="mensaje-hint">Não inclua dados sensíveis, como números de documentos ou contas.</span>
               </div>
               <div class="field field--full">
-                <label class="choice"><input type="checkbox" name="consentimiento" required aria-describedby="consent-error"><span>Aceito que a SosaGroup utilize estes dados apenas para responder à minha consulta. Não os compartilhamos com terceiros.</span></label>
+                <label class="choice"><input type="checkbox" name="consentimiento" required aria-describedby="consent-error"><span>Aceito que a SosaGroup utilize estes dados apenas para responder à minha consulta. Não os compartilhamos com terceiros. <a href="../privacidad.html" target="_blank">Ver o aviso de privacidade</a>.</span></label>
                 <span class="error" id="consent-error" aria-live="polite"></span>
               </div>
             </div>
@@ -461,14 +459,14 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a class="brand" href="../index.html" aria-label="SosaGroup, início">
+          <a class="brand" href="../index.html">
             <span class="brand__mark" aria-hidden="true">S</span>
             <span class="brand__name">Sosa<b>Group</b><small>Real Estate</small></span>
           </a>
           <p style="margin-top:16px;max-width:320px">Imóveis e investimento imobiliário no Paraguai, com o respaldo da SosaGroup.</p>
         </div>
         <div>
-          <h4>Real Estate</h4>
+          <h3>Real Estate</h3>
           <ul>
             <li><a href="../real-estate.html#servicios">Serviços</a></li>
             <li><a href="../real-estate.html#zonas">Regiões</a></li>
@@ -477,7 +475,7 @@
           </ul>
         </div>
         <div>
-          <h4>SosaGroup</h4>
+          <h3>SosaGroup</h3>
           <ul>
             <li><a href="../index.html">Início</a></li>
             <li><a href="../index.html#servicios">Residência e imigração</a></li>
@@ -486,7 +484,7 @@
           </ul>
         </div>
         <div>
-          <h4>Escritórios</h4>
+          <h3>Escritórios</h3>
           <p>WTC Assunção<br>Aviadores del Chaco 2050<br>Torre 4, Andar 12, Sala C<br>Assunção, Paraguai</p>
           <ul style="margin-top:12px">
             <li><a href="#contacto">Conte o que procura</a></li>
@@ -495,12 +493,12 @@
       </div>
       <div class="footer-bottom">
         <span>© <span data-year>2026</span> SosaGroup. Todos os direitos reservados.</span>
-        <span>Assunção, Paraguai</span>
+        <span><a href="../privacidad.html">Aviso de privacidade</a> · Assunção, Paraguai</span>
       </div>
     </div>
   </footer>
 
-  <script src="../../assets/i18n-dict.js" defer></script>
+  <script src="../../assets/i18n-pt.js" defer></script>
   <script src="../../assets/i18n.js" defer></script>
   <script src="../../assets/main.js" defer></script>
 </body>

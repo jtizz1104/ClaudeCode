@@ -2,6 +2,9 @@
 <html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
+  <!-- Seguridad: qué puede cargar la página (si se agrega un servicio externo, sumarlo acá) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://tile.openstreetmap.org https://server.arcgisonline.com; font-src 'self'; connect-src 'self' https://formsubmit.co; frame-src https://maps.google.com https://www.google.com; media-src 'self'; form-action 'self' https://formsubmit.co; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Paraguay residency and paperwork for foreigners | SosaGroup</title>
   <meta name="description" content="Paperwork and relocation agency in Asunción with over 30 years of experience: temporary and permanent residency, Paraguayan ID, tax residency, companies, investments and real estate. Offices at the WTC.">
@@ -24,10 +27,10 @@
   <meta property="og:locale:alternate" content="pt_BR">
   <!-- seo:end -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%238a2454'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-size='24' fill='%23ffffff'%3ES%3C/text%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="../assets/img/hero-wtc.jpg" fetchpriority="high">
+  <link rel="preload" href="../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="../assets/img/hero-wtc-movil.jpg" media="(max-width: 700px)" fetchpriority="high">
+  <link rel="preload" as="image" href="../assets/img/hero-wtc.jpg" media="(min-width: 701px)" fetchpriority="high">
   <link rel="stylesheet" href="../assets/styles.css">
   <script type="application/ld+json">
 {
@@ -42,6 +45,8 @@
         "description": "Paperwork and relocation agency in Asunción with over 30 years of experience: temporary and permanent residency, Paraguayan ID, tax residency, companies, investments and real estate. Offices at the WTC.",
         "url": "https://sosagroup.com.py/",
         "image": "https://sosagroup.com.py/assets/img/hero-wtc.jpg",
+        "telephone": "+595981504861",
+        "email": "info@sosagroup.com.py",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Aviadores del Chaco 2050, Tower 4, Floor 12, Office C",
@@ -177,16 +182,13 @@
         <a data-lang="pt" hreflang="pt" lang="pt" title="Português" href="../pt/index.html"><svg class="flag" aria-hidden="true"><use href="#f-br"/></svg>PT</a>
       </nav>
       <!-- TODO: completar los enlaces reales de redes y correo -->
-      <a href="#" aria-label="SosaGroup on Facebook"><svg aria-hidden="true"><use href="#i-facebook"/></svg></a>
-      <a href="#" aria-label="SosaGroup on Instagram"><svg aria-hidden="true"><use href="#i-instagram"/></svg></a>
-      <a href="#" aria-label="SosaGroup on LinkedIn"><svg aria-hidden="true"><use href="#i-linkedin"/></svg></a>
-      <a href="#" aria-label="Email SosaGroup"><svg aria-hidden="true"><use href="#i-mail"/></svg></a>
+      <a href="mailto:info@sosagroup.com.py" aria-label="Email SosaGroup"><svg aria-hidden="true"><use href="#i-mail"/></svg></a>
     </div>
   </div>
 
   <header class="site-header">
     <div class="container">
-      <a class="brand" href="index.html" aria-label="SosaGroup, home">
+      <a class="brand" href="index.html">
         <span class="brand__mark" aria-hidden="true">S</span>
         <span class="brand__name">Sosa<b>Group</b><small>Your arrival in Paraguay in expert hands</small></span>
       </a>
@@ -221,8 +223,13 @@
     <section id="inicio" class="hero hero--photo" aria-labelledby="hero-title">
       <div class="hero__bg" aria-hidden="true">
         <!-- Video de fondo: WTC Asunción (oficinas de SosaGroup, Torre 4 · Piso 12 · Of. C). La imagen queda como respaldo. -->
-        <img src="../assets/img/hero-wtc.jpg" alt="" width="1600" height="900" fetchpriority="high" onerror="this.remove()">
-        <video class="hero__video" autoplay muted loop playsinline preload="metadata" disablepictureinpicture>
+        <picture>
+          <source srcset="../assets/img/hero-wtc-movil.jpg" media="(max-width: 700px)" width="432" height="720">
+          <img src="../assets/img/hero-wtc.jpg" alt="" width="1280" height="720" fetchpriority="high">
+        </picture>
+        <video class="hero__video" muted loop playsinline preload="none" disablepictureinpicture>
+          <source src="../assets/video/inicio-wtc-movil.mp4" type="video/mp4" media="(max-width: 700px)">
+          <source src="../assets/video/inicio-wtc-movil.webm" type="video/webm" media="(max-width: 700px)">
           <source src="../assets/video/inicio-wtc.mp4" type="video/mp4">
           <source src="../assets/video/inicio-wtc.webm" type="video/webm">
         </video>
@@ -380,7 +387,7 @@
       <div class="container team">
         <figure class="team__photo reveal">
           <!-- Foto del equipo: guardar como assets/img/equipo-sosa-group.jpg (cuadrada, ideal 1200px) -->
-          <img src="../assets/img/equipo-sosa-group.jpg" alt="From left to right: Silvana Gimenez, Gloria Sosa and Valeria Gimenez" width="640" height="640" loading="lazy" onerror="this.remove()">
+          <img src="../assets/img/equipo-sosa-group.jpg" alt="From left to right: Silvana Gimenez, Gloria Sosa and Valeria Gimenez" width="640" height="640" loading="lazy">
           <figcaption>Silvana Gimenez, Gloria Sosa and Valeria Gimenez</figcaption>
         </figure>
         <div class="reveal">
@@ -771,18 +778,19 @@
 
           <div class="info-card" id="contacto-directo">
             <h3>Prefer to call us or message us on WhatsApp?</h3>
-            <!-- TODO: completar teléfono, WhatsApp (https://wa.me/595…) y correo reales -->
             <ul class="info-list">
-              <li><span class="icon-box"><svg aria-hidden="true"><use href="#i-chat"/></svg></span><div><strong>WhatsApp</strong><a href="#contacto-directo">[number pending]</a></div></li>
-              <li><span class="icon-box"><svg aria-hidden="true"><use href="#i-phone"/></svg></span><div><strong>Phone</strong><a href="#contacto-directo">[number pending]</a></div></li>
-              <li><span class="icon-box"><svg aria-hidden="true"><use href="#i-mail"/></svg></span><div><strong>Email</strong><a href="#contacto-directo">[email pending]</a></div></li>
+              <li><span class="icon-box"><svg aria-hidden="true"><use href="#i-chat"/></svg></span><div><strong>WhatsApp</strong><a href="https://wa.me/595981504861?text=Hola%2C%20quiero%20hacer%20una%20consulta%20a%20SosaGroup." target="_blank" rel="noopener">+595 981 504 861</a></div></li>
+              <li><span class="icon-box"><svg aria-hidden="true"><use href="#i-phone"/></svg></span><div><strong>Phone</strong><a href="tel:+595981504861">+595 981 504 861</a></div></li>
+              <li><span class="icon-box"><svg aria-hidden="true"><use href="#i-mail"/></svg></span><div><strong>Email</strong><a href="mailto:info@sosagroup.com.py">info@sosagroup.com.py</a></div></li>
               <li><span class="icon-box"><svg aria-hidden="true"><use href="#i-pin"/></svg></span><div><strong>Offices</strong>WTC Asunción · Aviadores del Chaco 2050, Tower 4, Floor 12, Office C</div></li>
             </ul>
           </div>
         </div>
 
         <div class="form-card reveal">
-          <form id="contact-form" data-validate novalidate>
+          <form id="contact-form" data-validate novalidate data-form="grupo">
+            <input type="hidden" name="_subject" value="Solicitud de entrevista desde la web · SosaGroup">
+            <input type="hidden" name="_template" value="table">
             <div class="form-grid">
               <div class="field">
                 <label for="nombre">Full name <span class="req" aria-hidden="true">*</span></label>
@@ -832,7 +840,7 @@
                 <span class="error" id="reserva-error" aria-live="polite"></span>
               </fieldset>
               <div class="field field--full">
-                <label class="choice"><input type="checkbox" name="consentimiento" required aria-describedby="consent-error"><span>I agree that SosaGroup may use this data only to answer my inquiry. We do not share it with third parties.</span></label>
+                <label class="choice"><input type="checkbox" name="consentimiento" required aria-describedby="consent-error"><span>I agree that SosaGroup may use this data only to answer my inquiry. We do not share it with third parties. <a href="privacidad.html" target="_blank">See the privacy notice</a>.</span></label>
                 <span class="error" id="consent-error" aria-live="polite"></span>
               </div>
             </div>
@@ -848,14 +856,14 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a class="brand" href="index.html" aria-label="SosaGroup, home">
+          <a class="brand" href="index.html">
             <span class="brand__mark" aria-hidden="true">S</span>
             <span class="brand__name">Sosa<b>Group</b><small>Your arrival in Paraguay in expert hands</small></span>
           </a>
           <p style="margin-top:16px;max-width:320px">Guidance for settling in Paraguay.</p>
         </div>
         <div>
-          <h4>Group</h4>
+          <h3>Group</h3>
           <ul>
             <li><a href="#nosotros">About us</a></li>
             <li><a href="#servicios">Services</a></li>
@@ -865,7 +873,7 @@
           </ul>
         </div>
         <div>
-          <h4>Divisions</h4>
+          <h3>Divisions</h3>
           <ul>
             <li><a href="#servicios">Residency and immigration</a></li>
             <li><a href="#servicios">Investment and companies</a></li>
@@ -873,17 +881,16 @@
           </ul>
         </div>
         <div>
-          <h4>Offices</h4>
+          <h3>Offices</h3>
           <p>WTC Asunción<br>Aviadores del Chaco 2050<br>Tower 4, Floor 12, Office C<br>Asunción, Paraguay</p>
           <ul style="margin-top:12px">
             <li><a href="#contacto">Request a consultation</a></li>
-            <li><a href="/panel">Team login</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
         <span>© <span data-year>2026</span> SosaGroup. All rights reserved.</span>
-        <span>Asunción, Paraguay</span>
+        <span><a href="privacidad.html">Privacy notice</a> · Asunción, Paraguay</span>
       </div>
     </div>
   </footer>
@@ -912,7 +919,7 @@
     </div>
   </dialog>
 
-  <script src="../assets/i18n-dict.js" defer></script>
+  <script src="../assets/i18n-en.js" defer></script>
   <script src="../assets/i18n.js" defer></script>
   <script src="../assets/main.js" defer></script>
 </body>

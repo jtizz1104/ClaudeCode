@@ -27,8 +27,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      # Se publica solo el sitio: quedan afuera las notas internas, las herramientas
+      # de armado y el diccionario fuente (las páginas usan assets/i18n-en.js y -pt.js)
+      - name: Preparar la carpeta publicada
+        run: |
+          cp -r sosagroup _site
+          rm -rf _site/README.md _site/tools _site/assets/i18n-dict.js
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: sosagroup
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4
