@@ -23,6 +23,17 @@ export const RemotionRoot: React.FC = () => {
         fps={FPS}
         width={1080}
         height={1920}
+        defaultProps={{ lang: "pt" as const }}
+      />
+      <Composition
+        // Same reel in English. Render with: npm run render:residencia:en
+        id="ResidenciaEN"
+        component={Residencia}
+        durationInFrames={RESIDENCIA_FRAMES}
+        fps={FPS}
+        width={1080}
+        height={1920}
+        defaultProps={{ lang: "en" as const }}
       />
     </>
   );

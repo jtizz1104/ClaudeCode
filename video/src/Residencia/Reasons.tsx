@@ -22,18 +22,20 @@ import {
   usePop,
   useSmooth,
 } from "./kit";
+import { useCopy } from "./lang";
 
 // ---------------------------------------------------------------- layout ---
 const Reason: React.FC<{
   n: number;
   pt: React.ReactNode;
-  es: string;
+  es?: string;
   subPt: string;
-  subEs: string;
+  subEs?: string;
   visual: React.ReactNode;
   image?: string;
 }> = ({ n, pt, es, subPt, subEs, visual, image }) => {
   const pop = usePop(3);
+  const c = useCopy();
   return (
     <AbsoluteFill>
       <Bg image={image} />
@@ -64,9 +66,7 @@ const Reason: React.FC<{
           >
             0{n}
           </div>
-          <Pill delay={6}>
-            MOTIVO {n} · RAZÓN {n}
-          </Pill>
+          <Pill delay={6}>{c.reasonPill(n)}</Pill>
         </div>
         <Bi pt={pt} es={es} size={96} esSize={38} delay={8} />
         <Rise delay={20} from={20}>
@@ -79,11 +79,17 @@ const Reason: React.FC<{
             }}
           >
             {subPt}
-            <div
-              style={{ fontSize: 28, color: colors.accentLight, marginTop: 6 }}
-            >
-              {subEs}
-            </div>
+            {subEs ? (
+              <div
+                style={{
+                  fontSize: 28,
+                  color: colors.accentLight,
+                  marginTop: 6,
+                }}
+              >
+                {subEs}
+              </div>
+            ) : null}
           </div>
         </Rise>
         <div style={{ flex: 1, position: "relative", marginTop: 6 }}>
@@ -111,6 +117,7 @@ const bezAngle = (t: number) => {
 };
 
 const Route: React.FC = () => {
+  const c = useCopy();
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const p = interpolate(frame, [26, 84], [0, 1], {
@@ -200,18 +207,20 @@ const Route: React.FC = () => {
           fontWeight={700}
           fontSize={44}
         >
-          ASSUNÇÃO
+          {c.city[0]}
         </text>
-        <text
-          x={P2.x + 24}
-          y={P2.y + 102}
-          textAnchor="middle"
-          fill={colors.accentLight}
-          fontFamily={fonts.body}
-          fontSize={26}
-        >
-          Asunción
-        </text>
+        {c.city[1] ? (
+          <text
+            x={P2.x + 24}
+            y={P2.y + 102}
+            textAnchor="middle"
+            fill={colors.accentLight}
+            fontFamily={fonts.body}
+            fontSize={26}
+          >
+            {c.city[1]}
+          </text>
+        ) : null}
       </svg>
       <div
         style={{
@@ -238,10 +247,12 @@ const Route: React.FC = () => {
             color: "#fff",
           }}
         >
-          Brasil e Paraguai, lado a lado
-          <div style={{ fontSize: 26, color: colors.accentLight }}>
-            Brasil y Paraguay, lado a lado
-          </div>
+          {c.routeChip[0]}
+          {c.routeChip[1] ? (
+            <div style={{ fontSize: 26, color: colors.accentLight }}>
+              {c.routeChip[1]}
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
@@ -275,6 +286,7 @@ const Chip: React.FC<{ children: React.ReactNode; delay: number }> = ({
 };
 
 const Life: React.FC = () => {
+  const c = useCopy();
   const a = useSmooth(24);
   const b = useSmooth(34);
   return (
@@ -314,8 +326,11 @@ const Life: React.FC = () => {
           flexWrap: "wrap",
         }}
       >
-        <Chip delay={52}>Família · Familia</Chip>
-        <Chip delay={60}>Natureza · Naturaleza</Chip>
+        {c.chips.map(([main, sub], i) => (
+          <Chip key={main} delay={52 + i * 8}>
+            {sub ? `${main} · ${sub}` : main}
+          </Chip>
+        ))}
       </div>
     </div>
   );
@@ -323,6 +338,7 @@ const Life: React.FC = () => {
 
 // ------------------------------------------------------------ 3. fiscal ----
 const Shield: React.FC = () => {
+  const c = useCopy();
   const frame = useCurrentFrame();
   const s = usePop(22);
   const check = interpolate(frame, [40, 62], [0, 1], {
@@ -330,11 +346,7 @@ const Shield: React.FC = () => {
     extrapolateRight: "clamp",
   });
   const glow = 22 + Math.sin(frame / 8) * 8;
-  const rows: Array<[string, string]> = [
-    ["Sistema tributário simples", "Sistema tributario simple"],
-    ["Residência fiscal planejada", "Residencia fiscal planificada"],
-    ["Regras claras, sem surpresas", "Reglas claras, sin sorpresas"],
-  ];
+  const rows = c.rows;
   return (
     <div
       style={{
@@ -414,15 +426,17 @@ const Shield: React.FC = () => {
               >
                 {pt}
               </div>
-              <div
-                style={{
-                  fontFamily: fonts.body,
-                  fontSize: 31,
-                  color: colors.accentLight,
-                }}
-              >
-                {es}
-              </div>
+              {es ? (
+                <div
+                  style={{
+                    fontFamily: fonts.body,
+                    fontSize: 31,
+                    color: colors.accentLight,
+                  }}
+                >
+                  {es}
+                </div>
+              ) : null}
             </div>
           </div>
         </Rise>
@@ -518,65 +532,35 @@ const Slide: React.FC<{ delay: number; children: React.ReactNode }> = ({
 };
 
 // ---------------------------------------------------------------- scenes ---
-export const Reason1: React.FC = () => (
-  <Reason
-    n={1}
-    pt={
-      <>
-        Pertinho do <Mark>Brasil.</Mark>
-      </>
-    }
-    es="Muy cerca de Brasil."
-    subPt="Família e negócios a poucas horas de voo."
-    subEs="Familia y negocios a pocas horas de vuelo."
-    visual={<Route />}
-    image="img/hero-paraguay.jpg"
-  />
-);
+const VISUALS: Array<{ visual: React.ReactNode; image?: string }> = [
+  { visual: <Route />, image: "img/hero-paraguay.jpg" },
+  { visual: <Life />, image: "img/inmuebles/cumbres-vista-aerea.jpg" },
+  { visual: <Shield /> },
+  { visual: <Projects />, image: "img/inmuebles/riverside-zafiro-aerea.jpg" },
+];
 
-export const Reason2: React.FC = () => (
-  <Reason
-    n={2}
-    pt={
-      <>
-        Segurança e <Mark>tranquilidade.</Mark>
-      </>
-    }
-    es="Seguridad y tranquilidad."
-    subPt="Um país para criar a família com calma."
-    subEs="Un país para criar a la familia con calma."
-    visual={<Life />}
-    image="img/inmuebles/cumbres-vista-aerea.jpg"
-  />
-);
+const ReasonScene: React.FC<{ index: 0 | 1 | 2 | 3 }> = ({ index }) => {
+  const r = useCopy().reasons[index];
+  return (
+    <Reason
+      n={index + 1}
+      pt={
+        <>
+          {r.title.pre}
+          <Mark>{r.title.mark}</Mark>
+          {r.title.post}
+        </>
+      }
+      es={r.es}
+      subPt={r.sub}
+      subEs={r.subEs}
+      visual={VISUALS[index].visual}
+      image={VISUALS[index].image}
+    />
+  );
+};
 
-export const Reason3: React.FC = () => (
-  <Reason
-    n={3}
-    pt={
-      <>
-        Segurança <Mark>fiscal.</Mark>
-      </>
-    }
-    es="Seguridad fiscal."
-    subPt="Residência legal ≠ residência fiscal: planeje antes de se mudar."
-    subEs="Residencia legal ≠ residencia fiscal: planificá antes de mudarte."
-    visual={<Shield />}
-  />
-);
-
-export const Reason4: React.FC = () => (
-  <Reason
-    n={4}
-    pt={
-      <>
-        Oportunidades para <Mark>investir.</Mark>
-      </>
-    }
-    es="Oportunidades para invertir."
-    subPt="Imóveis e empresas para construir patrimônio."
-    subEs="Inmuebles y empresas para construir patrimonio."
-    visual={<Projects />}
-    image="img/inmuebles/riverside-zafiro-aerea.jpg"
-  />
-);
+export const Reason1: React.FC = () => <ReasonScene index={0} />;
+export const Reason2: React.FC = () => <ReasonScene index={1} />;
+export const Reason3: React.FC = () => <ReasonScene index={2} />;
+export const Reason4: React.FC = () => <ReasonScene index={3} />;

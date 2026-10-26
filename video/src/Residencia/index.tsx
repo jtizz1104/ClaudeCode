@@ -7,6 +7,7 @@ import {
 } from "remotion";
 import { colors, fonts } from "../Showcase/theme";
 import { SAFE } from "./kit";
+import { COPY, LangContext, type Lang } from "./lang";
 import music from "./music.mp3";
 import { Reason1, Reason2, Reason3, Reason4 } from "./Reasons";
 import { Bridge, Cta, Hook, Reviews, Why } from "./Story";
@@ -26,7 +27,7 @@ const SCENES: Array<{ from: number; frames: number; node: React.ReactNode }> = [
   { from: 1140, frames: 180, node: <Cta /> },
 ];
 
-const Header: React.FC = () => {
+const Header: React.FC<{ lang: Lang }> = ({ lang }) => {
   const frame = useCurrentFrame();
   const progress = interpolate(frame, [0, RESIDENCIA_FRAMES], [0, 1]);
   const fade = interpolate(frame, [1258, 1268], [1, 0], {
@@ -84,7 +85,7 @@ const Header: React.FC = () => {
               marginTop: 2,
             }}
           >
-            Asesoría en Paraguay
+            {COPY[lang].tagline}
           </div>
         </div>
       </div>
@@ -109,14 +110,18 @@ const Header: React.FC = () => {
   );
 };
 
-export const Residencia: React.FC = () => (
-  <AbsoluteFill style={{ background: colors.dark950 }}>
-    <Audio src={music} />
-    {SCENES.map((s) => (
-      <Sequence key={s.from} from={s.from} durationInFrames={s.frames}>
-        {s.node}
-      </Sequence>
-    ))}
-    <Header />
-  </AbsoluteFill>
+export type ResidenciaProps = { lang: Lang };
+
+export const Residencia: React.FC<ResidenciaProps> = ({ lang }) => (
+  <LangContext.Provider value={lang}>
+    <AbsoluteFill style={{ background: colors.dark950 }}>
+      <Audio src={music} />
+      {SCENES.map((s) => (
+        <Sequence key={s.from} from={s.from} durationInFrames={s.frames}>
+          {s.node}
+        </Sequence>
+      ))}
+      <Header lang={lang} />
+    </AbsoluteFill>
+  </LangContext.Provider>
 );

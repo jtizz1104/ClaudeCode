@@ -12,6 +12,8 @@ import {
 } from "remotion";
 import { colors, fonts } from "../Showcase/theme";
 import logo from "./logo.png";
+import logoMark from "./logo-mark.png";
+import { useCopy, useLang } from "./lang";
 import {
   Bg,
   Bi,
@@ -42,7 +44,11 @@ const HookLine: React.FC<{
     fps,
     config: { damping: 12, stiffness: 220, mass: 0.6 },
   });
-  const size = Math.min(max, WIDTH / (text.length * 0.6));
+  const lang = useLang();
+  const size = Math.min(
+    max,
+    WIDTH / (text.length * (lang === "en" ? 0.7 : 0.6)),
+  );
   return (
     <div
       style={{
@@ -54,6 +60,7 @@ const HookLine: React.FC<{
         transform: `scale(${interpolate(s, [0, 1], [1.9, 1])})`,
         opacity: Math.min(1, s * 3),
         transformOrigin: "left center",
+        whiteSpace: "nowrap",
         marginBottom: 6,
       }}
     >
@@ -63,6 +70,7 @@ const HookLine: React.FC<{
 };
 
 export const Hook: React.FC = () => {
+  const c = useCopy();
   const frame = useCurrentFrame();
   const flash = interpolate(frame, [0, 5], [1, 0], {
     extrapolateRight: "clamp",
@@ -90,26 +98,28 @@ export const Hook: React.FC = () => {
       >
         <div style={{ marginBottom: 40 }}>
           <Pill delay={6} font={fonts.body} color={colors.dark950}>
-            <Flag /> BRASIL → PARAGUAI
+            <Flag /> {c.hookPill}
           </Pill>
         </div>
-        <HookLine text="POR QUE TANTOS" delay={4} max={132} />
-        <HookLine text="BRASILEIROS" delay={14} max={176} mark />
-        <HookLine text="ESTÃO ESCOLHENDO" delay={24} max={132} />
-        <HookLine text="O PARAGUAI?" delay={34} max={176} color={cream} />
-        <div
-          style={{
-            marginTop: 40,
-            fontFamily: fonts.body,
-            fontWeight: 500,
-            fontSize: 48,
-            color: colors.accentLight,
-            opacity: es,
-            transform: `translateY(${interpolate(es, [0, 1], [24, 0])}px)`,
-          }}
-        >
-          ¿Por qué tantos brasileños eligen Paraguay?
-        </div>
+        <HookLine text={c.hook[0]} delay={4} max={132} />
+        <HookLine text={c.hook[1]} delay={14} max={176} mark />
+        <HookLine text={c.hook[2]} delay={24} max={132} />
+        <HookLine text={c.hook[3]} delay={34} max={176} color={cream} />
+        {c.hookEs ? (
+          <div
+            style={{
+              marginTop: 40,
+              fontFamily: fonts.body,
+              fontWeight: 500,
+              fontSize: 48,
+              color: colors.accentLight,
+              opacity: es,
+              transform: `translateY(${interpolate(es, [0, 1], [24, 0])}px)`,
+            }}
+          >
+            {c.hookEs}
+          </div>
+        ) : null}
         <div
           style={{
             marginTop: 56,
@@ -130,7 +140,7 @@ export const Hook: React.FC = () => {
               borderRadius: 16,
             }}
           >
-            4 motivos · 4 razones
+            {c.hookTag}
           </div>
         </div>
       </div>
@@ -143,6 +153,7 @@ export const Hook: React.FC = () => {
 
 // ---------------------------------------------------------------- bridge ---
 export const Bridge: React.FC = () => {
+  const c = useCopy();
   const frame = useCurrentFrame();
   const bg = interpolate(frame, [0, 60], [0, 1]);
   return (
@@ -176,16 +187,18 @@ export const Bridge: React.FC = () => {
               letterSpacing: 3,
             }}
           >
-            MAS TEM UM DETALHE…
+            {c.bridgeKicker}
           </div>
         </Rise>
         <Bi
           pt={
             <>
-              Fazer a residência <Mark>do jeito certo</Mark> muda tudo.
+              {c.bridge.pre}
+              <Mark>{c.bridge.mark}</Mark>
+              {c.bridge.post}
             </>
           }
-          es="Pero hay un detalle: hacer la residencia bien lo cambia todo."
+          es={c.bridgeEs}
           size={92}
           esSize={36}
           delay={12}
@@ -198,6 +211,7 @@ export const Bridge: React.FC = () => {
 
 // -------------------------------------------------------------- why us ---
 export const Why: React.FC = () => {
+  const c = useCopy();
   const frame = useCurrentFrame();
   const n = Math.round(
     interpolate(frame, [8, 50], [0, 30], {
@@ -208,12 +222,7 @@ export const Why: React.FC = () => {
   );
   const big = usePop(6);
   const photo = usePop(40);
-  const lines: Array<[string, string]> = [
-    ["Escutamos.", "Escuchamos."],
-    ["Analisamos.", "Analizamos."],
-    ["Planejamos.", "Planificamos."],
-    ["Acompanhamos.", "Acompañamos."],
-  ];
+  const lines = c.motto;
   return (
     <AbsoluteFill>
       <Bg image="img/wtc-asuncion.jpg" opacity={0.28} blur={8} />
@@ -230,7 +239,7 @@ export const Why: React.FC = () => {
           gap: 22,
         }}
       >
-        <Pill delay={2}>POR QUE A SOSAGROUP?</Pill>
+        <Pill delay={2}>{c.whyPill}</Pill>
         <div style={{ display: "flex", alignItems: "center", gap: 26 }}>
           <div
             style={{
@@ -256,20 +265,22 @@ export const Why: React.FC = () => {
                 color: "#fff",
               }}
             >
-              ANOS DE
+              {c.years[0]}
               <br />
-              EXPERIÊNCIA
+              {c.years[1]}
             </div>
-            <div
-              style={{
-                fontFamily: fonts.body,
-                fontSize: 30,
-                color: colors.accentLight,
-                marginTop: 8,
-              }}
-            >
-              años de experiencia
-            </div>
+            {c.yearsEs ? (
+              <div
+                style={{
+                  fontFamily: fonts.body,
+                  fontSize: 30,
+                  color: colors.accentLight,
+                  marginTop: 8,
+                }}
+              >
+                {c.yearsEs}
+              </div>
+            ) : null}
           </div>
         </div>
         <div
@@ -310,7 +321,7 @@ export const Why: React.FC = () => {
                 color: colors.accentLight,
               }}
             >
-              Diretora · Directora
+              {c.role[1] ? `${c.role[0]} · ${c.role[1]}` : c.role[0]}
             </div>
           </div>
         </div>
@@ -345,15 +356,17 @@ export const Why: React.FC = () => {
                 >
                   {pt}
                 </div>
-                <div
-                  style={{
-                    fontFamily: fonts.body,
-                    fontSize: 28,
-                    color: colors.accentLight,
-                  }}
-                >
-                  {es}
-                </div>
+                {es ? (
+                  <div
+                    style={{
+                      fontFamily: fonts.body,
+                      fontSize: 28,
+                      color: colors.accentLight,
+                    }}
+                  >
+                    {es}
+                  </div>
+                ) : null}
               </div>
             </Rise>
           ))}
@@ -365,26 +378,7 @@ export const Why: React.FC = () => {
 };
 
 // --------------------------------------------------------------- reviews ---
-type Review = { name: string; from?: string; pt: string; es: string };
-const REVIEWS: Review[] = [
-  {
-    name: "Sandra Bertolucci",
-    from: "São Paulo, Brasil",
-    pt: "O serviço e o atendimento recebidos não poderiam ter sido melhores.",
-    es: "El servicio y el trato recibido no podía ser mejor.",
-  },
-  {
-    name: "Oliveira Oliveira",
-    pt: "Uma experiência impecável do início ao fim.",
-    es: "Una experiencia impecable de principio a fin.",
-  },
-  {
-    name: "Arturo Arámburo",
-    pt: "…profissionais que sabem o que fazem, porque são honestos, humanos e transparentes.",
-    es: "…profesionales que saben lo que hacen, porque son honestos, humanos y transparentes.",
-  },
-];
-
+type Review = { name: string; from?: string; text: string; es?: string };
 const Star: React.FC<{ delay: number; size: number }> = ({ delay, size }) => {
   const s = usePop(delay);
   return (
@@ -452,20 +446,22 @@ const ReviewCard: React.FC<{ r: Review }> = ({ r }) => {
           color: colors.dark900,
         }}
       >
-        {r.pt}
+        {r.text}
       </div>
-      <div
-        style={{
-          fontFamily: fonts.body,
-          fontStyle: "italic",
-          fontSize: 34,
-          lineHeight: 1.3,
-          color: "#64748b",
-          marginTop: 18,
-        }}
-      >
-        {r.es}
-      </div>
+      {r.es ? (
+        <div
+          style={{
+            fontFamily: fonts.body,
+            fontStyle: "italic",
+            fontSize: 34,
+            lineHeight: 1.3,
+            color: "#64748b",
+            marginTop: 18,
+          }}
+        >
+          {r.es}
+        </div>
+      ) : null}
       <div
         style={{
           display: "flex",
@@ -517,6 +513,7 @@ const ReviewCard: React.FC<{ r: Review }> = ({ r }) => {
 };
 
 export const Reviews: React.FC = () => {
+  const c = useCopy();
   return (
     <AbsoluteFill>
       <Bg />
@@ -532,7 +529,7 @@ export const Reviews: React.FC = () => {
           gap: 26,
         }}
       >
-        <Pill delay={2}>QUEM JÁ CONFIOU · QUIEN YA CONFIÓ</Pill>
+        <Pill delay={2}>{c.reviewsPill}</Pill>
         <Rise delay={6}>
           <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
             <div
@@ -544,7 +541,7 @@ export const Reviews: React.FC = () => {
                 color: "#fff",
               }}
             >
-              5,0
+              {c.rating}
             </div>
             <div>
               <Stars delay={12} size={56} />
@@ -557,22 +554,24 @@ export const Reviews: React.FC = () => {
                   marginTop: 8,
                 }}
               >
-                122 avaliações no Google
+                {c.count[0]}
               </div>
-              <div
-                style={{
-                  fontFamily: fonts.body,
-                  fontSize: 28,
-                  color: colors.accentLight,
-                }}
-              >
-                122 reseñas en Google
-              </div>
+              {c.count[1] ? (
+                <div
+                  style={{
+                    fontFamily: fonts.body,
+                    fontSize: 28,
+                    color: colors.accentLight,
+                  }}
+                >
+                  {c.count[1]}
+                </div>
+              ) : null}
             </div>
           </div>
         </Rise>
         <div style={{ position: "relative", flex: 1 }}>
-          {REVIEWS.map((r, i) => (
+          {c.reviews.map((r, i) => (
             <Sequence
               key={r.name}
               from={i * 100}
@@ -600,8 +599,7 @@ export const Reviews: React.FC = () => {
             color: "rgba(255,255,255,0.6)",
           }}
         >
-          Opiniões de clientes publicadas no Google (Gestoría en Paraguay, hoje
-          SosaGroup). Traduzidas do original.
+          {c.reviewsNote}
         </div>
       </div>
       <Cut />
@@ -611,6 +609,8 @@ export const Reviews: React.FC = () => {
 
 // ------------------------------------------------------------------- cta ---
 export const Cta: React.FC = () => {
+  const c = useCopy();
+  const lang = useLang();
   const frame = useCurrentFrame();
   const pulse = 1 + Math.sin(frame / 5) * 0.025;
   const end = interpolate(frame, [118, 130], [0, 1], {
@@ -634,14 +634,15 @@ export const Cta: React.FC = () => {
           gap: 34,
         }}
       >
-        <Pill delay={2}>SEU PRÓXIMO CAPÍTULO</Pill>
+        <Pill delay={2}>{c.ctaPill}</Pill>
         <Bi
           pt={
             <>
-              Sua nova vida no Paraguai <Mark>começa com uma conversa.</Mark>
+              {c.cta.pre}
+              <Mark>{c.cta.mark}</Mark>
             </>
           }
-          es="Tu nueva vida en Paraguay empieza con una conversación."
+          es={c.ctaEs}
           size={102}
           esSize={36}
           delay={6}
@@ -662,12 +663,12 @@ export const Cta: React.FC = () => {
             <div
               style={{ fontFamily: fonts.head, fontWeight: 700, fontSize: 56 }}
             >
-              Consulta gratuita de 15 min
+              {c.button}
             </div>
             <div
               style={{ fontFamily: fonts.body, fontWeight: 500, fontSize: 28 }}
             >
-              Consulta gratis de 15 min · Google Meet
+              {c.buttonSub}
             </div>
           </div>
         </Rise>
@@ -691,7 +692,7 @@ export const Cta: React.FC = () => {
               marginTop: 6,
             }}
           >
-            sosagroup.com.py
+            {c.url}
           </div>
         </Rise>
       </div>
@@ -708,13 +709,27 @@ export const Cta: React.FC = () => {
         }}
       >
         <Img
-          src={logo}
+          src={lang === "en" ? logoMark : logo}
           style={{
             width: 900,
             opacity: card,
             transform: `scale(${interpolate(card, [0, 1], [0.9, 1])})`,
           }}
         />
+        {c.endTagline ? (
+          <div
+            style={{
+              fontFamily: fonts.body,
+              fontWeight: 500,
+              fontSize: 34,
+              color: colors.brand,
+              opacity: card,
+              marginTop: -20,
+            }}
+          >
+            {c.endTagline}
+          </div>
+        ) : null}
         <div
           style={{
             fontFamily: fonts.head,
@@ -724,7 +739,7 @@ export const Cta: React.FC = () => {
             opacity: card,
           }}
         >
-          sosagroup.com.py · WhatsApp +595 983 384 618
+          {c.url} · WhatsApp +595 983 384 618
         </div>
       </AbsoluteFill>
     </AbsoluteFill>

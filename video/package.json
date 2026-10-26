@@ -33,6 +33,7 @@
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc",
     "render:residencia": "remotion render Residencia out/sosagroup-vivir-en-paraguay.mp4",
-    "audio": "python3 scripts/make-audio.py"
+    "audio": "python3 scripts/make-audio.py",
+    "render:residencia:en": "remotion render ResidenciaEN out/sosagroup-living-in-paraguay-en.mp4"
   }
 }

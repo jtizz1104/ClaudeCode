@@ -74,7 +74,7 @@ export const Mark: React.FC<{
 // Portuguese big, Spanish smaller underneath.
 export const Bi: React.FC<{
   pt: React.ReactNode;
-  es: React.ReactNode;
+  es?: React.ReactNode;
   size?: number;
   esSize?: number;
   delay?: number;
@@ -105,19 +105,21 @@ export const Bi: React.FC<{
         {pt}
       </div>
     </Rise>
-    <Rise delay={delay + 6} from={24}>
-      <div
-        style={{
-          fontFamily: fonts.body,
-          fontWeight: 500,
-          fontSize: esSize,
-          lineHeight: 1.25,
-          color: colors.accentLight,
-        }}
-      >
-        {es}
-      </div>
-    </Rise>
+    {es ? (
+      <Rise delay={delay + 6} from={24}>
+        <div
+          style={{
+            fontFamily: fonts.body,
+            fontWeight: 500,
+            fontSize: esSize,
+            lineHeight: 1.25,
+            color: colors.accentLight,
+          }}
+        >
+          {es}
+        </div>
+      </Rise>
+    ) : null}
   </div>
 );
 
