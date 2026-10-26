@@ -409,7 +409,7 @@ export const COPY: Record<Lang, Copy> = {
 
   en: {
     timeline: "classic",
-    logoHeader: false,
+    logoHeader: true,
     tagline: "Advisory in Paraguay",
     hookPill: "LIVING IN PARAGUAY",
     hook: [
