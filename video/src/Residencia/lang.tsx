@@ -154,7 +154,7 @@ export const COPY: Record<Lang, Copy> = {
       },
     ],
     reviewsNote:
-      "Opiniões de clientes publicadas no Google (Gestoría en Paraguay, hoje SosaGroup). Traduzidas do original.",
+      "Opiniões de clientes publicadas no site da empresa e no Google (Gestoría en Paraguay, hoje SosaGroup). Traduzidas do original.",
     ctaPill: "SEU PRÓXIMO CAPÍTULO",
     cta: {
       pre: "Sua nova vida no Paraguai ",
@@ -328,7 +328,7 @@ export const COPY: Record<Lang, Copy> = {
       },
     ],
     reviewsNote:
-      "Customer reviews published on Google (Gestoría en Paraguay, now SosaGroup). Translated from the original.",
+      "Customer reviews published on the company website and on Google (Gestoría en Paraguay, now SosaGroup). Translated from the original.",
     ctaPill: "YOUR NEXT CHAPTER",
     cta: {
       pre: "Your new life in Paraguay ",
