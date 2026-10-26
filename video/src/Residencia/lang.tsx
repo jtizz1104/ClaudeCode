@@ -226,7 +226,7 @@ export const COPY: Record<Lang, Copy> = {
       "Com a SosaGroup, você conta com orientação sobre documentos e acompanhamento do seu processo de residência.",
       "Asesoramiento sobre documentos y acompañamiento de tu trámite de residencia.",
     ],
-    role: ["Diretora"],
+    role: ["CEO"],
     motto: [["Escutamos."], ["Planejamos."], ["Acompanhamos."]],
     reviewsPill: "QUEM JÁ CONFIOU",
     showRating: false,
