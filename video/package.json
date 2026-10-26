@@ -31,6 +31,8 @@
     "build": "remotion bundle",
     "render": "npm run sync && remotion render Showcase out/sosagroup-real-estate.mp4",
     "upgrade": "remotion upgrade",
-    "lint": "eslint src && tsc"
+    "lint": "eslint src && tsc",
+    "render:residencia": "remotion render Residencia out/sosagroup-vivir-en-paraguay.mp4",
+    "audio": "python3 scripts/make-audio.py"
   }
 }
