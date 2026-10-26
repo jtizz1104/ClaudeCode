@@ -101,10 +101,16 @@ export const Hook: React.FC = () => {
             <Flag /> {c.hookPill}
           </Pill>
         </div>
-        <HookLine text={c.hook[0]} delay={4} max={132} />
-        <HookLine text={c.hook[1]} delay={14} max={176} mark />
-        <HookLine text={c.hook[2]} delay={24} max={132} />
-        <HookLine text={c.hook[3]} delay={34} max={176} color={cream} />
+        {c.hook.map((h, i) => (
+          <HookLine
+            key={h.t}
+            text={h.t}
+            delay={4 + i * 10}
+            max={h.kind ? 176 : 132}
+            mark={h.kind === "mark"}
+            color={h.kind === "cream" ? cream : undefined}
+          />
+        ))}
         {c.hookEs ? (
           <div
             style={{
@@ -213,13 +219,15 @@ export const Bridge: React.FC = () => {
 export const Why: React.FC = () => {
   const c = useCopy();
   const frame = useCurrentFrame();
-  const n = Math.round(
-    interpolate(frame, [8, 50], [0, 30], {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-      easing: Easing.out(Easing.cubic),
-    }),
-  );
+  const n = c.countUp
+    ? Math.round(
+        interpolate(frame, [8, 50], [0, c.yearsNum], {
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+          easing: Easing.out(Easing.cubic),
+        }),
+      )
+    : c.yearsNum;
   const big = usePop(6);
   const photo = usePop(40);
   const lines = c.motto;
@@ -283,6 +291,35 @@ export const Why: React.FC = () => {
             ) : null}
           </div>
         </div>
+        {c.service ? (
+          <Rise delay={26}>
+            <div
+              style={{
+                fontFamily: fonts.head,
+                fontWeight: 600,
+                fontSize: 44,
+                lineHeight: 1.2,
+                color: "#fff",
+              }}
+            >
+              {c.service[0]}
+              {c.service[1] ? (
+                <div
+                  style={{
+                    fontFamily: fonts.body,
+                    fontWeight: 500,
+                    fontSize: 30,
+                    lineHeight: 1.3,
+                    color: colors.accentLight,
+                    marginTop: 12,
+                  }}
+                >
+                  {c.service[1]}
+                </div>
+              ) : null}
+            </div>
+          </Rise>
+        ) : null}
         <div
           style={{
             display: "flex",
@@ -408,10 +445,13 @@ const Stars: React.FC<{ delay?: number; size?: number }> = ({
 
 const ReviewCard: React.FC<{ r: Review }> = ({ r }) => {
   const s = usePop(2);
-  const out = interpolate(useCurrentFrame(), [90, 100], [1, 0], {
+  const { showStars, reviews } = useCopy();
+  const frame = useCurrentFrame();
+  const fade = interpolate(frame, [90, 100], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
+  const out = reviews.length > 1 ? fade : 1;
   return (
     <div
       style={{
@@ -506,7 +546,7 @@ const ReviewCard: React.FC<{ r: Review }> = ({ r }) => {
             </div>
           ) : null}
         </div>
-        <Stars delay={10} size={36} />
+        {showStars ? <Stars delay={10} size={36} /> : null}
       </div>
     </div>
   );
@@ -530,52 +570,54 @@ export const Reviews: React.FC = () => {
         }}
       >
         <Pill delay={2}>{c.reviewsPill}</Pill>
-        <Rise delay={6}>
-          <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
-            <div
-              style={{
-                fontFamily: fonts.head,
-                fontWeight: 700,
-                fontSize: 190,
-                lineHeight: 0.9,
-                color: "#fff",
-              }}
-            >
-              {c.rating}
-            </div>
-            <div>
-              <Stars delay={12} size={56} />
+        {c.showRating ? (
+          <Rise delay={6}>
+            <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
               <div
                 style={{
                   fontFamily: fonts.head,
-                  fontWeight: 600,
-                  fontSize: 44,
+                  fontWeight: 700,
+                  fontSize: 190,
+                  lineHeight: 0.9,
                   color: "#fff",
-                  marginTop: 8,
                 }}
               >
-                {c.count[0]}
+                {c.rating}
               </div>
-              {c.count[1] ? (
+              <div>
+                <Stars delay={12} size={56} />
                 <div
                   style={{
-                    fontFamily: fonts.body,
-                    fontSize: 28,
-                    color: colors.accentLight,
+                    fontFamily: fonts.head,
+                    fontWeight: 600,
+                    fontSize: 44,
+                    color: "#fff",
+                    marginTop: 8,
                   }}
                 >
-                  {c.count[1]}
+                  {c.count[0]}
                 </div>
-              ) : null}
+                {c.count[1] ? (
+                  <div
+                    style={{
+                      fontFamily: fonts.body,
+                      fontSize: 28,
+                      color: colors.accentLight,
+                    }}
+                  >
+                    {c.count[1]}
+                  </div>
+                ) : null}
+              </div>
             </div>
-          </div>
-        </Rise>
+          </Rise>
+        ) : null}
         <div style={{ position: "relative", flex: 1 }}>
           {c.reviews.map((r, i) => (
             <Sequence
               key={r.name}
               from={i * 100}
-              durationInFrames={100}
+              durationInFrames={c.reviews.length > 1 ? 100 : 9999}
               layout="none"
             >
               <div
@@ -594,9 +636,9 @@ export const Reviews: React.FC = () => {
         <div
           style={{
             fontFamily: fonts.body,
-            fontSize: 22,
+            fontSize: 28,
             lineHeight: 1.3,
-            color: "rgba(255,255,255,0.6)",
+            color: "rgba(255,255,255,0.78)",
           }}
         >
           {c.reviewsNote}
@@ -657,19 +699,31 @@ export const Cta: React.FC = () => {
               color: colors.dark900,
               borderRadius: 22,
               padding: "20px 38px",
+              maxWidth: WIDTH,
               boxShadow: "0 18px 50px rgba(0,0,0,0.4)",
             }}
           >
             <div
-              style={{ fontFamily: fonts.head, fontWeight: 700, fontSize: 56 }}
+              style={{
+                fontFamily: fonts.head,
+                fontWeight: 700,
+                fontSize: c.button.length > 30 ? 48 : 56,
+                lineHeight: 1.1,
+              }}
             >
               {c.button}
             </div>
-            <div
-              style={{ fontFamily: fonts.body, fontWeight: 500, fontSize: 28 }}
-            >
-              {c.buttonSub}
-            </div>
+            {c.buttonSub ? (
+              <div
+                style={{
+                  fontFamily: fonts.body,
+                  fontWeight: 500,
+                  fontSize: 30,
+                }}
+              >
+                {c.buttonSub}
+              </div>
+            ) : null}
           </div>
         </Rise>
         <Rise delay={40}>
@@ -697,51 +751,53 @@ export const Cta: React.FC = () => {
         </Rise>
       </div>
       <Cut />
-      <AbsoluteFill
-        style={{
-          background: "#fff",
-          opacity: end,
-          zIndex: 80,
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          gap: 40,
-        }}
-      >
-        <Img
-          src={lang === "en" ? logoMark : logo}
+      {c.endCard ? (
+        <AbsoluteFill
           style={{
-            width: 900,
-            opacity: card,
-            transform: `scale(${interpolate(card, [0, 1], [0.9, 1])})`,
-          }}
-        />
-        {c.endTagline ? (
-          <div
-            style={{
-              fontFamily: fonts.body,
-              fontWeight: 500,
-              fontSize: 34,
-              color: colors.brand,
-              opacity: card,
-              marginTop: -20,
-            }}
-          >
-            {c.endTagline}
-          </div>
-        ) : null}
-        <div
-          style={{
-            fontFamily: fonts.head,
-            fontWeight: 600,
-            fontSize: 40,
-            color: colors.brand,
-            opacity: card,
+            background: "#fff",
+            opacity: end,
+            zIndex: 80,
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            gap: 40,
           }}
         >
-          {c.url} · WhatsApp +595 983 384 618
-        </div>
-      </AbsoluteFill>
+          <Img
+            src={lang === "en" ? logoMark : logo}
+            style={{
+              width: 900,
+              opacity: card,
+              transform: `scale(${interpolate(card, [0, 1], [0.9, 1])})`,
+            }}
+          />
+          {c.endTagline ? (
+            <div
+              style={{
+                fontFamily: fonts.body,
+                fontWeight: 500,
+                fontSize: 34,
+                color: colors.brand,
+                opacity: card,
+                marginTop: -20,
+              }}
+            >
+              {c.endTagline}
+            </div>
+          ) : null}
+          <div
+            style={{
+              fontFamily: fonts.head,
+              fontWeight: 600,
+              fontSize: 40,
+              color: colors.brand,
+              opacity: card,
+            }}
+          >
+            {c.url} · WhatsApp +595 983 384 618
+          </div>
+        </AbsoluteFill>
+      ) : null}
     </AbsoluteFill>
   );
 };

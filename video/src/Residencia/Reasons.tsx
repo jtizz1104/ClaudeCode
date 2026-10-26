@@ -196,7 +196,7 @@ const Route: React.FC = () => {
           fontWeight={700}
           fontSize={44}
         >
-          SÃO PAULO
+          {c.origin}
         </text>
         <text
           x={P2.x + 24}

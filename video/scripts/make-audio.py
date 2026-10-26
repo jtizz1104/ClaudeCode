@@ -5,7 +5,11 @@ src/Residencia fall on bar lines. Layout (bars):
   0-1 hook (impact + riser) · 2-9 four reasons (full groove) · 10 bridge (breakdown)
   11-13 SosaGroup (drop) · 14-18 reviews (warm) · 19-21 call to action (resolve)
 
-Run:  python3 scripts/make-audio.py   ->  src/Residencia/music.mp3
+Run:  python3 scripts/make-audio.py [classic|v2]
+      classic -> src/Residencia/music.mp3, v2 -> src/Residencia/music-v2.mp3
+
+v2 layout (bars): 0-1 hook · 2-9 reasons · 10 bridge · 11-14 SosaGroup ·
+15-17 review · 18-21 call to action.
 """
 import subprocess
 import sys
@@ -20,6 +24,8 @@ BEAT = 60 / BPM
 BAR = 4 * BEAT
 BARS = 22
 N = int(SR * BAR * BARS)
+LAYOUT = sys.argv[1] if len(sys.argv) > 1 else "classic"
+assert LAYOUT in ("classic", "v2"), LAYOUT
 rng = np.random.default_rng(7)
 t_all = np.arange(N) / SR
 
@@ -187,9 +193,16 @@ def chord_at(bar):
 drums, bassl, music, fx = buf(), buf(), buf(), buf()
 
 # ---- scene map (bars) -------------------------------------------------------
-GROOVE = set(range(2, 10)) | set(range(11, 14))   # kick/clap/hats + bass
-SOFT = set(range(14, 19))                          # reviews: lighter
-RESOLVE = {19, 20}
+if LAYOUT == "classic":
+    GROOVE = set(range(2, 10)) | set(range(11, 14))   # kick/clap/hats + bass
+    SOFT = set(range(14, 19))                          # reviews: lighter
+    CUTS = [2, 4, 6, 8, 10, 11, 14, 19]
+    REVIEW_BARS = (14, 15, 16, 17, 18)
+else:
+    GROOVE = set(range(2, 10)) | set(range(11, 15))
+    SOFT = set(range(15, 21))                          # review + closing: lighter
+    CUTS = [2, 4, 6, 8, 10, 11, 15, 18]
+    REVIEW_BARS = (15,)
 for bar in range(BARS):
     t0 = bar * BAR
     root, tones = chord_at(bar)
@@ -252,15 +265,14 @@ for k in range(8):                               # ticking build in the hook
 put(fx, BAR * 2 - 2.0, riser(2.0), 0.55)         # riser into first reason
 put(fx, BAR * 10 - 0.0, riser(BAR, 500, 12000), 0.5)  # bridge riser
 put(fx, BAR * 11, impact(), 0.8)                 # drop on SosaGroup
-put(fx, BAR * 14, ding(1568), 0.8)               # reviews start
+put(fx, BAR * REVIEW_BARS[0], ding(1568), 0.8)      # reviews start
 
-cuts = [2, 4, 6, 8, 10, 11, 14, 19]
-for c in cuts:
+for c in CUTS:
     put(fx, c * BAR - 0.38, whoosh(), 0.55)
-for c in (14, 15, 16, 17, 18):                   # review swaps + pop
-    put(fx, c * BAR + (0 if c == 14 else 0), pop(), 0.8)
+for c in REVIEW_BARS:                            # review swaps + pop
+    put(fx, c * BAR, pop(), 0.8)
 for i in range(5):
-    put(fx, BAR * 14 + 0.2 + i * 0.1, ding(1046.5 * (1 + i * 0.12)), 0.35)
+    put(fx, BAR * REVIEW_BARS[0] + 0.2 + i * 0.1, ding(1046.5 * (1 + i * 0.12)), 0.35)
 for c in range(2, 10, 2):                        # number badges pop
     put(fx, c * BAR + 0.12, pop(), 0.9)
 put(fx, BAR * 11 + 0.5, pop(), 0.9)
@@ -306,7 +318,7 @@ with wave.open(str(wav), "wb") as w:
     w.setsampwidth(2)
     w.setframerate(SR)
     w.writeframes(pcm.tobytes())
-mp3 = out_dir / "music.mp3"
+mp3 = out_dir / ("music.mp3" if LAYOUT == "classic" else "music-v2.mp3")
 subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(wav), "-c:a", "libmp3lame", "-b:a", "192k", str(mp3)], check=True)
 wav.unlink()
 print("wrote", mp3, f"{N / SR:.1f}s", file=sys.stderr)

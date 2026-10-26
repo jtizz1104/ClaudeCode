@@ -26,6 +26,16 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={{ lang: "pt" as const }}
       />
       <Composition
+        // Same reel with the revised texts (Propuesta-nueva-version). Render with: npm run render:propuesta
+        id="Propuesta"
+        component={Residencia}
+        durationInFrames={RESIDENCIA_FRAMES}
+        fps={FPS}
+        width={1080}
+        height={1920}
+        defaultProps={{ lang: "pt2" as const }}
+      />
+      <Composition
         // Same reel in English. Render with: npm run render:residencia:en
         id="ResidenciaEN"
         component={Residencia}

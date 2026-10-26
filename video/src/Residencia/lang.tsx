@@ -1,22 +1,27 @@
 import { createContext, useContext } from "react";
 
-// "pt" = Portuguese big + Spanish underneath (Brazilian audience).
-// "en" = English only.
-export type Lang = "pt" | "en";
+// "pt"  = first version: Portuguese big + Spanish underneath.
+// "pt2" = revised texts (Propuesta-nueva-version-video-SosaGroup.md), same video.
+// "en"  = English only.
+export type Lang = "pt" | "pt2" | "en";
 export const LangContext = createContext<Lang>("pt");
 
 type Title = { pre: string; mark: string; post?: string };
 type Pair = [string, string?];
 type ReasonCopy = { title: Title; es?: string; sub: string; subEs?: string };
+type HookLineCopy = { t: string; kind?: "mark" | "cream" };
 
 export type Copy = {
+  timeline: "classic" | "v2";
+  logoHeader: boolean;
   tagline: string;
   hookPill: string;
-  hook: [string, string, string, string];
+  hook: HookLineCopy[];
   hookEs?: string;
   hookTag: string;
   reasonPill: (n: number) => string;
   reasons: [ReasonCopy, ReasonCopy, ReasonCopy, ReasonCopy];
+  origin: string;
   city: Pair;
   routeChip: Pair;
   chips: Pair[];
@@ -26,10 +31,15 @@ export type Copy = {
   bridgeEs?: string;
   whyPill: string;
   years: [string, string];
+  yearsNum: number;
+  countUp: boolean;
   yearsEs?: string;
+  service?: Pair;
   role: Pair;
   motto: Pair[];
   reviewsPill: string;
+  showRating: boolean;
+  showStars: boolean;
   rating: string;
   count: Pair;
   reviews: Array<{ name: string; from?: string; text: string; es?: string }>;
@@ -38,16 +48,24 @@ export type Copy = {
   cta: Title;
   ctaEs?: string;
   button: string;
-  buttonSub: string;
+  buttonSub?: string;
   url: string;
+  endCard: boolean;
   endTagline?: string;
 };
 
 export const COPY: Record<Lang, Copy> = {
   pt: {
+    timeline: "classic",
+    logoHeader: false,
     tagline: "Asesoría en Paraguay",
     hookPill: "BRASIL → PARAGUAI",
-    hook: ["POR QUE TANTOS", "BRASILEIROS", "ESTÃO ESCOLHENDO", "O PARAGUAI?"],
+    hook: [
+      { t: "POR QUE TANTOS" },
+      { t: "BRASILEIROS", kind: "mark" },
+      { t: "ESTÃO ESCOLHENDO" },
+      { t: "O PARAGUAI?", kind: "cream" },
+    ],
     hookEs: "¿Por qué tantos brasileños eligen Paraguay?",
     hookTag: "4 motivos · 4 razones",
     reasonPill: (n) => `MOTIVO ${n} · RAZÓN ${n}`,
@@ -78,6 +96,7 @@ export const COPY: Record<Lang, Copy> = {
         subEs: "Inmuebles y empresas para construir patrimonio.",
       },
     ],
+    origin: "SÃO PAULO",
     city: ["ASSUNÇÃO", "Asunción"],
     routeChip: [
       "Brasil e Paraguai, lado a lado",
@@ -101,6 +120,8 @@ export const COPY: Record<Lang, Copy> = {
     bridgeEs: "Pero hay un detalle: hacer la residencia bien lo cambia todo.",
     whyPill: "POR QUE A SOSAGROUP?",
     years: ["ANOS DE", "EXPERIÊNCIA"],
+    yearsNum: 35,
+    countUp: true,
     yearsEs: "años de experiencia",
     role: ["Diretora", "Directora"],
     motto: [
@@ -110,17 +131,19 @@ export const COPY: Record<Lang, Copy> = {
       ["Acompanhamos.", "Acompañamos."],
     ],
     reviewsPill: "QUEM JÁ CONFIOU · QUIEN YA CONFIÓ",
+    showRating: true,
+    showStars: true,
     rating: "5,0",
     count: ["122 avaliações no Google", "122 reseñas en Google"],
     reviews: [
       {
-        name: "Sandra Bertolucci",
+        name: "Sandra Bertulucci",
         from: "São Paulo, Brasil",
         text: "O serviço e o atendimento recebidos não poderiam ter sido melhores.",
         es: "El servicio y el trato recibido no podía ser mejor.",
       },
       {
-        name: "Oliveira Oliveira",
+        name: "JLuis RL",
         text: "Uma experiência impecável do início ao fim.",
         es: "Una experiencia impecable de principio a fin.",
       },
@@ -141,11 +164,108 @@ export const COPY: Record<Lang, Copy> = {
     button: "Consulta gratuita de 15 min",
     buttonSub: "Consulta gratis de 15 min · Google Meet",
     url: "sosagroup.com.py",
+    endCard: true,
   },
+
+  pt2: {
+    timeline: "v2",
+    logoHeader: true,
+    tagline: "Asesoría en Paraguay",
+    hookPill: "BRASIL → PARAGUAI",
+    hook: [
+      { t: "PENSANDO EM" },
+      { t: "MORAR", kind: "mark" },
+      { t: "NO PARAGUAI?", kind: "cream" },
+    ],
+    hookEs: "¿Pensando en vivir en Paraguay?",
+    hookTag: "4 motivos",
+    reasonPill: (n) => `MOTIVO ${n}`,
+    reasons: [
+      {
+        title: { pre: "Pertinho do ", mark: "Brasil." },
+        es: "Una nueva vida, cerca de Brasil y de quienes querés.",
+        sub: "Uma nova vida sem ficar longe de quem você ama.",
+      },
+      {
+        title: { pre: "Um novo lugar para viver ", mark: "com sua família." },
+        es: "Un nuevo lugar para vivir en familia y proyectar tu futuro.",
+        sub: "Mais espaço para seus planos.",
+      },
+      {
+        title: { pre: "Planejamento ", mark: "para sua mudança." },
+        es: "Planificación para tu mudanza.",
+        sub: "Residência migratória e residência fiscal são coisas diferentes.",
+        subEs:
+          "La residencia migratoria y la residencia fiscal son cosas distintas.",
+      },
+      {
+        title: { pre: "Quer empreender ou ", mark: "investir?" },
+        es: "¿Querés emprender o invertir?",
+        sub: "Comece com planejamento. Oportunidades em imóveis e negócios.",
+        subEs:
+          "Empezá con planificación. Oportunidades en inmuebles y negocios.",
+      },
+    ],
+    origin: "BRASIL",
+    city: ["ASSUNÇÃO"],
+    routeChip: ["Brasil e Paraguai, lado a lado"],
+    chips: [["Família"], ["Natureza"]],
+    rows: [
+      ["Documentos organizados"],
+      ["Etapas planejadas"],
+      ["Acompanhamento em cada passo"],
+    ],
+    bridgeKicker: "TUDO COMEÇA COM UM PLANO",
+    bridge: { pre: "Antes das malas, ", mark: "organize seus documentos." },
+    bridgeEs: "Antes de las valijas, organizá tus documentos.",
+    whyPill: "POR QUE A SOSAGROUP?",
+    years: ["ANOS DE", "EXPERIÊNCIA"],
+    yearsNum: 35,
+    countUp: false,
+    service: [
+      "Com a SosaGroup, você conta com orientação sobre documentos e acompanhamento do seu processo de residência.",
+      "Asesoramiento sobre documentos y acompañamiento de tu trámite de residencia.",
+    ],
+    role: ["Diretora"],
+    motto: [["Escutamos."], ["Planejamos."], ["Acompanhamos."]],
+    reviewsPill: "QUEM JÁ CONFIOU",
+    showRating: false,
+    showStars: false,
+    rating: "",
+    count: [""],
+    reviews: [
+      {
+        name: "Sandra Bertulucci",
+        from: "São Paulo, Brasil",
+        text: "O serviço e o atendimento não poderiam ser melhores.",
+        es: "El servicio y el trato recibido no podía ser mejor.",
+      },
+    ],
+    reviewsNote:
+      "Tradução do original. Depoimento publicado no site da empresa.",
+    ctaPill: "SEU PRÓXIMO CAPÍTULO",
+    cta: {
+      pre: "Sua nova vida no Paraguai ",
+      mark: "começa com uma conversa.",
+    },
+    ctaEs: "Tu nueva vida en Paraguay empieza con una conversación.",
+    button: "Fale com a SosaGroup pelo WhatsApp.",
+    buttonSub: "Escribinos por WhatsApp.",
+    url: "sosagroup.com.py",
+    endCard: false,
+  },
+
   en: {
+    timeline: "classic",
+    logoHeader: false,
     tagline: "Advisory in Paraguay",
     hookPill: "LIVING IN PARAGUAY",
-    hook: ["WHY ARE SO MANY", "PEOPLE", "CHOOSING", "PARAGUAY?"],
+    hook: [
+      { t: "WHY ARE SO MANY" },
+      { t: "PEOPLE", kind: "mark" },
+      { t: "CHOOSING" },
+      { t: "PARAGUAY?", kind: "cream" },
+    ],
     hookTag: "4 reasons",
     reasonPill: (n) => `REASON ${n}`,
     reasons: [
@@ -166,6 +286,7 @@ export const COPY: Record<Lang, Copy> = {
         sub: "Real estate and businesses to build wealth.",
       },
     ],
+    origin: "SÃO PAULO",
     city: ["ASUNCIÓN"],
     routeChip: ["Next door to Brazil and Argentina"],
     chips: [["Family"], ["Nature"], ["Peace of mind"]],
@@ -182,19 +303,23 @@ export const COPY: Record<Lang, Copy> = {
     },
     whyPill: "WHY SOSAGROUP?",
     years: ["YEARS OF", "EXPERIENCE"],
+    yearsNum: 35,
+    countUp: true,
     role: ["Director"],
     motto: [["We listen."], ["We analyze."], ["We plan."], ["We support."]],
     reviewsPill: "WHO ALREADY TRUSTED US",
+    showRating: true,
+    showStars: true,
     rating: "5.0",
     count: ["122 Google reviews"],
     reviews: [
       {
-        name: "Sandra Bertolucci",
+        name: "Sandra Bertulucci",
         from: "São Paulo, Brazil",
         text: "The service and the treatment received couldn't have been better.",
       },
       {
-        name: "Oliveira Oliveira",
+        name: "JLuis RL",
         text: "An impeccable experience from start to finish.",
       },
       {
@@ -212,6 +337,7 @@ export const COPY: Record<Lang, Copy> = {
     button: "Free 15-min consultation",
     buttonSub: "Online via Google Meet",
     url: "sosagroup.com.py/en",
+    endCard: true,
     endTagline: "Your arrival in Paraguay, in expert hands",
   },
 };
