@@ -12,6 +12,7 @@ import { COPY, LangContext, type Lang } from "./lang";
 import logoMark from "./logo-mark.png";
 import music from "./music.mp3";
 import musicV2 from "./music-v2.mp3";
+import { Eas1, Eas2, Eas3, Eas4, EasChecklist } from "./EasScenes";
 import { Reason1, Reason2, Reason3, Reason4 } from "./Reasons";
 import { Bridge, Cta, Hook, Reviews, Why } from "./Story";
 
@@ -43,6 +44,19 @@ const V2: Scene[] = [
   { from: 600, frames: 60, node: <Bridge /> },
   { from: 660, frames: 240, node: <Why /> },
   { from: 900, frames: 180, node: <Reviews /> },
+  { from: 1080, frames: 240, node: <Cta /> },
+];
+
+// EAS / electronic signature news video: same bars as V2, other content.
+const EAS: Scene[] = [
+  { from: 0, frames: 120, node: <Hook /> },
+  { from: 120, frames: 120, node: <Eas1 /> },
+  { from: 240, frames: 120, node: <Eas2 /> },
+  { from: 360, frames: 120, node: <Eas3 /> },
+  { from: 480, frames: 120, node: <Eas4 /> },
+  { from: 600, frames: 60, node: <Bridge /> },
+  { from: 660, frames: 240, node: <EasChecklist /> },
+  { from: 900, frames: 180, node: <Why /> },
   { from: 1080, frames: 240, node: <Cta /> },
 ];
 
@@ -151,12 +165,13 @@ const Header: React.FC<{ lang: Lang }> = ({ lang }) => {
 export type ResidenciaProps = { lang: Lang };
 
 export const Residencia: React.FC<ResidenciaProps> = ({ lang }) => {
-  const v2 = COPY[lang].timeline === "v2";
+  const timeline = COPY[lang].timeline;
+  const scenes = timeline === "eas" ? EAS : timeline === "v2" ? V2 : CLASSIC;
   return (
     <LangContext.Provider value={lang}>
       <AbsoluteFill style={{ background: colors.dark950 }}>
-        <Audio src={v2 ? musicV2 : music} />
-        {(v2 ? V2 : CLASSIC).map((s) => (
+        <Audio src={timeline === "classic" ? music : musicV2} />
+        {scenes.map((s) => (
           <Sequence key={s.from} from={s.from} durationInFrames={s.frames}>
             {s.node}
           </Sequence>

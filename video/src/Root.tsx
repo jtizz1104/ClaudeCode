@@ -36,6 +36,16 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={{ lang: "pt2" as const }}
       />
       <Composition
+        // EAS: mandatory qualified electronic signature (from 9 Nov 2026). npm run render:eas
+        id="EasFirmaElectronica"
+        component={Residencia}
+        durationInFrames={RESIDENCIA_FRAMES}
+        fps={FPS}
+        width={1080}
+        height={1920}
+        defaultProps={{ lang: "eas" as const }}
+      />
+      <Composition
         // Same reel in English. Render with: npm run render:residencia:en
         id="ResidenciaEN"
         component={Residencia}

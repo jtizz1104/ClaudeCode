@@ -3,16 +3,30 @@ import { createContext, useContext } from "react";
 // "pt"  = first version: Portuguese big + Spanish underneath.
 // "pt2" = revised texts (Propuesta-nueva-version-video-SosaGroup.md), same video.
 // "en"  = English only.
-export type Lang = "pt" | "pt2" | "en";
+export type Lang = "pt" | "pt2" | "en" | "eas";
 export const LangContext = createContext<Lang>("pt");
 
 type Title = { pre: string; mark: string; post?: string };
 type Pair = [string, string?];
 type ReasonCopy = { title: Title; es?: string; sub: string; subEs?: string };
+
+// Extra texts for the EAS / electronic signature video (lang "eas").
+export type EasCopy = {
+  calendar: { day: string; month: string; weekday: Pair; badge: Pair };
+  scope: Pair[];
+  signers: Pair[];
+  siara: Array<{ who: Pair; system: Pair; detail: Pair }>;
+  checklistPill: string;
+  checklistTitle: Title;
+  checklistEs: string;
+  checklist: Pair[];
+  source: Pair;
+};
 type HookLineCopy = { t: string; kind?: "mark" | "cream" };
 
 export type Copy = {
-  timeline: "classic" | "v2";
+  timeline: "classic" | "v2" | "eas";
+  eas?: EasCopy;
   logoHeader: boolean;
   tagline: string;
   hookPill: string;
@@ -257,6 +271,140 @@ export const COPY: Record<Lang, Copy> = {
     endCard: true,
     endAt: 178,
     endTagline: "Sua chegada ao Paraguai em mãos de especialistas",
+  },
+
+  eas: {
+    timeline: "eas",
+    logoHeader: true,
+    tagline: "Asesoría en Paraguay",
+    hookPill: "ATENÇÃO · EAS",
+    hook: [
+      { t: "NOVA REGRA" },
+      { t: "PARA AS EAS", kind: "mark" },
+      { t: "NO PARAGUAI", kind: "cream" },
+    ],
+    hookEs: "Nueva regla para las EAS en Paraguay",
+    hookTag: "A partir de 9 de novembro",
+    reasonPill: (n) => `PONTO ${n}`,
+    reasons: [
+      {
+        title: { pre: "A partir de ", mark: "9 de novembro." },
+        es: "Desde el 9 de noviembre.",
+        sub: "Empresa por Ações Simplificada (EAS): a assinatura eletrônica qualificada passa a ser obrigatória.",
+        subEs:
+          "Empresa por Acciones Simplificadas (EAS): la firma electrónica cualificada pasa a ser obligatoria.",
+      },
+      {
+        title: { pre: "Não é só para ", mark: "abrir a empresa." },
+        es: "No es solo para abrir la empresa.",
+        sub: "Vale também para as comunicações posteriores.",
+        subEs: "Vale también para las comunicaciones posteriores.",
+      },
+      {
+        title: { pre: "Quem pode ", mark: "assinar?" },
+        es: "¿Quién puede firmar?",
+        sub: "O estatuto precisa de pelo menos uma assinatura eletrônica qualificada.",
+        subEs:
+          "El estatuto necesita al menos una firma electrónica cualificada.",
+      },
+      {
+        title: { pre: "E o ", mark: "SIARA?" },
+        es: "¿Y el SIARA?",
+        sub: "É o sistema do MEF para os registros de empresas. Para as EAS, até agora sem data confirmada.",
+        subEs:
+          "Es el sistema del MEF para los registros de empresas. Para las EAS, hasta ahora sin fecha confirmada.",
+      },
+    ],
+    origin: "",
+    city: [""],
+    routeChip: [""],
+    chips: [],
+    rows: [],
+    bridgeKicker: "PARA QUEM TEM OU VAI ABRIR UMA EAS",
+    bridge: { pre: "O que ", mark: "fazer agora?" },
+    bridgeEs: "¿Qué hacer ahora?",
+    whyPill: "POR QUE A SOSAGROUP?",
+    years: ["ANOS DE", "EXPERIÊNCIA"],
+    yearsNum: 35,
+    countUp: false,
+    service: [
+      "A SosaGroup acompanha famílias e investidores na abertura de empresas e na residência no Paraguai.",
+      "SosaGroup acompaña a familias e inversores en la apertura de empresas y en la residencia en Paraguay.",
+    ],
+    role: ["CEO"],
+    motto: [["Escutamos."], ["Planejamos."], ["Acompanhamos."]],
+    reviewsPill: "",
+    showRating: false,
+    showStars: false,
+    rating: "",
+    count: [""],
+    reviews: [],
+    reviewsNote: "",
+    ctaPill: "DÚVIDAS SOBRE A SUA EAS?",
+    cta: { pre: "Tem uma EAS no Paraguai? ", mark: "Fale com a SosaGroup." },
+    ctaEs: "¿Tenés una EAS en Paraguay? Escribinos.",
+    button: "Fale com a SosaGroup pelo WhatsApp.",
+    buttonSub: "Escribinos por WhatsApp.",
+    url: "sosagroup.com.py",
+    endCard: true,
+    endAt: 178,
+    endTagline: "Sua chegada ao Paraguai em mãos de especialistas",
+    eas: {
+      calendar: {
+        day: "9",
+        month: "NOV 2026",
+        weekday: ["segunda-feira", "lunes"],
+        badge: [
+          "Assinatura eletrônica qualificada",
+          "Firma electrónica cualificada",
+        ],
+      },
+      scope: [
+        ["Estatuto social", "Estatuto social"],
+        ["Assembleias", "Asambleas"],
+        ["Transferência de ações", "Transferencia de acciones"],
+        ["Mudança de autoridades", "Cambio de autoridades"],
+        ["Reformas do estatuto", "Modificaciones del estatuto"],
+      ],
+      signers: [
+        ["Representante legal", "Representante legal"],
+        ["Tabelião (escribano público)", "Escribano público"],
+        [
+          "Pessoa autorizada pela empresa",
+          "Persona autorizada por la sociedad",
+        ],
+      ],
+      siara: [
+        {
+          who: ["SA e SRL", "SA y SRL"],
+          system: ["SIARA", "SIARA"],
+          detail: ["desde março de 2026", "desde marzo de 2026"],
+        },
+        {
+          who: ["EAS", "EAS"],
+          system: ["Plataforma EAS", "Plataforma EAS"],
+          detail: ["SIARA: sem data confirmada", "SIARA: sin fecha confirmada"],
+        },
+      ],
+      checklistPill: "ANTES DE 9 DE NOVEMBRO",
+      checklistTitle: { pre: "Três passos ", mark: "simples." },
+      checklistEs: "Tres pasos simples.",
+      checklist: [
+        ["Revise quem assina pela sua EAS", "Revisá quién firma por tu EAS"],
+        [
+          "Planeje as próximas assembleias e mudanças",
+          "Planificá las próximas asambleas y cambios",
+        ],
+        [
+          "Confirme os detalhes no comunicado do SUACE",
+          "Confirmá los detalles en el comunicado del SUACE",
+        ],
+      ],
+      source: [
+        "Fonte: comunicados do MIC/SUACE e do MEF (out/2026). Confirme no texto oficial.",
+        "Fuente: comunicados del MIC/SUACE y del MEF (oct/2026). Confirmá en el texto oficial.",
+      ],
+    },
   },
 
   en: {

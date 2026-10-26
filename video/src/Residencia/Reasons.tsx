@@ -25,7 +25,7 @@ import {
 import { useCopy } from "./lang";
 
 // ---------------------------------------------------------------- layout ---
-const Reason: React.FC<{
+export const Reason: React.FC<{
   n: number;
   pt: React.ReactNode;
   es?: string;
