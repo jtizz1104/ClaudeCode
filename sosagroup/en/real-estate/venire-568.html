@@ -2,6 +2,9 @@
 <html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
+  <!-- Seguridad: qué puede cargar la página (si se agrega un servicio externo, sumarlo acá) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://tile.openstreetmap.org https://server.arcgisonline.com; font-src 'self'; connect-src 'self' https://formsubmit.co; frame-src https://maps.google.com https://www.google.com; media-src 'self'; form-action 'self' https://formsubmit.co; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Venire 568 Recoleta · Manuel del Castillo &amp; San Roque González, Recoleta, Asunción | SosaGroup Real Estate</title>
   <meta name="description" content="8-floor building with 88 studio, 1 and 2-bedroom apartments in Recoleta, with pool, barbecue areas, co-working and gym.">
@@ -24,9 +27,8 @@
   <meta property="og:locale:alternate" content="pt_BR">
   <!-- seo:end -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%238a2454'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-size='24' fill='%23ffffff'%3ES%3C/text%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="../../assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../assets/fonts/outfit-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../../assets/vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="../../assets/vendor/leaflet.markercluster/MarkerCluster.css">
   <link rel="stylesheet" href="../../assets/styles.css">
@@ -216,17 +218,13 @@
         <a aria-current="true" data-lang="en" hreflang="en" lang="en" title="English" href="venire-568.html"><svg class="flag" aria-hidden="true"><use href="#f-gb"/></svg>EN</a>
         <a data-lang="pt" hreflang="pt" lang="pt" title="Português" href="../../pt/real-estate/venire-568.html"><svg class="flag" aria-hidden="true"><use href="#f-br"/></svg>PT</a>
       </nav>
-      <!-- TODO: completar los enlaces reales de redes -->
-      <a href="#" aria-label="SosaGroup on Facebook"><svg aria-hidden="true"><use href="#i-facebook"/></svg></a>
-      <a href="#" aria-label="SosaGroup on Instagram"><svg aria-hidden="true"><use href="#i-instagram"/></svg></a>
-      <a href="#" aria-label="SosaGroup on LinkedIn"><svg aria-hidden="true"><use href="#i-linkedin"/></svg></a>
       <a href="mailto:silvanagimenezbienesraices@gmail.com" aria-label="Email SosaGroup"><svg aria-hidden="true"><use href="#i-mail"/></svg></a>
     </div>
   </div>
 
   <header class="site-header">
     <div class="container">
-      <a class="brand" href="../index.html" aria-label="SosaGroup, home">
+      <a class="brand" href="../index.html">
         <span class="brand__mark" aria-hidden="true">S</span>
         <span class="brand__name">Sosa<b>Group</b><small>Real Estate</small></span>
       </a>
@@ -265,7 +263,7 @@
               <a class="btn btn--outline" href="#contacto">Ask about this project</a>
             </div>
           </div>
-          <img class="proj-hero__img" src="../../assets/img/inmuebles/venire-568-fachada.jpg" alt="Venire 568 Recoleta" width="560" height="700">
+          <img class="proj-hero__img" src="../../assets/img/inmuebles/venire-568-fachada.jpg" srcset="../../assets/img/inmuebles/venire-568-fachada-sm.webp 640w, ../../assets/img/inmuebles/venire-568-fachada.jpg 1600w" sizes="(max-width: 900px) 92vw, 560px" alt="Venire 568 Recoleta" width="560" height="700">
         </div>
       </div>
     </section>
@@ -291,7 +289,7 @@
       </div>
     </section>
 
-    <section class="section section--warm" aria-labelledby="proj-gallery"><div class="container"><h2 id="proj-gallery" class="proj-h2">Gallery</h2><div class="proj-gallery"><figure><img src="../../assets/img/inmuebles/venire-568-acceso.jpg" alt="Venire 568 Recoleta" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/venire-568-esquina.jpg" alt="Venire 568 Recoleta" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/venire-568-piscina.jpg" alt="Venire 568 Recoleta" loading="lazy"></figure></div></div></section>
+    <section class="section section--warm" aria-labelledby="proj-gallery"><div class="container"><h2 id="proj-gallery" class="proj-h2">Gallery</h2><div class="proj-gallery"><figure><img src="../../assets/img/inmuebles/venire-568-acceso.jpg" srcset="../../assets/img/inmuebles/venire-568-acceso-sm.webp 640w, ../../assets/img/inmuebles/venire-568-acceso.jpg 1600w" sizes="(max-width: 600px) 92vw, 400px" alt="Venire 568 Recoleta" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/venire-568-esquina.jpg" srcset="../../assets/img/inmuebles/venire-568-esquina-sm.webp 640w, ../../assets/img/inmuebles/venire-568-esquina.jpg 1600w" sizes="(max-width: 600px) 92vw, 400px" alt="Venire 568 Recoleta" loading="lazy"></figure><figure><img src="../../assets/img/inmuebles/venire-568-piscina.jpg" srcset="../../assets/img/inmuebles/venire-568-piscina-sm.webp 640w, ../../assets/img/inmuebles/venire-568-piscina.jpg 1600w" sizes="(max-width: 600px) 92vw, 400px" alt="Venire 568 Recoleta" loading="lazy"></figure></div></div></section>
 
     <!-- Contacto -->
     <section id="contacto" class="section" aria-labelledby="contacto-title">
@@ -319,7 +317,7 @@
 
         <div class="form-card reveal">
           <!-- Envío con FormSubmit (formsubmit.co): llega al correo de Silvana. La primera vez, FormSubmit manda un correo de activación a esa casilla. -->
-          <form id="re-form" data-validate novalidate data-endpoint="https://formsubmit.co/ajax/silvanagimenezbienesraices@gmail.com">
+          <form id="re-form" data-validate novalidate data-form="real-estate">
             <input type="hidden" name="division" value="real-estate">
             <input type="hidden" name="proyecto" value="Venire 568 Recoleta">
             <input type="hidden" name="_subject" value="Consulta desde la web · SosaGroup Real Estate">
@@ -396,7 +394,7 @@
                 <span class="hint" id="mensaje-hint">Do not include sensitive data such as ID or account numbers.</span>
               </div>
               <div class="field field--full">
-                <label class="choice"><input type="checkbox" name="consentimiento" required aria-describedby="consent-error"><span>I agree that SosaGroup may use this data only to answer my inquiry. We do not share it with third parties.</span></label>
+                <label class="choice"><input type="checkbox" name="consentimiento" required aria-describedby="consent-error"><span>I agree that SosaGroup may use this data only to answer my inquiry. We do not share it with third parties. <a href="../privacidad.html" target="_blank">See the privacy notice</a>.</span></label>
                 <span class="error" id="consent-error" aria-live="polite"></span>
               </div>
             </div>
@@ -415,14 +413,14 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a class="brand" href="../index.html" aria-label="SosaGroup, home">
+          <a class="brand" href="../index.html">
             <span class="brand__mark" aria-hidden="true">S</span>
             <span class="brand__name">Sosa<b>Group</b><small>Real Estate</small></span>
           </a>
           <p style="margin-top:16px;max-width:320px">Property and real estate investment in Paraguay, backed by SosaGroup.</p>
         </div>
         <div>
-          <h4>Real Estate</h4>
+          <h3>Real Estate</h3>
           <ul>
             <li><a href="../real-estate.html#servicios">Services</a></li>
             <li><a href="../real-estate.html#zonas">Areas</a></li>
@@ -431,7 +429,7 @@
           </ul>
         </div>
         <div>
-          <h4>SosaGroup</h4>
+          <h3>SosaGroup</h3>
           <ul>
             <li><a href="../index.html">Home</a></li>
             <li><a href="../index.html#servicios">Residency and immigration</a></li>
@@ -440,7 +438,7 @@
           </ul>
         </div>
         <div>
-          <h4>Offices</h4>
+          <h3>Offices</h3>
           <p>WTC Asunción<br>Aviadores del Chaco 2050<br>Tower 4, Floor 12, Office C<br>Asunción, Paraguay</p>
           <ul style="margin-top:12px">
             <li><a href="#contacto">Tell us what you need</a></li>
@@ -449,12 +447,12 @@
       </div>
       <div class="footer-bottom">
         <span>© <span data-year>2026</span> SosaGroup. All rights reserved.</span>
-        <span>Asunción, Paraguay</span>
+        <span><a href="../privacidad.html">Privacy notice</a> · Asunción, Paraguay</span>
       </div>
     </div>
   </footer>
 
-  <script src="../../assets/i18n-dict.js" defer></script>
+  <script src="../../assets/i18n-en.js" defer></script>
   <script src="../../assets/i18n.js" defer></script>
   <script src="../../assets/main.js" defer></script>
 </body>

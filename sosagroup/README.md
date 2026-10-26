@@ -31,15 +31,15 @@ Sitio estático en HTML, CSS y JavaScript. No necesita instalación ni compilaci
 
 Para encontrar estos puntos en el código, busque `TODO` y `[completar`.
 
-1. **Contacto.** Real Estate ya tiene el WhatsApp, teléfono y correo de Silvana Gimenez. En la página del grupo y la Guía de Trámites, reemplazar `[completar número]` y `[completar correo]`. El enlace de WhatsApp debe ser `https://wa.me/595XXXXXXXXX` (número sin espacios ni `+`).
-2. **Redes sociales.** En la barra superior de las dos páginas, poner los enlaces reales de Facebook, Instagram, LinkedIn y correo (hoy están en `href="#"`).
-3. **Envío de formularios.** El formulario de Real Estate ya envía al correo de Silvana con FormSubmit (`data-endpoint` en el `<form>`; gratis, sin cuenta; la primera vez llega a esa casilla un correo de activación que hay que confirmar). Para los demás, en `assets/main.js`, completar `FORM_ENDPOINT` con la dirección que recibe los formularios (por ejemplo Formspree, Netlify Forms o un servidor propio). Mientras esté vacío, los formularios validan pero muestran el aviso de vista previa.
+1. **Contacto.** Listo: grupo y Guía con WhatsApp y teléfono +595 981 504 861 y correo info@sosagroup.com.py; Real Estate con los datos de Silvana Gimenez.
+2. **Redes sociales.** Los íconos de Facebook, Instagram y LinkedIn se quitaron de la barra superior hasta tener los enlaces reales. Para volver a ponerlos: `<a href="URL" target="_blank" rel="noopener" aria-label="Instagram de SosaGroup"><svg aria-hidden="true"><use href="#i-instagram"/></svg></a>` (los íconos `#i-facebook`, `#i-instagram` e `#i-linkedin` siguen en cada página).
+3. **Envío de formularios.** Con FormSubmit (gratis, sin cuenta). El destino de cada formulario está en `FORM_ENDPOINTS` de `assets/main.js`, según el atributo `data-form` del `<form>`: `grupo` (Inicio y Guía) llega a info@sosagroup.com.py y `real-estate` a Silvana. **La primera consulta de cada casilla dispara un correo "Activate Form" de FormSubmit que hay que confirmar**; hasta entonces el formulario avisa que está pendiente de activación. Después de activarlo, FormSubmit da un código aleatorio: reemplazar el correo por ese código en `FORM_ENDPOINTS` para que la dirección no quede a la vista.
 4. **Fotos.** Van en `assets/img/`. Si se usa el mismo nombre de archivo, no hay que tocar el HTML.
    - `hero-real-estate.jpg`: portada de Real Estate (falta).
    - `hero-paraguay.jpg`: portada del grupo. La actual sale de una captura; conviene reemplazarla por el original (unos 2400 px de ancho).
    - `gloria-sosa.jpg`, `wtc-asuncion.jpg`, `gloria-con-clientes.jpg`: salen de capturas del sitio anterior; conviene reemplazarlas por los originales.
 5. **Inmuebles y proyectos.** Se cargan en `assets/data/inmuebles.js` (el archivo explica cada campo). Las coordenadas se copian de Google Maps con clic derecho sobre el punto. Las fotos van en `assets/img/inmuebles/` y los brochures en `assets/brochures/`.
-6. **Enlace "Acceso equipo"** del pie de página: hoy apunta a `/panel`; ajustarlo o quitarlo.
+6. **Aviso de privacidad** (`privacidad.html`): texto general armado según lo que hace el sitio hoy. Conviene que lo revise un abogado, y actualizarlo si se agregan estadísticas, publicidad u otros servicios.
 
 ## Vista de prueba en internet
 
@@ -104,3 +104,18 @@ Si el sitio crece mucho, conviene una cuenta propia (por ejemplo en MapTiler); s
 - `assets/video/inicio-wtc.mp4` / `.webm`: video de fondo de la portada (`index.html`), 1280×720, ~29 s en bucle, sin sonido, armado con fotos del WTC Asunción (oficinas en Torre 4 · Piso 12 · Of. C).
 - `assets/img/hero-wtc.jpg`: primer cuadro, se muestra mientras carga el video o si el navegador no lo reproduce.
 - Arranca solo, se pausa cuando sale de pantalla y no se reproduce si el usuario tiene activado "reducir movimiento".
+
+## Seguridad
+
+- **Política de contenido (CSP)**: cada página tiene un `<meta http-equiv="Content-Security-Policy">` que solo deja cargar scripts del propio sitio y, de afuera, los mapas (OpenStreetMap, Esri, Google Maps) y el envío a FormSubmit. Si se agrega un servicio externo (estadísticas, chat, un video de YouTube…), hay que sumar su dominio en esa línea de `index.html`, `real-estate.html`, `guia-de-tramites.html` y `privacidad.html`, y volver a generar las páginas; si no, el navegador lo bloquea.
+- **Sin código dentro del HTML**: nada de `onclick=`, `onerror=` ni `<script>` con código en las páginas (lo bloquea la CSP). Todo va en `assets/*.js`.
+- **Formularios**: llevan un campo trampa invisible (`_honey`) que agrega `main.js`; si un bot lo completa, el envío se descarta.
+- **Qué se publica**: el flujo de GitHub Pages deja afuera `README.md`, `tools/` y `assets/i18n-dict.js`.
+- **Tipografías**: Inter y Outfit están en `assets/fonts/` (no se cargan de Google Fonts).
+- **Brochures**: antes de subir un PDF nuevo, borrarle los metadatos (autor, programa) con `python3 -c "import pikepdf,sys; p=pikepdf.open(sys.argv[1],allow_overwriting_input=True); [d.__delitem__(k) for d,k in ((p.trailer,'/Info'),(p.Root,'/Metadata')) if k in d]; p.save(sys.argv[1])" archivo.pdf`.
+
+## Rendimiento
+
+- **Fotos de inmuebles**: cada `.jpg` de `assets/img/inmuebles/` tiene una versión liviana `-sm.webp` (640 px) para las tarjetas del mapa y las fichas. Al agregar fotos nuevas, crearla con `python3 -c "from PIL import Image;import sys;f=sys.argv[1];im=Image.open(f).convert('RGB');im.thumbnail((640,9999));im.save(f[:-4]+'-sm.webp','WEBP',quality=72,method=6)" assets/img/inmuebles/foto.jpg`.
+- **Videos de portada**: hay una versión vertical liviana para celular (`*-movil.mp4/.webm`, 432×720). El video arranca recién cuando terminó de cargar la página, y no se reproduce con el ahorro de datos activado.
+- **Traducciones**: las páginas en castellano no cargan el diccionario; las de inglés y portugués cargan solo `assets/i18n-en.js` o `assets/i18n-pt.js`, que genera `tools/build_i18n.py`.

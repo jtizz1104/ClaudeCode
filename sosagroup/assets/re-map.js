@@ -40,8 +40,10 @@
   const projectUrl = (it) => `real-estate/${it.slug}.html`;
   const tag = () => `<span class="re-tag re-tag--demo">${t("Ejemplo")}</span>`;
   const icon = (it) => it.tipo === "desarrollo" ? "#i-building" : "#i-home";
+  // Versión liviana de las fotos de inmuebles para las tarjetas (generada junto a cada .jpg)
+  const small = (f) => (/^assets\/img\/inmuebles\/.+\.jpe?g$/.test(f) ? f.replace(/\.jpe?g$/, "-sm.webp") : f);
   const photo = (it) => it.foto
-    ? `<img src="${esc(asset(it.foto))}" alt="" loading="lazy">`
+    ? `<img src="${esc(asset(small(it.foto)))}" data-full="${esc(asset(it.foto))}" alt="" loading="lazy">`
     : `<span class="ph"><svg aria-hidden="true"><use href="${icon(it)}"/></svg></span>`;
 
   // Mapa
@@ -191,6 +193,12 @@
       : "No hay resultados con estos filtros. Cuéntenos qué busca y le avisamos cuando tengamos opciones.")}</li>`;
   }
 
+  filters.addEventListener("submit", (ev) => ev.preventDefault());
+  // Si falta la versión liviana de una foto, se usa la original
+  root.addEventListener("error", (ev) => {
+    const img = ev.target;
+    if (img.tagName === "IMG" && img.dataset.full && img.src !== img.dataset.full) img.src = img.dataset.full;
+  }, true);
   filters.addEventListener("change", (ev) => {
     const el = ev.target;
     if (el.name in state) { state[el.name] = el.value; render(); }
