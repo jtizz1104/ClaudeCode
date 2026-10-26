@@ -51,6 +51,7 @@ export type Copy = {
   buttonSub?: string;
   url: string;
   endCard: boolean;
+  endAt: number;
   endTagline?: string;
 };
 
@@ -165,6 +166,7 @@ export const COPY: Record<Lang, Copy> = {
     buttonSub: "Consulta gratis de 15 min · Google Meet",
     url: "sosagroup.com.py",
     endCard: true,
+    endAt: 118,
   },
 
   pt2: {
@@ -252,7 +254,9 @@ export const COPY: Record<Lang, Copy> = {
     button: "Fale com a SosaGroup pelo WhatsApp.",
     buttonSub: "Escribinos por WhatsApp.",
     url: "sosagroup.com.py",
-    endCard: false,
+    endCard: true,
+    endAt: 178,
+    endTagline: "Sua chegada ao Paraguai em mãos de especialistas",
   },
 
   en: {
@@ -338,6 +342,7 @@ export const COPY: Record<Lang, Copy> = {
     buttonSub: "Online via Google Meet",
     url: "sosagroup.com.py/en",
     endCard: true,
+    endAt: 118,
     endTagline: "Your arrival in Paraguay, in expert hands",
   },
 };

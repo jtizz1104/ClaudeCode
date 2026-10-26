@@ -652,14 +652,13 @@ export const Reviews: React.FC = () => {
 // ------------------------------------------------------------------- cta ---
 export const Cta: React.FC = () => {
   const c = useCopy();
-  const lang = useLang();
   const frame = useCurrentFrame();
   const pulse = 1 + Math.sin(frame / 5) * 0.025;
-  const end = interpolate(frame, [118, 130], [0, 1], {
+  const end = interpolate(frame, [c.endAt, c.endAt + 12], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
-  const card = useSmooth(124);
+  const card = useSmooth(c.endAt + 6);
   return (
     <AbsoluteFill>
       <Bg image="img/hero-paraguay.jpg" opacity={0.3} blur={12} />
@@ -764,7 +763,7 @@ export const Cta: React.FC = () => {
           }}
         >
           <Img
-            src={lang === "en" ? logoMark : logo}
+            src={c.endTagline ? logoMark : logo}
             style={{
               width: 900,
               opacity: card,
