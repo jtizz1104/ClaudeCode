@@ -422,7 +422,7 @@ export const COPY: Record<Lang, Copy> = {
     reasonPill: (n) => `REASON ${n}`,
     reasons: [
       {
-        title: { pre: "In the heart of ", mark: "South America." },
+        title: { pre: "Paraguay is in the heart of ", mark: "South America." },
         sub: "Next to Brazil and Argentina, just hours from home.",
       },
       {
@@ -449,7 +449,7 @@ export const COPY: Record<Lang, Copy> = {
     ],
     bridgeKicker: "BUT HERE'S THE KEY…",
     bridge: {
-      pre: "Doing your residency ",
+      pre: "Planning your residency ",
       mark: "the right way",
       post: " changes everything.",
     },
@@ -458,8 +458,8 @@ export const COPY: Record<Lang, Copy> = {
     yearsNum: 35,
     countUp: true,
     role: ["CEO"],
-    motto: [["We listen."], ["We analyze."], ["We plan."], ["We support."]],
-    reviewsPill: "WHO ALREADY TRUSTED US",
+    motto: [["We listen."], ["We analyze."], ["We plan."], ["We support you."]],
+    reviewsPill: "HEAR FROM THOSE WHO HAVE TRUSTED US",
     showRating: true,
     showStars: true,
     rating: "5.0",
