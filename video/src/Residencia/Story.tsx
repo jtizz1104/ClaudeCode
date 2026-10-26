@@ -735,7 +735,7 @@ export const Cta: React.FC = () => {
               color: "#fff",
             }}
           >
-            WhatsApp +595 983 384 618
+            WhatsApp +595 981 504 861
           </div>
           <div
             style={{
@@ -794,7 +794,7 @@ export const Cta: React.FC = () => {
               opacity: card,
             }}
           >
-            {c.url} · WhatsApp +595 983 384 618
+            {c.url} · WhatsApp +595 981 504 861
           </div>
         </AbsoluteFill>
       ) : null}

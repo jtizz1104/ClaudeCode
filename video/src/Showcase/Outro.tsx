@@ -79,7 +79,7 @@ export const Outro: React.FC = () => {
           ...rise(24),
         }}
       >
-        WhatsApp +595 983 384 618
+        WhatsApp +595 981 504 861
       </div>
     </AbsoluteFill>
   );
