@@ -305,7 +305,7 @@ export const COPY: Record<Lang, Copy> = {
     years: ["YEARS OF", "EXPERIENCE"],
     yearsNum: 35,
     countUp: true,
-    role: ["Director"],
+    role: ["CEO"],
     motto: [["We listen."], ["We analyze."], ["We plan."], ["We support."]],
     reviewsPill: "WHO ALREADY TRUSTED US",
     showRating: true,
