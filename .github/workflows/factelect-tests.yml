@@ -1,0 +1,27 @@
+# Corre las pruebas de FactElect_PG (SIFEN y API) en cada cambio de FactElect_PG/.
+name: FactElect_PG · pruebas
+
+on:
+  push:
+    paths: ["FactElect_PG/**", ".github/workflows/factelect-tests.yml"]
+  pull_request:
+    paths: ["FactElect_PG/**", ".github/workflows/factelect-tests.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: FactElect_PG
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: FactElect_PG/package-lock.json
+      - run: npm ci
+      - run: npm test

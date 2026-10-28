@@ -1,7 +1,7 @@
 {
-  "name": "timbra-py",
+  "name": "factelect-pg",
   "version": "1.0.0",
-  "description": "Timbra PY: facturación electrónica SIFEN v150 para Paraguay, multidivisa",
+  "description": "FactElect_PG: facturación electrónica SIFEN v150 para Paraguay, multidivisa",
   "type": "module",
   "private": true,
   "engines": {

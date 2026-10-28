@@ -151,7 +151,7 @@ export async function enviarPorEmail(empresa, doc, destinatario) {
         { filename: `${doc.cdc}.xml`, content: Buffer.from(doc.xml).toString('base64'), content_type: 'application/xml' },
         { filename: `KuDE-${doc.cdc}.html`, content: Buffer.from(html).toString('base64'), content_type: 'text/html' },
       ],
-      tags: ['timbra', `de-${doc.tipo}`],
+      tags: ['factelect', `de-${doc.tipo}`],
     }),
     signal: AbortSignal.timeout(15000),
   });

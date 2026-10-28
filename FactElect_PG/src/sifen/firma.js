@@ -23,7 +23,7 @@ export function leerP12(buffer, password) {
 }
 
 // Certificado autofirmado para el modo simulado (nunca válido ante la DNIT).
-export function certificadoDePrueba(nombre = 'TIMBRA PY PRUEBA', password = 'prueba') {
+export function certificadoDePrueba(nombre = 'FACTELECT_PG PRUEBA', password = 'prueba') {
   const claves = forge.pki.rsa.generateKeyPair(2048);
   const cert = forge.pki.createCertificate();
   cert.publicKey = claves.publicKey;

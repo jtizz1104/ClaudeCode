@@ -2,7 +2,7 @@ import { DatabaseSync } from 'node:sqlite';
 import { mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
 
-export function abrirDB(ruta = process.env.DB_PATH || 'data/timbra.db') {
+export function abrirDB(ruta = process.env.DB_PATH || 'data/factelect.db') {
   if (ruta !== ':memory:') mkdirSync(dirname(ruta), { recursive: true });
   const db = new DatabaseSync(ruta);
   db.exec(`

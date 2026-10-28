@@ -14,7 +14,7 @@ import { leerP12 } from './sifen/firma.js';
 import * as K from './sifen/constants.js';
 
 const RAIZ = dirname(fileURLToPath(import.meta.url));
-const COOKIE = 'timbra_sesion';
+const COOKIE = 'factelect_sesion';
 const DURACION_SESION = 7 * 24 * 3600 * 1000;
 
 const mal = (msg, status = 422) => new ErrorNegocio(msg, status);
@@ -479,6 +479,6 @@ export function crearApp(db = abrirDB()) {
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const puerto = Number(process.env.PORT) || 3000;
-  crearApp().listen(puerto, () => console.log(`Timbra PY escuchando en http://localhost:${puerto}`));
+  crearApp().listen(puerto, () => console.log(`FactElect_PG escuchando en http://localhost:${puerto}`));
 }
 

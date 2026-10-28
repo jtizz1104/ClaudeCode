@@ -1,4 +1,4 @@
-// Planes de la propuesta comercial Timbra PY (mayo 2026), precios en guaraníes.
+// Planes de la propuesta comercial FactElect_PG (mayo 2026), precios en guaraníes.
 export const PLANES = {
   simple: {
     nombre: 'Simple', precio: 99000, documentosMes: 50, productos: 100,

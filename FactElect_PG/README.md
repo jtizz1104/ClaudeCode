@@ -1,4 +1,4 @@
-# Timbra PY
+# FactElect_PG
 
 Facturación electrónica para Paraguay (SIFEN v150, DNIT), 100% web y multidivisa.
 Implementa la propuesta comercial de mayo de 2026: onboarding online, cinco tipos de
@@ -34,7 +34,7 @@ como facturador electrónico.
 Requiere Node.js 22.13 o posterior (usa `node:sqlite`).
 
 ```bash
-cd timbra
+cd FactElect_PG
 npm install
 npm start            # http://localhost:3000
 npm test             # pruebas de SIFEN (cálculo, XML, firma, QR) y de la API completa
@@ -45,7 +45,7 @@ Variables de entorno (ver `.env.example`):
 | Variable | Uso |
 |---|---|
 | `PORT` | Puerto HTTP (3000) |
-| `DB_PATH` | Ruta de la base SQLite (`data/timbra.db`) |
+| `DB_PATH` | Ruta de la base SQLite (`data/factelect.db`) |
 | `APP_SECRET` | Clave para cifrar la contraseña del certificado y el CSC. Si falta, se genera `data/secret.key` |
 | `COOKIE_SECURE` | `1` detrás de HTTPS |
 | `RATES_URL` | Fuente de cotizaciones con base USD, con el formato de open.er-api.com |

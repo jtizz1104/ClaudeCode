@@ -1,4 +1,4 @@
-// Timbra PY — interfaz web (SPA sin dependencias, ruteo por hash).
+// FactElect_PG — interfaz web (SPA sin dependencias, ruteo por hash).
 
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -17,7 +17,8 @@ async function api(metodo, url, cuerpo) {
   });
   const json = res.headers.get('content-type')?.includes('json') ? await res.json() : null;
   if (!res.ok) {
-    if (res.status === 401 && !url.includes('/login') && !url.includes('/registro')) {
+    // /api/sesion es la comprobación inicial: un 401 ahí no debe sacar al usuario del registro.
+    if (res.status === 401 && !['/api/login', '/api/registro', '/api/sesion'].includes(url)) {
       S.sesion = null;
       location.hash = '#/login';
     }
@@ -117,7 +118,7 @@ const NAV = [
 const AMBIENTES = { simulado: 'Modo simulado', test: 'SIFEN test', prod: 'SIFEN producción' };
 
 function logo() {
-  return `<a class="logo" href="#/panel"><span class="logo-mark">${icon('zap')}</span><span><b>Timbra</b><small>Facturación electrónica</small></span></a>`;
+  return `<a class="logo" href="#/panel"><span class="logo-mark">${icon('zap')}</span><span><b>FactElect_PG</b><small>Facturación electrónica</small></span></a>`;
 }
 
 function layout(activo, contenido) {

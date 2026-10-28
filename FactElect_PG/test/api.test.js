@@ -4,7 +4,7 @@ import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-const dir = mkdtempSync(join(tmpdir(), 'timbra-'));
+const dir = mkdtempSync(join(tmpdir(), 'factelect-'));
 process.env.SECRET_PATH = join(dir, 'secret.key');
 process.env.RATES_URL = 'http://127.0.0.1:9/no-disponible';
 

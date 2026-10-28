@@ -30,7 +30,7 @@ function clave() {
     }
     secreto = readFileSync(ruta, 'utf8').trim();
   }
-  claveMaestra = scryptSync(secreto, 'timbra-py', 32);
+  claveMaestra = scryptSync(secreto, 'factelect-pg', 32);
   return claveMaestra;
 }
 
