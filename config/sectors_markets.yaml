@@ -1,0 +1,34 @@
+# Sectores y tickers para el pipeline de mercados (pipelines/markets).
+# Editá libremente los tickers de cada sector. Los símbolos son los de Yahoo
+# Finance (compatibles con yfinance). Los índices ETF sirven como proxy
+# rápido del sector completo; los tickers individuales dan el detalle.
+
+sectors:
+  chips:
+    label: "Semiconductores / Chips"
+    etf: SOXX
+    tickers: [NVDA, AMD, TSM, INTC, AVGO, ASML, QCOM, ARM]
+
+  infraestructura:
+    label: "Infraestructura (data centers, grid, industria)"
+    etf: PAVE
+    tickers: [VRT, ETN, PWR, NVT, CAT, GEV]
+
+  energia_limpia:
+    label: "Energía limpia / renovable"
+    etf: ICLN
+    tickers: [NEE, ENPH, FSLR, PLUG, SEDG, BE]
+
+  energia_convencional:
+    label: "Energía convencional (petróleo y gas)"
+    etf: XLE
+    tickers: [XOM, CVX, COP, SLB, OXY]
+
+  nuclear:
+    label: "Energía nuclear"
+    etf: URA
+    tickers: [CCJ, BWXT, SMR, LEU, CEG, VST]
+
+# Umbral de variación diaria (%) para marcar un movimiento como "relevante"
+# en el informe/short.
+significant_move_pct: 3.0

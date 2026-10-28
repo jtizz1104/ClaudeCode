@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panel de contenido - @codigonegocioia</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span>@codigonegocioia</span>
+    </div>
+    <div class="controls">
+      <select id="pipeline-select">
+        <option value="ai_news">Resumen de IA</option>
+        <option value="markets">Informe de mercados</option>
+      </select>
+      <select id="date-select"></select>
+    </div>
+  </header>
+
+  <main>
+    <section class="headline-card" id="headline-card" hidden>
+      <h1 id="headline-text"></h1>
+      <p id="headline-sub"></p>
+    </section>
+
+    <div id="empty-state" class="empty-state">
+      Todavía no hay contenido generado para esta combinación. Corré el pipeline
+      correspondiente (<code>python -m pipelines.ai_news.run</code> o
+      <code>python -m pipelines.markets.run</code>) y después
+      <code>python scripts/build_shorts.py</code>.
+    </div>
+
+    <div id="cards" class="cards"></div>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
